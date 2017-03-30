@@ -1,0 +1,164 @@
+# do run.do
+# Model Technology ModelSim SE-64 vlog 10.6 Compiler 2016.12 Dec 13 2016
+# Start time: 14:41:31 on Mar 30,2017
+# vlog ../lib/gscl45nm.v 
+# -- Compiling module AND2X1
+# -- Compiling module AND2X2
+# -- Compiling module AOI21X1
+# -- Compiling module AOI22X1
+# -- Compiling module BUFX2
+# -- Compiling module BUFX4
+# -- Compiling module CLKBUF1
+# -- Compiling module CLKBUF2
+# -- Compiling module CLKBUF3
+# -- Compiling module DFFNEGX1
+# -- Compiling module DFFPOSX1
+# -- Compiling module DFFSR
+# -- Compiling module FAX1
+# -- Compiling module HAX1
+# -- Compiling module INVX1
+# -- Compiling module INVX2
+# -- Compiling module INVX4
+# -- Compiling module INVX8
+# -- Compiling module LATCH
+# -- Compiling module MUX2X1
+# -- Compiling module NAND2X1
+# -- Compiling module NAND3X1
+# -- Compiling module NOR2X1
+# -- Compiling module NOR3X1
+# -- Compiling module OAI21X1
+# -- Compiling module OAI22X1
+# -- Compiling module OR2X1
+# -- Compiling module OR2X2
+# -- Compiling module TBUFX1
+# -- Compiling module TBUFX2
+# -- Compiling module XNOR2X1
+# -- Compiling module XOR2X1
+# -- Compiling UDP udp_dff
+# -- Compiling UDP udp_tlat
+# -- Compiling UDP udp_rslat
+# -- Compiling UDP udp_mux2
+# 
+# Top level modules:
+# 	AND2X1
+# 	AND2X2
+# 	AOI21X1
+# 	AOI22X1
+# 	BUFX2
+# 	BUFX4
+# 	CLKBUF1
+# 	CLKBUF2
+# 	CLKBUF3
+# 	DFFNEGX1
+# 	DFFPOSX1
+# 	DFFSR
+# 	FAX1
+# 	HAX1
+# 	INVX1
+# 	INVX2
+# 	INVX4
+# 	INVX8
+# 	LATCH
+# 	MUX2X1
+# 	NAND2X1
+# 	NAND3X1
+# 	NOR2X1
+# 	NOR3X1
+# 	OAI21X1
+# 	OAI22X1
+# 	OR2X1
+# 	OR2X2
+# 	TBUFX1
+# 	TBUFX2
+# 	XNOR2X1
+# 	XOR2X1
+# End time: 14:41:31 on Mar 30,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vlog 10.6 Compiler 2016.12 Dec 13 2016
+# Start time: 14:41:31 on Mar 30,2017
+# vlog ../test_bench/test_top.v ../verilog/fpu.v ../verilog/pre_norm.v ../verilog/primitives.v ../verilog/post_norm.v ../verilog/except.v ../verilog/pre_norm_fmul.v 
+# -- Compiling module test
+# -- Compiling module fpu
+# -- Compiling module pre_norm
+# -- Compiling module add_sub27
+# -- Compiling module mul_r2
+# -- Compiling module div_r2
+# -- Compiling module post_norm
+# -- Compiling module delay1
+# -- Compiling module delay2
+# -- Compiling module delay3
+# -- Compiling module except
+# -- Compiling module pre_norm_fmul
+# 
+# Top level modules:
+# 	test
+# End time: 14:41:31 on Mar 30,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim SE-64 vlog 10.6 Compiler 2016.12 Dec 13 2016
+# Start time: 14:41:31 on Mar 30,2017
+# vlog "+cover" -sv ../tb/interfaces.sv ../tb/sequences.sv ../tb/coverage.sv ../tb/scoreboard.sv ../tb/modules.sv ../tb/tests.sv ../tb/tb.sv 
+# -- Compiling interface dut_in
+# -- Compiling interface dut_out
+# ** Note: (vlog-2286) ../tb/sequences.sv(1): Using implicit +incdir+/misc/linuxws/packages/mentor_2016/modelsim10.6/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Compiling package sequences
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling package coverage
+# -- Importing package sequences
+# -- Compiling package scoreboard
+# -- Compiling package modules_pkg
+# -- Importing package coverage
+# -- Importing package scoreboard
+# -- Compiling package tests
+# -- Importing package modules_pkg
+# -- Compiling package tb_sv_unit
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package modules_pkg
+# -- Importing package sequences
+# -- Importing package coverage
+# -- Importing package scoreboard
+# -- Importing package tests
+# -- Compiling module dut
+# -- Compiling module top
+# 
+# Top level modules:
+# 	top
+# End time: 14:41:32 on Mar 30,2017, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -c test 
+# Start time: 14:41:32 on Mar 30,2017
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.6 Dec 13 2016Linux 2.6.32-642.11.1.el6.x86_64
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.test(fast)
+# Loading work.delay3(fast)
+# 
+# 
+# Floating Point Unit Version 1.5
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# All test Done !
+# 
+# 
+# Run 0 vecors, found 0 errors.
+# 
+# 
+# ** Note: $finish    : ../test_bench/test_top.v(131)
+#    Time: 450 ns  Iteration: 1  Instance: /test
+# End time: 14:41:34 on Mar 30,2017, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
