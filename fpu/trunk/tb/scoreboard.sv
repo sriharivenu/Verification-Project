@@ -43,8 +43,8 @@ class alu_scoreboard extends uvm_scoreboard;
 
     extern virtual function [45:0] getresult; 
     extern virtual function void compare; 
-    extern virtual function [45:0] add_sub (logic [31:0] in_a, logic [31:0] in_b, logic add, logic rmode);
-    extern virtual function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic rmode);
+    extern virtual function [45:0] add_sub (logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode);
+    extern virtual function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
     extern virtual function [45:0] int_flt ()    
 endclass: alu_scoreboard
 
@@ -66,21 +66,33 @@ function [45:0] alu_scoreboard::getresult;
 // The concatination of the output: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
 	alu_transaction_in tx;
 	
-	// Output values needed
+	case(tx.fpu_op)
+		3'b000: return add_sub(tx.opa, tx.opb, 0, tx.rmode); // For addition - 0
+		3'b001: return add_sub(tx.opa, tx.opb, 1, tx.rmode); // For subtraction - 1
+		3'b010: return mul_div(tx,opa, tx.opb, 0, tx.rmode); // For multiplication - 0
+		3'b011: return mul_div(tx.opa, tx.opb, 1, tx.rmode); // For division - 0
+		
+
+		// Need to write cases for other opcodes
+
+
+return 46'b0;
+endfunction
+
+
+function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode) ;
+	// First need to pre normalise the result and then proceed to addition or subtraction.
+	logic [7:0] exp_a = in_a[30:23];
+	logic sign_a = in_a[31];
+	logic [22:0] fraction_a = in_a[22:0];
+	logic [7:0] exp_b = in_b[30:23];
+	logic sign_b = in_b[31];
+	logic [22:0] fraction_b = in_b[22:0];
+
+	// Output needed to find
 	logic zero_a, inf_in, aeqb, blta, unordered;
 	logic zero, div_by_zero, underflow, overflow;
 	logic ine, inf, qnan, snan, out;
 	logic [31:0] out;
-
-	case(tx.fpu_op)
-		3'b000: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = add_sub(tx.opa, tx.opb, 0, tx.rmode); // For addition - 0
-		3'b001: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = add_sub(tx.opa, tx.opb, 1, tx.rmode); // For subtraction - 1
-		3'b010: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = mul_div(tx,opa, tx.opb, 0, tx.rmode); // For multiplication - 0
-		3'b011: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = mul_div(tx.opa, tx.opb, 1, tx.rmode); // For division - 0
-		
-
-		// Need to write cases for other opcodes
-return {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction
-
 endpackage: scoreboard
