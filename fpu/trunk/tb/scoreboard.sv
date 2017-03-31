@@ -90,22 +90,56 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	logic [22:0] fraction_b;
 
 	// Output needed to find
-	logic zero_a, inf_in, aeqb, blta, unordered;
+	logic zero_a, inf_in, aeqb, blta, altb, unordered;
 	logic zero, div_by_zero, underflow, overflow;
 	logic ine, inf, qnan, snan, out;
 	logic [31:0] out;
 
 	// Inputs
-	assign exp_a = in_a[30:23];
-	assign sign_a = in_a[31];
-	assign fraction_a = in_a[22:0];
+	exp_a = in_a[30:23];
+	sign_a = in_a[31];
+	fraction_a = in_a[22:0];
 
-	assign exp_b = in_b[30:23];
-	assign sign_b = in_b[31];
-	assign fraction_b = in_b[22:0];
+	exp_b = in_b[30:23];
+	sign_b = in_b[31];
+	fraction_b = in_b[22:0];
+
 	// Normalization of the input for proper addition/subtraction.
 	logic exp_altb;
+	logic expa_subnormal;
+	logic expb_subnormal;
+	
+	
+	// FCMP scoreboard answers.
 
-	assign exp_altb = 
+	if(exp_a == 8'b0)
+		expa_subnormal = 1'b1;
+	if(exp_b == 8'b0)
+		expb_subnormal = 1'b1;
+
+	// Zero_a is high if input A is zero
+	if(expb_subnormal && fraction_a == 23'b0)
+		zero_a = 1'b1;
+	else
+		zero_a = 1'b0;
+	// Inf_in is high if anyone of the input is infinity
+	inf_in = ( ( (& exp_a) && !(| fraction_a)) || ( (& exp_b) && !(| fraction_b)) );
+	
+	// Finding the comparison between the inputs
+	altb = exp_a > exp_b;
+	blta = (altb)? 1'b0: (exp_a < exp_b)? 1: 0;
+	if(!(altb) && !(blta))
+	begin
+		altb = (fraction_a > fraction_b)? 1:0;
+		blta = (fraction_b > fraction_a)? 1:0;
+		aeqb = (!(blta) && !(altb)) ? 1: 0;
+	end
+
+	// Unordered is high is any one of the input is NAN
+	unordered = ( ((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ); 
+
+
+	
+
 endfunction
 endpackage: scoreboard
