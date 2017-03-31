@@ -82,17 +82,30 @@ endfunction
 
 function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode) ;
 	// First need to pre normalise the result and then proceed to addition or subtraction.
-	logic [7:0] exp_a = in_a[30:23];
-	logic sign_a = in_a[31];
-	logic [22:0] fraction_a = in_a[22:0];
-	logic [7:0] exp_b = in_b[30:23];
-	logic sign_b = in_b[31];
-	logic [22:0] fraction_b = in_b[22:0];
+	logic [7:0] exp_a;
+	logic sign_a;
+	logic [22:0] fraction_a;
+	logic [7:0] exp_b;
+	logic sign_b;
+	logic [22:0] fraction_b;
 
 	// Output needed to find
 	logic zero_a, inf_in, aeqb, blta, unordered;
 	logic zero, div_by_zero, underflow, overflow;
 	logic ine, inf, qnan, snan, out;
 	logic [31:0] out;
+
+	// Inputs
+	assign exp_a = in_a[30:23];
+	assign sign_a = in_a[31];
+	assign fraction_a = in_a[22:0];
+
+	assign exp_b = in_b[30:23];
+	assign sign_b = in_b[31];
+	assign fraction_b = in_b[22:0];
+	// Normalization of the input for proper addition/subtraction.
+	logic exp_altb;
+
+	assign exp_altb = 
 endfunction
 endpackage: scoreboard
