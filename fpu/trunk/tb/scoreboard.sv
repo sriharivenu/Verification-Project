@@ -41,9 +41,11 @@ class alu_scoreboard extends uvm_scoreboard;
         end
     endtask: run
 
-    extern virtual function [33:0] getresult; 
+    extern virtual function [45:0] getresult; 
     extern virtual function void compare; 
-        
+    extern virtual function [45:0] add_sub (logic [31:0] in_a, logic [31:0] in_b, logic add, logic rmode);
+    extern virtual function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic rmode);
+    extern virtual function [45:0] int_flt ()    
 endclass: alu_scoreboard
 
 function void alu_scoreboard::compare;
@@ -70,7 +72,15 @@ function [45:0] alu_scoreboard::getresult;
 	logic ine, inf, qnan, snan, out;
 	logic [31:0] out;
 
-return 34'd0;
+	case(tx.fpu_op)
+		3'b000: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = add_sub(tx.opa, tx.opb, 0, tx.rmode); // For addition - 0
+		3'b001: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = add_sub(tx.opa, tx.opb, 1, tx.rmode); // For subtraction - 1
+		3'b010: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = mul_div(tx,opa, tx.opb, 0, tx.rmode); // For multiplication - 0
+		3'b011: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out} = mul_div(tx.opa, tx.opb, 1, tx.rmode); // For division - 0
+		
+
+		// Need to write cases for other opcodes
+return {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction
 
 endpackage: scoreboard

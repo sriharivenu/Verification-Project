@@ -533,7 +533,7 @@ assign ine =	op_f2i ? f2i_ine :
 		op_i2f ? (|fract_trunc) :
 		((r & !dn) | (s & !dn) | max_num | (op_div & !rem_00));
 
-// ---------------------------------------------------------------------
+/*// ---------------------------------------------------------------------
 // Debugging Stuff
 
 // synopsys translate_off
@@ -618,11 +618,11 @@ always @(test.error_event)
    end
 
 
-// synopsys translate_on
+// synopsys translate_on*/
 
 endmodule
 
-// synopsys translate_off
+/*// synopsys translate_off
 
 module delay1(clk, in, out);
 parameter	N = 1;
@@ -674,3 +674,4 @@ always @(posedge clk)
 endmodule
 
 // synopsys translate_on
+*/
