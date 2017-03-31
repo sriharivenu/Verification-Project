@@ -55,116 +55,20 @@ function void alu_scoreboard::compare;
     //You can use tx_in.convert2string() and tx_out.convert2string() for
     //debugging purposes
     //alu_transaction_out tx;
-/*	
-	logic [33:0] res;
-	res=getresult();
-	if(tx_out.VOUT==res[33] && tx_out.OUT==res[31:0]&& tx_out.COUT==res[32])
-	begin
-	`uvm_info("0",$sformatf("\nActual Input Values  \n RST =%b A =%b B =%b CIN =%b Opcode =%b\nActual Outputs \n COUT =%b VOUT =%b OUT =%b\nExpected Output \n COUT =%b VOUT =%b OUT =%b \n",tx_in.rst,tx_in.A,tx_in.B,tx_in.CIN,tx_in.opcode,tx_out.COUT, tx_out.VOUT, tx_out.OUT,res[32],res[33],res[31:0]) ,UVM_HIGH);
-	end
-	if(tx_out.out!=res[33] || $isunknown(tx_out.VOUT))
-         begin
-	`uvm_info("1",$sformatf("\nActual Input Values  \n RST =%b A =%b B =%b CIN =%b Opcode =%b\nActual Outputs \n COUT =%b VOUT =%b OUT =%b\nExpected Output \n COUT =%b VOUT =%b OUT =%b \n",tx_in.rst,tx_in.A,tx_in.B,tx_in.CIN,tx_in.opcode,tx_out.COUT, tx_out.VOUT, tx_out.OUT,res[32],res[33],res[31:0]) ,UVM_HIGH);
-	 end
-	if(tx_out.COUT!=res[32] || $isunknown(tx_out.COUT))
-         begin
-	`uvm_info("2",$sformatf("\nActual Input Values  \n RST =%b A =%b B =%b CIN =%b Opcode =%b\nActual Outputs \n COUT =%b VOUT =%b OUT =%b\nExpected Output \n COUT =%b VOUT =%b OUT =%b \n",tx_in.rst,tx_in.A,tx_in.B,tx_in.CIN,tx_in.opcode,tx_out.COUT, tx_out.VOUT, tx_out.OUT,res[32],res[33],res[31:0]) ,UVM_HIGH);
-	 end
-	if(tx_out.OUT!=res[31:0] || $isunknown(res[31:0]))
-         begin
-	`uvm_info("3",$sformatf("\nActual Input Values  \n RST =%b A =%b B =%b CIN =%b Opcode =%b\nActual Outputs \n COUT =%b VOUT =%b OUT =%b\nExpected Output \n COUT =%b VOUT =%b OUT =%b \n",tx_in.rst,tx_in.A,tx_in.B,tx_in.CIN,tx_in.opcode,tx_out.COUT, tx_out.VOUT, tx_out.OUT,res[32],res[33],res[31:0]) ,UVM_HIGH);
-	 end*/
+
 endfunction
 
-function [33:0] alu_scoreboard::getresult;
-    //TODO: Remove the statement below
-    //Modify this function to return a 34-bit result {VOUT, COUT,OUT[31:0]} which is
-    //consistent with the given spec.
-//    alu_transaction_in tx;
-/*
-    logic [31:0] out;logic cout;logic vout;
-     if(tx_in.rst)
-	begin
-	return 34'd0;
-    	//cout=0;
-	//vout=0;
-	end
-    else
-     if(tx_in.opcode==3'b000)
-	begin
-	out= tx_in.opa+opb;
-    	//cout=0;
-	//vout=0;
-	//`uvm_info("2",tx_out.convert2string(),UVM_HIGH);
-	end
-    else
-	if(tx_in.opcode==3'b001)
-	begin
-	out= tx_in.opa-tx_in.opb;
-	//cout=0;
-	//vout=0;
-	//`uvm_info("2",tx_out.convert2string(),UVM_HIGH);
-	end
-    else
-	if(tx_in.opcode==3'b010)
-	begin
-	out= tx_in.opa*tx_in.opb;
-	//cout=0;
-	//vout=0;
-	end
-    else
-	if(tx_in.opcode==3'b011)
-	begin
-	out= tx_in.A/tx_in.B;
-	//cout=0;
-	//vout=0;
-	//`uvm_info("2",tx_out.convert2string(),UVM_HIGH);
-	end
-    else
-	if(tx_in.opcode==3'b100)
-	begin	
-	out = tx_in.A^tx_in.B;
-//	cout=0;
-//	vout=0;
-	end    
-    else
-	if(tx_in.opcode==3'b101)
-	begin
-	{cout,out}= tx_in.A+tx_in.B+tx_in.CIN;
-	//cout=(tx_in.A&tx_in.B)|(tx_in.A&tx_in.CIN)|(tx_in.B&tx_in.CIN);		
-	if(tx_in.A[31]==tx_in.B[31] && tx_in.A[31]!=out[31])
-	begin	
-	vout=1;
-	//`uvm_info("4",tx_in.convert2string(),UVM_HIGH);
-	//`uvm_info("4",$sformatf("out = %b",out[31:0]),UVM_HIGH);
-	end
-	else
-	begin
-	vout=0;
-	end
-	end    
-    else
-	if(tx_in.opcode==3'b110)
-	begin
-		logic [31:0] B;
-		B=~tx_in.B+1;
-		//cout=(tx_in.A&B)|(tx_in.A&tx_in.CIN)|(B&tx_in.CIN);		
-		{cout,out}= tx_in.A+B;
-		if(tx_in.A[31]!=tx_in.B[31] && tx_in.A[31]!=out[31])
-		begin	
-		vout=1;
-		end
-		else
-		begin
-		vout=0;
-		end
-	end   
-    else	
-    	begin
-	return 34'd0;
-	end
-return {vout,cout,out};
-*/
+function [45:0] alu_scoreboard::getresult;
+
+// This function returns a 46 bit answer, for the input and used to comapre the results of the DUT.
+// The concatination of the output: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
+	alu_transaction_in tx;
+	
+	// Output values needed
+	logic zero_a, inf_in, aeqb, blta, unordered;
+	logic zero, div_by_zero, underflow, overflow;
+	logic ine, inf, qnan, snan, out;
+	logic [31:0] out;
 
 return 34'd0;
 endfunction
