@@ -105,11 +105,12 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	fraction_b = in_b[22:0];
 
 	// Normalization of the input for proper addition/subtraction.
-	logic exp_altb;
+	logic [7:0] exp_diff;
 	logic expa_subnormal;
 	logic expb_subnormal;
-	
-	
+	logic [7:0] temp_exp_var;
+	logic [22:0] temp_frac_var;
+	logic temp_sign_var;
 	// FCMP scoreboard answers.
 
 	if(exp_a == 8'b0)
@@ -138,8 +139,27 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	// Unordered is high is any one of the input is NAN
 	unordered = ( ((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ); 
 
+	// Now for normalization
 
+	Bfr_point = !(expa_subnormal && expb_subnormal);  // This is the number present to the left side of the decimal point
+	// It is 1 for normal numbers and 0 for subnormal numbers
+
+	// This is for swapping the input if B is greater than A.
+	if(blta) begin
+		temp_exp_var = exp_b;
+		temp_frac_var = fraction_b;
+		temp_sign_var = sign_b;
+		exp_b = exp_a;
+		sign_b = sign_a;
+		fraction_b = fraction_a;
+		exp_a = temp_exp_var;
+		sign_a = temp_sign_var;
+		fraction_a = temp_frac_var;
+	end
 	
+	
+
+
 
 endfunction
 endpackage: scoreboard
