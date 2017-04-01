@@ -6,8 +6,7 @@ vlib work
 
 # Compile the sources.
 vlog  ../lib/gscl45nm.v
-vlog		../test_bench/test_top.v \
-		../verilog/fpu.v		\
+vlog		../verilog/fpu.v		\
 		../verilog/pre_norm.v	\
 		../verilog/primitives.v	\
 		../verilog/post_norm.v	\
@@ -16,6 +15,6 @@ vlog		../test_bench/test_top.v \
 vlog +cover -sv ../tb/interfaces.sv  ../tb/sequences.sv ../tb/coverage.sv ../tb/scoreboard.sv ../tb/modules.sv ../tb/tests.sv  ../tb/tb.sv  
 
 # Simulate the design.
-vsim -c test 
+vsim -c top 
 run -all
 exit

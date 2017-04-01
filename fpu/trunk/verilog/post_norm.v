@@ -537,7 +537,7 @@ assign ine =	op_f2i ? f2i_ine :
 // Debugging Stuff
 
 // synopsys translate_off
-
+/*
 wire	[26:0]	fracta_del, fractb_del;
 wire	[2:0]	grs_del;
 wire		dn_del;
@@ -563,8 +563,8 @@ wire		ez_del;
 wire		lr;
 wire	[7:0]	shr, shl, exp_div_del;
 
-delay2 #26 ud000(clk, test.u0.fracta, fracta_del);
-delay2 #26 ud001(clk, test.u0.fractb, fractb_del);
+delay2 #26 ud000(clk, fracta, fracta_del);
+delay2 #26 ud001(clk, fractb, fractb_del);
 delay1  #2 ud002(clk, {g,r,s}, grs_del);
 delay1  #0 ud004(clk, dn, dn_del);
 delay1  #7 ud005(clk, exp_in, exp_in_del);
@@ -576,8 +576,8 @@ delay1 #22 ud014(clk, fract_out, fract_out_x_del);
 delay1 #24 ud015(clk, fract_trunc, trunc_xx_del);
 delay1 	#0 ud017(clk, exp_rnd_adj2a, exp_rnd_adj2a_del);
 delay1  #4 ud019(clk, div_opa_ldz, div_opa_ldz_del);
-delay3 #23 ud020(clk, test.u0.fdiv_opa[49:26],	fracta_div_del);
-delay3 #23 ud021(clk, test.u0.fractb_mul,	fractb_div_del);
+delay3 #23 ud020(clk, u0.fdiv_opa[49:26],	fracta_div_del);
+delay3 #23 ud021(clk, fractb_mul,	fractb_div_del);
 delay1 	#0 ud023(clk, div_inf, div_inf_del);
 delay1  #7 ud024(clk, fi_ldz_2, fi_ldz_2_del);
 delay1 	#0 ud025(clk, inf_out, inf_out_del);
@@ -592,7 +592,7 @@ delay1 #22 ud032(clk, fract_out_rnd2a, fract_out_rnd2a_del);
 
 delay1  #7 ud033(clk, exp_div, exp_div_del);
 
-always @(test.error_event)
+always @(u0.error_event)
    begin
 
 	$display("\n----------------------------------------------");
@@ -621,7 +621,7 @@ always @(test.error_event)
 // synopsys translate_on
 
 endmodule
-
+*/
 // synopsys translate_off
 
 module delay1(clk, in, out);
