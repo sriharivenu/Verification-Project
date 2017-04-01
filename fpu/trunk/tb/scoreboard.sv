@@ -111,6 +111,15 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	logic [7:0] temp_exp_var;
 	logic [22:0] temp_frac_var;
 	logic temp_sign_var;
+	logic altb_a, blta_a, aeqb_a;
+	logic [27:0] fraction_b_sft;
+	logic [4:0] exp_sft;
+	logic [27:0] fraction_a_ext; // Extension of fraction A by 5 bits to help in rounding;
+	logic [27:0] fraction_ans_un;// These _un are the answers that are unnormalized.
+	logic sign_ans_un;
+	logic [7:0] exp_ans_un;
+	logic [1:0] carry_un;
+
 	// FCMP scoreboard answers.
 
 	if(exp_a == 8'b0)
@@ -123,29 +132,54 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 		zero_a = 1'b1;
 	else
 		zero_a = 1'b0;
-	// Inf_in is high if anyone of the input is infinity
+	// Inf_in is high if anyone of the input is infinity, it is absolute value
 	inf_in = ( ( (& exp_a) && !(| fraction_a)) || ( (& exp_b) && !(| fraction_b)) );
 	
-	// Finding the comparison between the inputs
-	altb = exp_a > exp_b;
-	blta = (altb)? 1'b0: (exp_a < exp_b)? 1: 0;
-	if(!(altb) && !(blta))
+	// Finding the comparison between the input's absolute values
+	altb_a = exp_a > exp_b;
+	blta_a = (altb_a)? 1'b0: (exp_a < exp_b)? 1: 0;
+	if(!(altb_a) && !(blta_a))
 	begin
-		altb = (fraction_a > fraction_b)? 1:0;
-		blta = (fraction_b > fraction_a)? 1:0;
-		aeqb = (!(blta) && !(altb)) ? 1: 0;
+		altb_a = (fraction_a > fraction_b)? 1:0;
+		blta_a = (fraction_b > fraction_a)? 1:0;
+		aeqb_a = (!(blta_a) && !(altb_a)) ? 1: 0;
+	end
+
+	// Final comparison based on sign bit
+	// if both are 1, the lesser the absolute value the higher the number
+	if(sign_a && sign_b) begin
+		altb = blta_a;
+		blta = altb_a;
+		aeqb = aeqb_a;
+	end
+	else if(!(sign_a && sign_b) ) begin 	// If both are 0, then normal comparison
+		altb = altb_a;
+		blta = blta_a;
+		aeqb = aeqb_a;
+	end
+	else if(sign_a) begin					// If only A is negative
+		blta = 1'b1;
+		altb = 1'b0;
+		aeqb = 1'b0;
+	end
+	else if(sign_b) begin					// If only B is negative
+		blta = 1'b0;
+		altb = 1'b1;
+		aeqb = 1'b0;
 	end
 
 	// Unordered is high is any one of the input is NAN
 	unordered = ( ((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ); 
-
+	
+	// Finding if it is SNAN
+	snan = unordered;
 	// Now for normalization
 
 	Bfr_point = !(expa_subnormal && expb_subnormal);  // This is the number present to the left side of the decimal point
 	// It is 1 for normal numbers and 0 for subnormal numbers
 
-	// This is for swapping the input if B is greater than A.
-	if(blta) begin
+	// This is for swapping the input if abs(B) is greater than abs(A).
+	if(blta_a) begin
 		temp_exp_var = exp_b;
 		temp_frac_var = fraction_b;
 		temp_sign_var = sign_b;
@@ -156,8 +190,227 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 		sign_a = temp_sign_var;
 		fraction_a = temp_frac_var;
 	end
+		// From now on abs(A) is greater or equal to abs(B).
+	// This is the exponential difference between A and B, so now we need to shift B to match A.
+	exp_diff = exp_a - exp_b;
+	// The fraction bit is made 28 bits to help in rounding
+	fraction_b_sft = {!(expb_subnormal), fraction_b, 4'b0};
+	exp_sft = ( exp_diff > 28) ? 5'd28: exp_diff[4:0];
+	fraction_b_sft = fraction_b_sft >> exp_sft;
+	fraction_a_ext = {fraction_a, 5'b0};
+
+	// Now we have both input normalized and the output will have the power of input A.
+	// Now lets check the sign bits and addition and subtraction.
 	
-	
+	// Carry is made zero at start
+	carry_un = 2'b0;
+
+	if(! add) begin
+		// This is for adding two numbers
+		if(sign_b == sign_a) begin
+			sign_ans_un = sign_a;
+			{carry_un, fraction_ans_un} = fraction_a_ext + fraction_b_sft; // This is to make sure if there is any carry generated from addition of fraction.
+			carry_un = carry_un + 1'b1;
+			exp_ans_un = exp_a;
+		end
+		else if(sign_a) begin
+			if(aeqb) begin
+				sign_ans_un = 1'b0;
+				fraction_ans_un = 28'b0;
+				exp_ans_un = 8'b0;
+			end
+			else begin
+				sign_ans_un = sign_a;
+				fraction_ans_un = fraction_a_ext - fraction_b_sft;
+				exp_ans_un = exp_a;
+			end
+		end
+		else if(sign_b) begin
+			sign_ans_un = sign_a;
+			fraction_ans_un = fraction_a_ext - fraction_b_sft;
+			exp_ans_un = exp_a;
+		end
+		// Taking care of Overflow, Assuming Overflow need not signal if one of the input is infinity as other exception 
+		// Can underflow happen in Addition ?????????????? Not sure
+		if(carry_un > 1'b1) begin
+			if(exp_ans_un + 1'b1 >= 8'hff) begin
+				overflow = 1'b1;
+			end
+		end
+	end
+	else begin
+		if((sign_a == 1'b0) && (sign_b == 1'b0)) begin
+			if(aeqb) begin
+				sign_ans_un = 1'b0;
+				fraction_ans_un = 28'b0;
+				exp_ans_un = 8'b0;
+			end
+			else begin
+				sign_ans_un = sign_a;
+				fraction_ans_un = fraction_a_ext - fraction_b_sft;
+				exp_ans_un = exp_a;
+			end
+		end
+		else if(sign_a && sign_b) begin
+			if(aeqb) begin
+				sign_ans_un = 1'b0;
+				fraction_ans_un = 28'b0;
+				exp_ans_un = 8'b0;
+			end
+			else begin
+				sign_ans_un = 1'b1;
+				fraction_ans_un = fraction_a_ext - fraction_b_sft;
+				exp_ans_un = exp_a;
+			end
+		end
+		else if(sign_a) begin
+			sign_ans_un = 1'b1;
+			{carry_un, fraction_ans_un} = fraction_a_ext + fraction_b_sft;
+			carry_un = carry_un + 1'b1;
+			exp_ans_un = exp_a;
+		end
+		else if(sign_b) begin
+			sign_ans_un = 1'b0;
+			{carry_un, fraction_ans_un} = fraction_a_ext + fraction_b_sft;
+			carry_un = carry_un + 1'b1;
+			exp_ans_un = exp_a;
+		end
+		// Can underflow happen in subtraction ????????  Not sure.
+		// Taking care of Overflow, Assuming Overflow need not signal if one of the input is infinity as other exception 
+		if(carry_un > 1'b1) begin
+			if(exp_ans_un + 1'b1 >= 8'hff) begin
+				overflow = 1'b1;
+			end
+		end
+	end
+
+	if(carry_un > 1'b1) begin// It can only have 10 as answer greater than 1, because we normalized it at start
+		fraction_ans_un = fraction_ans_un >> 1;
+		exp_ans_un = exp_ans_un + 1'b1;
+	end
+
+	// Normalization the answer.
+	logic [4:0] exp_sft_ans;
+	logic sign_ans;
+
+	case  
+
+	// Rounding method.
+
+	overflow = ((& exp_ans_un) && !(| fraction_ans_un[27:5])) ? 1'b1: overflow;
+
+	logic [4:0] round_value;
+	logic carry;
+	logic [7:0] orginal_value_exp_ans_un;
+	logic [27:0] original_value_fraction_ans_un;
+	orginal_value_exp_ans_un = exp_ans_un;
+	original_value_fraction_ans_un = fraction_ans_un;
+	round_value = fraction_ans_un[4:0];
+	case(rmode)
+		2'b00:	begin
+				//Rounding to nearest even
+				// Not sure what to round if it overflows.
+				// I am thinking to round it of to highest value -1
+				if(overflow) begin
+					fraction_ans_un = {23'b11111111111111111111110, 5'b0};
+					exp_ans_un = 8'hfe;
+				end
+				else begin
+				// If it is odd number then it is added with 1, if it is even it is added with 0
+				// Example: -23.5 and -24.5 both will round to -24.
+					if(fraction_ans_un[5]) begin// To check if it is ODD
+						if((exp_ans_un == 8'hfe) && (& fraction_ans_un[27:5])) begin
+							// Last number that can be represented.
+							exp_ans_un = 8'hfe;
+							fraction_ans_un = {fraction_ans_un[27:6], 6'b0};
+						end
+						else begin
+							{carry, fraction_ans_un} = fraction_ans_un + 6'b100000;
+							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+							fraction_ans_un = {fraction_ans_un[27:5], 5'b0};
+						end
+					end
+					else begin // Because roundin to nearest even needs it to get truncated.
+						fraction_ans_un = {fraction_ans_un[27:6], 6'b0};
+					end
+				end
+			end
+		2'b01:	begin
+				// Rounding to aero is simply truncation
+				if(overflow) begin
+					fraction_ans_un = {23'b11111111111111111111111, 5'b0};
+					exp_ans_un = 8'hfe;
+				end
+				else
+					fraction_ans_un = {fraction_ans_un[27:5], 5'b0};
+			end
+		2'b10:	begin
+				// Rounding to +INF
+				// Here it depends on the sign if it is -24.5 it is rounded of to -24, but if it is 24.5 it is rounded of to 25
+				if(sign_ans_un) begin
+					if(overflow) begin
+						fraction_ans_un = {23'b11111111111111111111111, 5'b0};
+					exp_ans_un = 8'hfe;
+					end
+					else // Just truncate the rest.
+						fraction_ans_un = {fraction_ans_un[27:5], 5'b0};
+				end
+				else begin
+					if(overflow) begin
+					fraction_ans_un = 28'b0;
+					exp_ans_un = 8'hff;
+					end
+					else begin
+						{carry, fraction_ans_un} = fraction_ans_un + 6'b100000;
+						exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+						fraction_ans_un = {fraction_ans_un[27:5], 5'b0};
+					end
+				end
+			end
+		2'b11:	begin
+				// Rounding to -INF
+				// Here if it 24.5 it is rounded of to 24, but if it is -24.5 it is rounded of to -25
+				if(sign_ans_un) begin
+					if(overflow) begin
+					fraction_ans_un = 28'b0;
+					exp_ans_un = 8'hff;
+					end
+					else begin
+					{carry, fraction_ans_un} = fraction_ans_un + 6'b100000;
+					exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+					fraction_ans_un = {fraction_ans_un[27:5], 5'b0};
+					end
+				end
+				else begin
+					// Just truncate the rest.
+					if(overflow) begin
+						fraction_ans_un = {23'b11111111111111111111111, 5'b0};
+					exp_ans_un = 8'hfe;
+					end
+					else 
+						fraction_ans_un = {fraction_ans_un[27:5], 5'b0};
+				end
+			end
+	endcase // rmode
+	if((original_value_fraction_ans_un != fraction_ans_un) || (orginal_value_exp_ans_un != exp_ans_un))
+		ine = 1'b1;
+	else
+		ine = 1'b0;
+	div_by_zero = 1'b0;
+	overflow = ((& exp_ans_un) && !(| fraction_ans_un[27:5])) ? 1'b1: overflow;
+	zero = ( !(| exp_ans_un) && !(| fraction_ans_un[27:5])) ? 1'b1: 1'b0;
+	inf = Inf_in; // Inf can happen in Add/SUb if any one of the input is INF.
+	//Underflow -  Not sure about this !!!!!!!!!!!!!!!!!!!!!!!!!
+	underflow = 1'b0;
+
+
+	// Checking for qnan
+	qnan = (snan || Inf_in)? 1'b1: 1'b0;
+
+	// Sign doesn't change with normalization
+	sign_ans = sign_ans_un;
+
+
 
 
 
