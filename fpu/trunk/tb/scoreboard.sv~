@@ -292,15 +292,7 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	// Normalization the answer.
 	logic [4:0] exp_sft_ans;
 	logic sign_ans;
-	logic ch;logic [4:0]count;
-	ch=1'b0;
-	while(ch==1'b0)
-	begin
-		{ch,fraction_ans_un}=fraction_ans_un << 1'b1;
-		count=count+5'd1;
-	end
-	exp_ans_un=exp_ans_un-count;	
-	
+
 	case  
 
 	// Rounding method.

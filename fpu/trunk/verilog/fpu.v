@@ -514,7 +514,7 @@ always @(test.error_event)
 // synopsys translate_on
 */
 
-
+*/
 // Status Outputs
 always @(posedge clk)
 	qnan <= #1	fpu_op_r3[2] ? 0 : (

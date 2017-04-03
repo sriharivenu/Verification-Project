@@ -6,11 +6,13 @@ interface dut_in;
 endinterface: dut_in
 
 interface dut_out;
-    logic           clk;
     logic   [31:0]  out;
     logic   	    inf,snan,qnan;
     logic           ine;
     logic           overflow, underflow;
     logic   	    zero;
     logic           div_by_zero;
+    logic           unordered;
+    logic           altb, blta, aeqb;
+    logic           inf_in, zero_a;
 endinterface: dut_out

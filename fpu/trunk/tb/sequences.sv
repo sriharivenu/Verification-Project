@@ -9,46 +9,12 @@ package sequences;
         rand logic [31:0] opa;
         rand logic [31:0] opb;
         rand logic [2:0] fpu_op;
-       // rand logic rst;
         rand logic [1:0] rmode;
 
         //TODO: Add constraints here
 	
-	constraint opc{
-	fpu_op inside{[0:7]};}
+	    constraint opcode_constraint{fpu_op inside{[0:7]};}
         
-/*	constraint cin_1{	
-	(opcode==3'b110)->(CIN==1'b1);
-	}        
-*/
-/*	constraint opci_0{
-(opcode == 3'b110);}
-
-	constraint rst_0{
-	(rst==0);
-	}*/
-/*  						//Constraints tested to make the error report more accurate 
-	constraint opci_0{
-	(opcode == 3'b000);}
-	
-	constraint opci_7{
-	(opcode == 3'b111);}
-	
-	constraint opci_7{
-	(opcode == 3'b100);}
-	
-	constraint opci_7{
-	(opcode == 3'b111);}
-	
-	constraint rst_0{
-	(rst==0);
-	}
-	constraint rst_1{
-	(rst==1);
-	}
-*/
-
-
 
         function new(string name = "");
             super.new(name);
@@ -67,10 +33,13 @@ package sequences;
         logic [31:0] out;
         logic inf,snan,qnan;
         logic ine;
-	logic overflow,underflow;
-	logic zero;
-	logic div_by_zero;
-
+	    logic overflow,underflow;
+	    logic zero;
+	    logic div_by_zero;
+        logic unordered;
+        logic altb, blta, aeqb;
+        logic inf_in, zero_a;
+        
         function new(string name = "");
             super.new(name);
         endfunction: new;

@@ -42,13 +42,11 @@ class alu_driver_in extends uvm_driver#(alu_transaction_in);
         // TODO: Drive values from alu_transaction_in onto the virtual
         // interface of dut_vi_in
     
-	dut_vi_in.rmode<=tx.rmode;
-	dut_vi_in.fpu_op<=tx.fpu_op;
-	dut_vi_in.opa<=tx.opa;
-	dut_vi_in.opb<=tx.opb;
-	//dut_vi_in.rst<=tx.rst;
-	//dut_vi_in.clk<=tx.clk;
-      end
+	    dut_vi_in.rmode<=tx.rmode;
+	    dut_vi_in.fpu_op<=tx.fpu_op;
+	    dut_vi_in.opa<=tx.opa;
+	    dut_vi_in.opb<=tx.opb;
+	  end
     endtask: run_phase
 
 endclass: alu_driver_in
@@ -83,13 +81,11 @@ class alu_monitor_in extends uvm_monitor;
         tx = alu_transaction_in::type_id::create("tx");
         // TODO: Read the values from the virtual interface of dut_vi_in and
         // assign them to the transaction "tx"
-	tx.rmode=dut_vi_in.rmode;
-	tx.fpu_op=dut_vi_in.fpu_op;
-	tx.opa=dut_vi_in.opa;
-	tx.opb=dut_vi_in.opb;
-        //tx.clk=dut_vi_in.clk;
-	//tx.rst=dut_vi_in.rst;
-	aport.write(tx);
+	    tx.rmode=dut_vi_in.rmode;
+	    tx.fpu_op=dut_vi_in.fpu_op;
+	    tx.opa=dut_vi_in.opa;
+	    tx.opb=dut_vi_in.opb;
+    	aport.write(tx);
       end
     endtask: run_phase
 
@@ -129,16 +125,21 @@ class alu_monitor_out extends uvm_monitor;
         // TODO: Read the values from the virtual interface of dut_vi_out and
         // assign them to the transaction "tx"
 
-	tx.out=dut_vi_out.out;
-	tx.inf=dut_vi_out.inf;
-	tx.snan=dut_vi_out.snan;
-	tx.qnan=dut_vi_out.qnan;
-	tx.ine=dut_vi_out.ine;
-	tx.overflow=dut_vi_out.underflow;
-	tx.zero=dut_vi_out.zero;
-	tx.div_by_zero=dut_vi_out.zero;
-	//tx.clk=dut_vi_out.clk;	
-        
+	    tx.out=dut_vi_out.out;
+	    tx.inf=dut_vi_out.inf;
+	    tx.snan=dut_vi_out.snan;
+	    tx.qnan=dut_vi_out.qnan;
+	    tx.ine=dut_vi_out.ine;
+	    tx.overflow=dut_vi_out.overflow;
+        tx.underflow=dut_vi_out.underflow;
+	    tx.zero=dut_vi_out.zero;
+	    tx.div_by_zero=dut_vi_out.div_by_zero;
+	    tx.unordered = dut_vi_out.unordered;
+        tx.altb = dut_vi_out.altb;
+        tx.blta = dut_vi_out.blta;
+        tx.aeqb = dut_vi_out.aeqb;
+        tx.inf_in = dut_vi_out.inf_in;
+        tx.zero_a = dut_vi_out.zero_a;
         aport.write(tx);
       end
     endtask: run_phase
