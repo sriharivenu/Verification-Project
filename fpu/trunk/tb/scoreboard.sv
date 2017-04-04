@@ -452,14 +452,93 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	else begin
 		ans_un = a/b;
 	end
-*/
 
-	logic [7:0] exp_ans_un;
+	logic [47:0] dec_flt;
+	integer index;
+	integer count;
+	real temp;
+	temp = c;
+	dec_flt = 48'b0;
+	index = 0;
+	count = 0;
+	if((ans_un >= 1) || (ans_un <= -1)) begin
+		for(index = 0; index < 48; index++) begin
+			if(temp >= 1) begin
+				// To get the value on left of decimal
+				temp = temp / 2;*/
+
+	logic [8:0] exp_ans_un;
 	logic [47:0] frac_ans_un;
+	logic [22:0] frac_ans_un;
 
 	//To calculate the proper exponent
 	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
+
 	// No need to worry about shifting.
+	// Now the fraction part
+	frac_ans_un = 48'b0;
+	// a * b , so we are going to a as multiplicand and b as multiplier
+	logic [22:0] multiplicand;
+	logic [22:0] multiplier;
+	logic [22:0] temp;
+	logic [50:0] divisor;
+	logic [50:0] divident;
+	logic [50:0] quotient;
+	logic [50:0] remainder;
+	logic [7:0] exp_a_n;
+	logic [7:0] exp_b_n;
+	logic [5:0] cnt;
+	integer count;
+	logic a_sub;
+	logic b_sub;
+	a_sub = !(| exp_a);
+	b_sub = !(| exp_b);
+	count = 0;
+	multiplicand = frac_a;
+	multiplier = frac_b;
+	divident = {a_sub,frac_a};
+	divisor = {b_sub, frac_b};
+	exp_a_n = exp_a;
+	exp_b_n = exp_b;
+	
+	quotient = 51'b0;
+	remainder = 51'b0;
+	cnt = 6'b0;
+
+	while(!divident[23]) begin
+		divident = divident << 1;
+		exp_a_n = exp_a_n -1;
+	end
+
+	while(!divisor[23]) begin
+		divisor = divisor << 1;
+		exp_b_n = exp_b_n -1;
+	end
+
+	divident = divident << 27;
+
+	//Multiplication
+	if(!mul) begin
+		while (count < 23) begin
+			temp = (multiplier[count])? multiplicand : 23'b0;
+			frac_ans_un = frac_ans_un + (temp << count);
+			count =  count + 1;
+		end
+	end
+	else begin // for division 
+		while (cnt <= 49) begin
+			quotient = quotient << 1;
+			remainder = remainder << 1;
+			remainder[0] = divident[50];
+			divident = divident << 1;
+			if(remainder >= divisor) begin
+				quotient[0] = 1'b1;
+				remainder = remainder - divisor;
+			end
+			cnt = cnt +1;
+		end
+		frac_ans_un = quotient[26:3];
+	end
 
 
 
