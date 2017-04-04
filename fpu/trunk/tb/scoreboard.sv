@@ -318,19 +318,10 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	end
 
 
-
-
-
-
-
-
-
 	logic [4:0] round_value;
 	logic carry;
-	logic [7:0] orginal_value_exp_ans_un;
-	logic [27:0] original_value_fraction_ans_un;
 	logic [22:0] frac_final;
-	orginal_value_exp_ans_un = exp_ans_un;
+
 	original_value_fraction_ans_un = fraction_ans_un;
 	round_value = fraction_ans_un[4:0];
 	case(rmode)
@@ -400,14 +391,79 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	//Underflow -  Not sure about this !!!!!!!!!!!!!!!!!!!!!!!!!
 	underflow = 1'b0;
 
+	//SNAN - not sure, but if any input is NaN it is considered as SNAN
+	snan = unordered;
 
 
 	// Sign doesn't change with normalization
 	sign_ans = sign_ans_un;
-
-
-
-
+	out = {sign_ans, exp_ans_un, frac_final};
+	return {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
 
 endfunction
+
+function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
+	
+	logic [7:0] exp_a;
+	logic [22:0] frac_a;
+	logic sign_a;
+	logic [7:0] exp_b;
+	logic [22:0] frac_b;
+	logic sign_b;
+
+	exp_a = in_a[30:23];
+	sign_a = in_a[31];
+	frac_a = in_a[22:0];
+
+	exp_b = in_b[30:23];
+	sign_b = in_b[31];
+	frac_b = in_b[22:0];
+
+	// Thought of converting it to decimal and proceed but converting it back might be a problem.
+	/*real a;
+	real b;
+	real ans_un;
+	integer power_a;
+	integer power_b;
+	integer bit_s;
+	integer bit_pow;
+	bit_pow = 1;
+	power_a = exp_a - 127;
+	power_b = exp_b - 127;
+	a = !(| exp_a)? 0: 1;
+	for(bit_s = 22; bit_s >=0; bit_s++) begin
+		a = a + (frac_a[bit_s]* (2**(-1*bit_pow)));
+		bit_pow = bit_pow + 1;
+	end
+	a = a*(2**power_a);
+	a = a*((-1)**sign_a);
+	bit_pow = 1;
+	b = !(| exp_b)? 0:1;
+	for(bit_s = 22; bit_s >=0; bit_s++) begin
+		b = b + (frac_b[bit_s]*(2**(-1*bit_pow)));
+		bit_pow = bit_pow + 1;
+	end
+	b = b*(2**power_b);
+	b = b*((-1)**sign_b);
+	// Multiply and Divide
+	if(!mul) begin
+		ans_un = a*b;
+	end
+	else begin
+		ans_un = a/b;
+	end
+*/
+
+	logic [7:0] exp_ans_un;
+	logic [47:0] frac_ans_un;
+
+	//To calculate the proper exponent
+	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
+	// No need to worry about shifting.
+
+
+
+
+endfunction		
+
 endpackage: scoreboard
