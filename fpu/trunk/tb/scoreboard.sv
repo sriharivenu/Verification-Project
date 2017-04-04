@@ -469,7 +469,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 
 	logic [8:0] exp_ans_un;
 	logic [47:0] frac_ans_un;
-	logic [22:0] frac_ans_un;
+	logic [23:0] frac_ans_div;
 
 	//To calculate the proper exponent
 	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
@@ -478,9 +478,9 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	// Now the fraction part
 	frac_ans_un = 48'b0;
 	// a * b , so we are going to a as multiplicand and b as multiplier
-	logic [22:0] multiplicand;
-	logic [22:0] multiplier;
-	logic [22:0] temp;
+	logic [23:0] multiplicand;
+	logic [23:0] multiplier;
+	logic [23:0] temp;
 	logic [50:0] divisor;
 	logic [50:0] divident;
 	logic [50:0] quotient;
@@ -491,11 +491,17 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	integer count;
 	logic a_sub;
 	logic b_sub;
+
+	logic guard;
+	logic rb;
+
 	a_sub = !(| exp_a);
 	b_sub = !(| exp_b);
 	count = 0;
-	multiplicand = frac_a;
-	multiplier = frac_b;
+	multiplicand = {a_sub, frac_a};
+	multiplier = {b_sub, frac_b};
+
+
 	divident = {a_sub,frac_a};
 	divisor = {b_sub, frac_b};
 	exp_a_n = exp_a;
@@ -519,8 +525,8 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 
 	//Multiplication
 	if(!mul) begin
-		while (count < 23) begin
-			temp = (multiplier[count])? multiplicand : 23'b0;
+		while (count < 24) begin
+			temp = (multiplier[count])? multiplicand : 24'b0;
 			frac_ans_un = frac_ans_un + (temp << count);
 			count =  count + 1;
 		end
@@ -537,10 +543,33 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 			end
 			cnt = cnt +1;
 		end
-		frac_ans_un = quotient[26:3];
+		frac_ans_div = quotient[26:3];
+		guard = quotient[2];
+		rb = quotient[1];
 	end
+	// Need to normaliztion for multiplication
 
 
+
+	
+	//Division normalization
+	if(mul) begin
+		while ((frac_ans_div[23] == 1'b0) && (exp_ans_un - 127) > -126) begin
+			exp_ans_un = exp_ans_un - 1;
+			frac_ans_div = frac_ans_div << 1;
+			frac_ans_div[0] = guard;
+			guard = rb;
+			rb = 1'b0;
+		end
+		while ((exp_ans_un - 127 ) < -126) begin
+			exp_ans_un = exp_ans_un +1;
+			frac_ans_div = frac_ans_div >> 1;
+			guard = frac_ans_div[0];
+			rb = guard;
+		end
+	else
+
+	// Need to do rounding for both
 
 
 endfunction		
