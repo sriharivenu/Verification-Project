@@ -621,10 +621,10 @@ always @(u0.error_event)
 // synopsys translate_on*/
 
 endmodule
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 */
 // synopsys translate_off
-=======
+//=======
 
 /*// synopsys translate_off
 >>>>>>> c1f6780110682561e85303e17964d0f83b14d5e4

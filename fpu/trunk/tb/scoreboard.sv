@@ -481,19 +481,30 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	logic [23:0] multiplicand;
 	logic [23:0] multiplier;
 	logic [23:0] temp;
-	logic [50:0] divisor;
-	logic [50:0] divident;
-	logic [50:0] quotient;
-	logic [50:0] remainder;
+	//logic [50:0] divisor;
+	//logic [50:0] divident;
+	//logic [50:0] quotient;
+	//logic [50:0] remainder;
+	// Based on restoring division logic
+	logic [23:0] divisor;
+	logic [23:0] divident;
+	/*logic [47:0] remainder;
+	logic [23:0] quo;
+	logic [23:0] rem;
+	*/
+	logic [47:0] quot;
+	logic [47:0] remnd;
 	logic [7:0] exp_a_n;
 	logic [7:0] exp_b_n;
-	logic [5:0] cnt;
+	//logic [4:0] cnt;
 	integer count;
 	logic a_sub;
 	logic b_sub;
 
-	logic guard;
-	logic rb;
+	logic more_one_sft;
+	logic [5:0] cntr;
+	//logic guard;
+	//logic rb;
 
 	a_sub = !(| exp_a);
 	b_sub = !(| exp_b);
@@ -507,9 +518,14 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	exp_a_n = exp_a;
 	exp_b_n = exp_b;
 	
-	quotient = 51'b0;
-	remainder = 51'b0;
-	cnt = 6'b0;
+	//quotient = 51'b0;
+	//remainder = 51'b0;
+	//cnt = 5'b0;
+
+	quot = 48'b0;
+	remnd = 48'b0;
+	more_one_sft = 1'b0;
+	cntr = 6'b0;
 
 	while(!divident[23]) begin
 		divident = divident << 1;
@@ -532,7 +548,58 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 		end
 	end
 	else begin // for division 
-		while (cnt <= 49) begin
+		// Long division method
+		// quot is the final answer
+		remnd = remnd << 1;
+		remnd[0] = divident[23];
+		divident = divident << 1;
+		while (cntr < 48) begin
+			if(remnd < divisor) begin
+				if(more_one_sft) begin
+					quot = quot << 1;
+				end
+				remnd = remnd << 1;
+				remnd[0] = divident[23];
+				divident = divident << 1;
+				more_one_sft = 1'b1;
+
+			end
+			else begin
+				remnd = remnd - divisor;
+				remnd = remnd << 1;
+				remnd[0] = divident[23];
+				divident = divident << 1;
+				quot = quot << 1;
+				quot[0] = 1'b1;
+				more_one_sft = 1'b0;
+			end
+		end
+	end
+
+
+
+
+		// Using normal restoration algorithm
+
+		/*remainder[23:0] = divident;
+		remainder = remainder << 1;
+		while (cnt <= 24) begin
+			remainder[47:24] = (remainder[47:24] - divisor);
+			if(remainder >= 0) begin
+				remainder = remainder << 1;
+				remainder[0] = 1'b1;
+			end
+			else begin
+				remainder[47:24] = (remainder[47:24] + divisor);
+				remainder = remainder << 1;
+			end
+		end
+		remainder = remainder >> 1;
+		quo = remainder[23:0];
+		rem = remainder[47:24];
+		*/
+
+		/*while (cnt <= 49) begin
 			quotient = quotient << 1;
 			remainder = remainder << 1;
 			remainder[0] = divident[50];
@@ -545,15 +612,16 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 		end
 		frac_ans_div = quotient[26:3];
 		guard = quotient[2];
-		rb = quotient[1];
-	end
+		rb = quotient[1];*/
+
+
 	// Need to normaliztion for multiplication
 
 
 
 	
 	//Division normalization
-	if(mul) begin
+	/*if(mul) begin
 		while ((frac_ans_div[23] == 1'b0) && (exp_ans_un - 127) > -126) begin
 			exp_ans_un = exp_ans_un - 1;
 			frac_ans_div = frac_ans_div << 1;
@@ -568,7 +636,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 			rb = guard;
 		end
 	else
-
+*/
 	// Need to do rounding for both
 
 
