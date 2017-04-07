@@ -419,65 +419,9 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	sign_b = in_b[31];
 	frac_b = in_b[22:0];
 
-	// Thought of converting it to decimal and proceed but converting it back might be a problem.
-	/*real a;
-	real b;
-	real ans_un;
-	integer power_a;
-	integer power_b;
-	integer bit_s;
-	integer bit_pow;
-	bit_pow = 1;
-	power_a = exp_a - 127;
-	power_b = exp_b - 127;
-	a = !(| exp_a)? 0: 1;
-	for(bit_s = 22; bit_s >=0; bit_s++) begin
-		a = a + (frac_a[bit_s]* (2**(-1*bit_pow)));
-		bit_pow = bit_pow + 1;
-	end
-	a = a*(2**power_a);
-	a = a*((-1)**sign_a);
-	bit_pow = 1;
-	b = !(| exp_b)? 0:1;
-	for(bit_s = 22; bit_s >=0; bit_s++) begin
-		b = b + (frac_b[bit_s]*(2**(-1*bit_pow)));
-		bit_pow = bit_pow + 1;
-	end
-	b = b*(2**power_b);
-	b = b*((-1)**sign_b);
-	// Multiply and Divide
-	if(!mul) begin
-		ans_un = a*b;
-	end
-	else begin
-		ans_un = a/b;
-	end
-
-	logic [47:0] dec_flt;
-	integer index;
-	integer count;
-	real temp;
-	temp = c;
-	dec_flt = 48'b0;
-	index = 0;
-	count = 0;
-	if((ans_un >= 1) || (ans_un <= -1)) begin
-		for(index = 0; index < 48; index++) begin
-			if(temp >= 1) begin
-				// To get the value on left of decimal
-				temp = temp / 2;*/
-
 	logic [8:0] exp_ans_un;
 	logic [47:0] frac_ans_un;
 	logic [23:0] frac_ans_div;
-
-	//To calculate the proper exponent
-	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
-
-	// No need to worry about shifting.
-	// Now the fraction part
-	frac_ans_un = 48'b0;
-	// a * b , so we are going to a as multiplicand and b as multiplier
 	logic [23:0] multiplicand;
 	logic [23:0] multiplier;
 	logic [23:0] temp;
@@ -505,6 +449,22 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	logic [5:0] cntr;
 	//logic guard;
 	//logic rb;
+
+	// Output needed to find
+	logic zero_a, inf_in, aeqb, blta, altb, unordered;
+	logic zero, div_by_zero, underflow, overflow;
+	logic ine, inf, qnan, snan, out;
+	logic [31:0] out;
+
+	div_by_zero = (mul) ?(!(|(exp_b)) && !(|(frac_b)) ) : 1'b0;
+
+	//To calculate the proper exponent
+	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
+
+	// No need to worry about shifting.
+	// Now the fraction part
+	frac_ans_un = 48'b0;
+	// a * b , so we are going to a as multiplicand and b as multiplier
 
 	a_sub = !(| exp_a);
 	b_sub = !(| exp_b);
@@ -577,7 +537,109 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	end
 
 
+	// Normalization
+	logic ch;
+	logic [4:0]count;
+	if(! mul) begin
+		ch=1'b0;
+		while(ch==1'b0)
+		begin
+			{ch,frac_ans_un}=frac_ans_un << 1'b1;
+			count=count+5'd1;
+		end
 
+		exp_ans_un = exp_ans_un + count;
+	end
+	else begin
+		ch=1'b0;
+		while(ch==1'b0)
+		begin
+			{ch,quot}=quot << 1'b1;
+			count=count+5'd1;
+		end
+
+		exp_ans_un = exp_ans_un + count;
+	end
+	
+	// Rounding method
+
+	case(rmode)
+		2'b00:	begin
+				//Rounding to nearest even
+				// Not sure what to round if it overflows.
+				// I am thinking to round it of to highest value -1
+				// If it is odd number then it is added with 1, if it is even it is added with 0
+				// Example: -23.5 and -24.5 both will round to -24.
+					if(!mul) begin	
+						if(frac_ans_un[25]) begin// To check if it is ODD
+							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'b0};
+							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+							frac_ans_un = frac_ans_un[47:1]>>carry;
+							frac_final=frac_ans_un[47:25];
+						end
+						else begin // Because roundin to nearest even needs it to get truncated.
+							frac_final = fraction_ans_un[47:25];
+						end
+					end
+					else begin // division
+						if(quot[25]) begin// To check if it is ODD
+							{carry, quot} = quot + {|(quot[24:0]), 25'b0};
+							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+							quot = quot[47:1]>>carry;
+							frac_final=quot[47:25];
+						end
+						else begin // Because roundin to nearest even needs it to get truncated.
+							frac_final = quot[47:25];
+						end
+
+				end
+		2'b01:	begin
+				// Rounding to zero is simply truncation
+
+					frac_final = (mul)? quot[47:25]: frac_ans_un[47:25];
+			end
+		2'b10:	begin
+				// Rounding to +INF
+				// Here it depends on the sign if it is -24.5 it is rounded of to -24, but if it is 24.5 it is rounded of to 25
+				if(sign_ans_un) begin
+						frac_final = (mul) ? quot[47:25] : fraction_ans_un[47:25];
+				end
+				else begin
+						if(!mul) begin
+							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25b'0};
+							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+							frac_ans_un = frac_ans_un[47:1]>>carry;
+							frac_final=frac_ans_un[47:25];
+							end
+						else begin
+							{carry, quot} = quot + {|(quot[24:0]), 25'b0};
+							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+							quot = quot[47:1]>>carry;
+							frac_final=quot[47:25];
+						end
+				end
+			end
+		2'b11:	begin
+				// Rounding to -INF
+				// Here if it 24.5 it is rounded of to 24, but if it is -24.5 it is rounded of to -25
+				if(sign_ans_un) begin
+					if(! mul) begin
+						{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25b'0};
+						exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+						frac_ans_un = frac_ans_un[47:1]>>carry;
+						frac_final = frac_ans_un[47:5];
+						end
+					else begin
+						{carry, quot} = quot + {|(quot[24:0]), 25'b0};
+							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+							quot = quot[47:1]>>carry;
+							frac_final=quot[47:25];
+					end	
+				else begin
+						frac_final = (mul) ? quot[47:25] : fraction_ans_un[47:25];
+				end
+			end
+	endcase // rmode
 
 		// Using normal restoration algorithm
 
