@@ -75,6 +75,7 @@ function [39:0] alu_scoreboard::getresult;
 		3'b100: return int_flt(tx.opa); 					 // For int to float conversion
 		3'b101: return flt_int(tx.opa);						 // For float to int
 		default: return {40'b0};
+	endcase
 		// Need to write cases for other opcodes
 
 return 40'b0;
