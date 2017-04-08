@@ -41,11 +41,11 @@ class alu_scoreboard extends uvm_scoreboard;
         end
     endtask: run
 
-    extern virtual function [45:0] getresult; 
+    extern virtual function [39:0] getresult; 
     extern virtual function void compare; 
-    extern virtual function [45:0] add_sub (logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode);
-    extern virtual function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
-    extern virtual function [45:0] int_flt ()    
+    extern virtual function [39:0] add_sub (logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode);
+    extern virtual function [39:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
+    extern virtual function [39:0] int_flt ()    
 endclass: alu_scoreboard
 
 function void alu_scoreboard::compare;
@@ -60,7 +60,7 @@ function void alu_scoreboard::compare;
 
 endfunction
 
-function [45:0] alu_scoreboard::getresult;
+function [39:0] alu_scoreboard::getresult;
 
 // This function returns a 46 bit answer, for the input and used to comapre the results of the DUT.
 // The concatination of the output: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
@@ -76,11 +76,11 @@ function [45:0] alu_scoreboard::getresult;
 		// Need to write cases for other opcodes
 
 
-return 46'b0;
+return 40'b0;
 endfunction
 
 
-function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode) ;
+function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode) ;
 	// First need to pre normalise the result and then proceed to addition or subtraction.
 	logic [7:0] exp_a;
 	logic sign_a;
@@ -398,8 +398,7 @@ function [45:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	// Sign doesn't change with normalization
 	sign_ans = sign_ans_un;
 	out = {sign_ans, exp_ans_un, frac_final};
-	return {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
-
+	return {zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction
 
 function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
@@ -410,6 +409,34 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	logic [7:0] exp_b;
 	logic [22:0] frac_b;
 	logic sign_b;
+	logic sign_ans;
+
+	logic [8:0] exp_ans_un;
+	logic [47:0] frac_ans_un;
+	logic [23:0] frac_ans_div;
+	logic [23:0] multiplicand;
+	logic [23:0] multiplier;
+	logic [23:0] temp;
+	logic [23:0] divisor;
+	logic [23:0] divident;
+	logic [47:0] quot;
+	logic [47:0] remnd;
+	logic [7:0] exp_a_n;
+	logic [7:0] exp_b_n;
+	integer count;
+	logic a_sub;
+	logic b_sub;
+
+	logic more_one_sft;
+	logic [5:0] cntr;
+
+	// Output needed to find
+	logic zero_a, inf_in, aeqb, blta, altb, unordered;
+	logic zero, div_by_zero, underflow, overflow;
+	logic ine, inf, qnan, snan, out;
+	logic [31:0] out;
+	logic zero_a;
+	logic zero_b;
 
 	exp_a = in_a[30:23];
 	sign_a = in_a[31];
@@ -419,45 +446,19 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	sign_b = in_b[31];
 	frac_b = in_b[22:0];
 
-	logic [8:0] exp_ans_un;
-	logic [47:0] frac_ans_un;
-	logic [23:0] frac_ans_div;
-	logic [23:0] multiplicand;
-	logic [23:0] multiplier;
-	logic [23:0] temp;
-	//logic [50:0] divisor;
-	//logic [50:0] divident;
-	//logic [50:0] quotient;
-	//logic [50:0] remainder;
-	// Based on restoring division logic
-	logic [23:0] divisor;
-	logic [23:0] divident;
-	/*logic [47:0] remainder;
-	logic [23:0] quo;
-	logic [23:0] rem;
-	*/
-	logic [47:0] quot;
-	logic [47:0] remnd;
-	logic [7:0] exp_a_n;
-	logic [7:0] exp_b_n;
-	//logic [4:0] cnt;
-	integer count;
-	logic a_sub;
-	logic b_sub;
+	// sign bit
 
-	logic more_one_sft;
-	logic [5:0] cntr;
-	//logic guard;
-	//logic rb;
-
-	// Output needed to find
-	logic zero_a, inf_in, aeqb, blta, altb, unordered;
-	logic zero, div_by_zero, underflow, overflow;
-	logic ine, inf, qnan, snan, out;
-	logic [31:0] out;
-
+	sign_ans = (sign_b == sign_a)? 1'b0: 1'b1; 
+	// Div by zero
 	div_by_zero = (mul) ?(!(|(exp_b)) && !(|(frac_b)) ) : 1'b0;
 
+	// If inp_ A is zero
+
+	zero_a = !(| exp_a)&& !(| frac_a); 
+
+	// If inp B is zero
+
+	zero_b = !(| exp_b)&& !(| frac_b);
 	//To calculate the proper exponent
 	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
 
@@ -478,10 +479,6 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	exp_a_n = exp_a;
 	exp_b_n = exp_b;
 	
-	//quotient = 51'b0;
-	//remainder = 51'b0;
-	//cnt = 5'b0;
-
 	quot = 48'b0;
 	remnd = 48'b0;
 	more_one_sft = 1'b0;
@@ -507,7 +504,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 			count =  count + 1;
 		end
 	end
-	else begin // for division 
+	else if((! div_by_zero) && mul ) begin // for division 
 		// Long division method
 		// quot is the final answer
 		remnd = remnd << 1;
@@ -535,6 +532,10 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 			end
 		end
 	end
+	else if(mul && div_by_zero) begin
+		quot = 48'b0;
+	end
+
 
 
 	// Normalization
@@ -560,7 +561,24 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 
 		exp_ans_un = exp_ans_un + count;
 	end
-	
+
+	//INE
+	if(!mul) begin
+		if((frac_ans_un[24:0]==25'd0) && !(zero_a || zero_b)) begin
+			ine = 1'b0;
+		end
+		else begin
+			ine = 1'b1;	
+		end
+	end
+	else begin
+		if((quot[24:0]==25'd0) && (! div_by_zero) && (zero_a)) begin
+			ine = 1'b0;
+		end
+		else begin
+			ine = 1'b1;	
+		end
+
 	// Rounding method
 
 	case(rmode)
@@ -641,67 +659,48 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 			end
 	endcase // rmode
 
-		// Using normal restoration algorithm
+	//Qnan
 
-		/*remainder[23:0] = divident;
-		remainder = remainder << 1;
-		while (cnt <= 24) begin
-			remainder[47:24] = (remainder[47:24] - divisor);
-			if(remainder >= 0) begin
-				remainder = remainder << 1;
-				remainder[0] = 1'b1;
+	qnan = ((& exp_ans_un) && (|frac_final));
+
+	//snan
+	snan = ((& exp_a) && (| frac_a))|| ((& exp_b) && (| frac_b));
+
+	// Inf
+
+	inf = ((& exp_a) && !(| frac_a)) || ((& exp_b) && !(| frac_b));
+
+	// Overflow
+
+	overflow = ((& exp_ans_un) && !(| frac_final));
+
+	// Underflow
+
+	if(! mul) begin
+		// For multiplication
+		if( (! (!(| exp_a) && !(| frac_a)) || (!(| exp_b) && !(| frac_b)) )) begin // If neither are zero
+			underflow = (!(| exp_ans_un) && !(| frac_final));
+		end
+		else
+			underflow = 1'b0;
+	end
+	else begin
+		if(!div_by_zero) begin
+			if(!(| exp_a) && !(| frac_a)) begin
+				underflow = 1'b0;
 			end
 			else begin
-				remainder[47:24] = (remainder[47:24] + divisor);
-				remainder = remainder << 1;
+				underflow = (!(| exp_ans_un) && !(| frac_final));
 			end
 		end
-		remainder = remainder >> 1;
-		quo = remainder[23:0];
-		rem = remainder[47:24];
-		*/
+	end
 
-		/*while (cnt <= 49) begin
-			quotient = quotient << 1;
-			remainder = remainder << 1;
-			remainder[0] = divident[50];
-			divident = divident << 1;
-			if(remainder >= divisor) begin
-				quotient[0] = 1'b1;
-				remainder = remainder - divisor;
-			end
-			cnt = cnt +1;
-		end
-		frac_ans_div = quotient[26:3];
-		guard = quotient[2];
-		rb = quotient[1];*/
+	// Zero
 
-
-	// Need to normaliztion for multiplication
-
-
-
+	zero = (!(| exp_ans_un) && !(| frac_final));
 	
-	//Division normalization
-	/*if(mul) begin
-		while ((frac_ans_div[23] == 1'b0) && (exp_ans_un - 127) > -126) begin
-			exp_ans_un = exp_ans_un - 1;
-			frac_ans_div = frac_ans_div << 1;
-			frac_ans_div[0] = guard;
-			guard = rb;
-			rb = 1'b0;
-		end
-		while ((exp_ans_un - 127 ) < -126) begin
-			exp_ans_un = exp_ans_un +1;
-			frac_ans_div = frac_ans_div >> 1;
-			guard = frac_ans_div[0];
-			rb = guard;
-		end
-	else
-*/
-	// Need to do rounding for both
-
-
+	out = {sign_ans,exp_ans_un,frac_final};
+	return {zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction		
 
 endpackage: scoreboard
