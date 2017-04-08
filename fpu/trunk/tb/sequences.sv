@@ -14,7 +14,17 @@ package sequences;
         //TODO: Add constraints here
 	
 	    constraint opcode_constraint{fpu_op inside{[0:7]};}
-        
+        constraint rmode_constraint {rmode inside {[0:3]};}
+
+
+        constraint opcode_0 { fpu_op inside {0}; }
+        constraint opcode_1 { fpu_op inside {1}; }
+        constraint opcode_2 { fpu_op inside {2}; }  
+        constraint opcode_3 { fpu_op inside {3}; }
+        constraint opcode_4 { fpu_op inside {4}; }
+        constraint opcode_5 { fpu_op inside {5}; }
+        constraint opcode_6 { fpu_op inside {6}; }
+        constraint opcode_7 { fpu_op inside {7}; }
 
         function new(string name = "");
             super.new(name);
@@ -61,6 +71,14 @@ package sequences;
             alu_transaction_in tx;
             tx=alu_transaction_in::type_id::create("tx");
             start_item(tx);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
             assert(tx.randomize());
             finish_item(tx);
         endtask: body

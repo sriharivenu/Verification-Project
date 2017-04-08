@@ -12,7 +12,7 @@ interface dut_out;
     logic           overflow, underflow;
     logic   	    zero;
     logic           div_by_zero;
-    logic           unordered;
-    logic           altb, blta, aeqb;
-    logic           inf_in, zero_a;
+    // logic           unordered;
+    // logic           altb, blta, aeqb;
+    // logic           inf_in, zero_a;
 endinterface: dut_out
