@@ -45,7 +45,8 @@ class alu_scoreboard extends uvm_scoreboard;
     extern virtual function void compare; 
     extern virtual function [39:0] add_sub (logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode);
     extern virtual function [39:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
-    extern virtual function [39:0] int_flt ()    
+    extern virtual function [39:0] int_flt (logic [31:0] in_a);    
+    extern virtual function [39:0] flt_int (logic [31:0] in_a);
 endclass: alu_scoreboard
 
 function void alu_scoreboard::compare;
@@ -71,14 +72,53 @@ function [39:0] alu_scoreboard::getresult;
 		3'b001: return add_sub(tx.opa, tx.opb, 1, tx.rmode); // For subtraction - 1
 		3'b010: return mul_div(tx,opa, tx.opb, 0, tx.rmode); // For multiplication - 0
 		3'b011: return mul_div(tx.opa, tx.opb, 1, tx.rmode); // For division - 0
-		
-
+		3'b100: return int_flt(tx.opa); 					 // For int to float conversion
+		3'b101: return flt_int(tx.opa);						 // For float to int
+		default: return {40'b0};
 		// Need to write cases for other opcodes
-
 
 return 40'b0;
 endfunction
 
+// Not sure how the float to integer works
+
+
+// function [39:0] alu_scoreboard::flt_int(logic [31:0] in_a);
+// 	logic [31:0] final_ans;
+// 	final_ans = 32'b0;
+// 	final_ans = {8'b0, 1'b1, in_a[22:0]};
+// 	if(in_a[30:23] <= 127) begin
+// 		return 40'b0;
+// 	end
+// 	else begin
+// 		final_ans = final_ans << (in_a[30:23] - 8'd127);
+
+
+
+// endfunction
+
+function [39:0] alu_scoreboard::int_flt(logic [31:0] in_a);
+	// I am guessing that it only uses int_flt for in_a
+	logic [22:0] frac_final;
+	logic [7:0] exp_ans;
+	logic sign_ans;
+	//Assuming the MSB is a sign bit
+	sign_ans = in_a[31];
+	frac_final = 23'b0;
+	exp_ans = 8'b0;
+	in_a = in_a << 1;
+	
+	while(! in_a[31]) begin
+		in_a = in_a << 1;
+		exp_ans = exp_ans + 1;
+	end
+	// Getting the bit to left of the point "1.111" getting rid of the first 1 before point.
+	in_a = in_a << 1;
+	exp_ans = exp_ans + 1;
+	frac_final = in_a[31:9];
+
+	return {8'b0, sign_ans, exp_ans, frac_final}; 
+endfunction
 
 function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode) ;
 	// First need to pre normalise the result and then proceed to addition or subtraction.
@@ -698,7 +738,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	// Zero
 
 	zero = (!(| exp_ans_un) && !(| frac_final));
-	
+
 	out = {sign_ans,exp_ans_un,frac_final};
 	return {zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction		
