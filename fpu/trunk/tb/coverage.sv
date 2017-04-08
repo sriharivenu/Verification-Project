@@ -14,59 +14,72 @@ class alu_subscriber_in extends uvm_subscriber #(alu_transaction_in);
 
     //TODO: Add covergroups for the inputs
 	covergroup inputs;
-	covlabel1: coverpoint opa {
-	bins low = {[0:143165576]};
-	bins low1 = {[143165577:286331153]};
-	bins low2 ={[286331154:429496729]};
-	bins low3 ={[429496730:572662306]};
-	bins low4 ={[572662307:715827882]};
-	bins low5 ={[715827883:858993459]};
-	bins low6 ={[858993460:1002159035]};
-	bins low7 ={[1002159036:1145324612]};
-	bins low8 ={[1145324613:1288490188]};
-	bins low9 ={[1288490189:1431655765]};
-	bins low10 ={[1431655766:1574821341]};
-	bins low11 ={[1574821342:1717986918]};
-	bins low12 ={[1717986919:1861152494]};
-	bins low13 ={[1861152495:2004318071]};
-	bins low14 ={[2004318072:2147483647]};
+    	opa_cov: coverpoint opa {
+            option.auto_bin_max = 32;
+    	// bins low = {[0:143165576]};
+    	// bins low1 = {[143165577:286331153]};
+    	// bins low2 ={[286331154:429496729]};
+    	// bins low3 ={[429496730:572662306]};
+    	// bins low4 ={[572662307:715827882]};
+    	// bins low5 ={[715827883:858993459]};
+    	// bins low6 ={[858993460:1002159035]};
+    	// bins low7 ={[1002159036:1145324612]};
+    	// bins low8 ={[1145324613:1288490188]};
+    	// bins low9 ={[1288490189:1431655765]};
+    	// bins low10 ={[1431655766:1574821341]};
+    	// bins low11 ={[1574821342:1717986918]};
+    	// bins low12 ={[1717986919:1861152494]};
+    	// bins low13 ={[1861152495:2004318071]};
+    	// bins low14 ={[2004318072:2147483647]};
+            }
+    	opb_cov: coverpoint opb  {
+            option.auto_bin_max = 32;
+    	// bins low = {[0:143165576]};
+     //        bins low1 = {[143165577:286331153]};
+     //        bins low2 ={[286331153:429496729]};
+     //        bins low3 ={[429496730:572662306]};
+     //        bins low4 ={[572662307:715827882]};
+     //        bins low5 ={[715827883:858993459]};
+     //        bins low6 ={[858993460:1002159035]};
+     //        bins low7 ={[1002159036:1145324612]};
+     //        bins low8 ={[1145324613:1288490188]};
+     //        bins low9 ={[1288490189:1431655765]};
+     //        bins low10 ={[1431655766:1574821341]};
+     //        bins low11 ={[1574821342:1717986918]};
+     //        bins low12 ={[1717986919:1861152494]};
+     //        bins low13 ={[1861152495:2004318071]};
+     //        bins low14 ={[2004318072:2147483647]};
+            }
+    	/*covlabel3: coverpoint cin {
+    	bins up = {0};
+    	bins dn = {1};
+    	}*/
+    	fpu_op_cov: coverpoint fpu_op {
+        	bins op1 = {0};
+        	bins op2 = {1};
+        	bins op3 = {2};
+        	bins op4 = {3};
+        	bins op5 = {4};
+        	bins op6 = {5};
+        	bins op7 = {6};
+        	bins op8 = {7};
+    	}
+
+        rmode_cov: coverpoint rmode {
+            bins rmode_0 = {0};
+            bins rmode_1 = {1};
+            bins rmode_2 = {2};
+            bins rmode_3 = {3};
         }
-	covlabel2: coverpoint opb  {
-	bins low = {[0:143165576]};
-        bins low1 = {[143165577:286331153]};
-        bins low2 ={[286331153:429496729]};
-        bins low3 ={[429496730:572662306]};
-        bins low4 ={[572662307:715827882]};
-        bins low5 ={[715827883:858993459]};
-        bins low6 ={[858993460:1002159035]};
-        bins low7 ={[1002159036:1145324612]};
-        bins low8 ={[1145324613:1288490188]};
-        bins low9 ={[1288490189:1431655765]};
-        bins low10 ={[1431655766:1574821341]};
-        bins low11 ={[1574821342:1717986918]};
-        bins low12 ={[1717986919:1861152494]};
-        bins low13 ={[1861152495:2004318071]};
-        bins low14 ={[2004318072:2147483647]};
-        }
-	/*covlabel3: coverpoint cin {
-	bins up = {0};
-	bins dn = {1};
-	}*/
-	covlabel4: coverpoint fpu_op {
-	bins op1 = {0};
-	bins op2 = {1};
-	bins op3 = {2};
-	bins op4 = {3};
-	bins op5 = {4};
-	bins op6 = {5};
-	bins op7 = {6};
-	bins op8 = {7};
-	}
-	//covlabel3_x_covlabel4: cross covlabel3, covlabel4;
-	endgroup: inputs
+    	
+        rmode_opcode_cross: cross fpu_op_cov, rmode_cov;
+        in_A_opcode_cross:  cross fpu_op_cov, opa_cov;
+        in_B_opcode_cross:  cross fpu_op_cov, opb_cov;
+
+    endgroup: inputs
     function new(string name, uvm_component parent);
         super.new(name,parent);
-         inputs=new;
+        inputs=new;
         
     endfunction: new
 
@@ -92,21 +105,57 @@ class alu_subscriber_out extends uvm_subscriber #(alu_transaction_out);
     logic zero;
     logic div_by_zero;
 
-    //TODO: Add covergroups for the outputs
-/*    	covergroup outputs;
-	covlabel1: coverpoint out {
-	bins low = {[0:2000]};
-	bins high = {[2001:10000]};
-	}
-	/*covlabel2: coverpoint vout  {
-	bins up = {0};
-	bins dn = {1};
-	}
-	covlabel3: coverpoint cout {
-	bins up = {0};
-	bins dn = {1};
-	}*/
-//endgroup: outputs
+    covergroup output;
+        output_cov: coverpoint out {
+            option.auto_bin_max = 32;
+        }
+        
+        inf_cov: coverpoint inf {
+            bins inf_0 = {0};
+            bins inf_1 = {1};
+        }
+
+        snan_cov: coverpoint snan {
+            bins snan_0 = {0};
+            bins snan_1 = {1};
+        }
+
+        qnan_cov: coverpoint qnan {
+            bins qnan_0 = {0};
+            bins qnan_1 = {1};
+        }
+
+        ine_cov: coverpoint ine {
+            bins ine_0 = {0};
+            bins ine_1 = {1};
+        }
+
+        overflow_cov: coverpoint overflow{
+            bins overflow_0 = {0};
+            bins overflow_1 = {1};
+        }
+
+        underflow_cov: coverpoint underflow {
+            bins underflow_0 = {0};
+            bins underflow_1 = {1};
+        }
+
+        zero_cov: coverpoint zero {
+            bins zero_0 = {0};
+            bins zero_1 = {1};
+        }
+
+        div_by_zero_cov: coverpoint div_by_zero {
+            bins div_by_zero_0 = {0};
+            bins div_by_zero_1 = {1};
+        }
+
+        snan_qnan_out_cross: cross output_cov, snan_cov, qnan_cov;
+        inf_overflow_underflow_out_cross: cross inf_cov, out_cov, overflow_cov, underflow_cov;
+        ine_zero_div_out_cross: cross ine_cov, zero_cov, div_by_zero_cov, output_cov; 
+
+    endgroup: output
+
 function new(string name, uvm_component parent);
     super.new(name,parent);
   //   outputs=new;
