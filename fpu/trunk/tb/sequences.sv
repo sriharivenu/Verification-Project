@@ -46,16 +46,16 @@ package sequences;
 	    logic overflow,underflow;
 	    logic zero;
 	    logic div_by_zero;
-        logic unordered;
-        logic altb, blta, aeqb;
-        logic inf_in, zero_a;
+        //logic unordered;
+        //logic altb, blta, aeqb;
+       // logic inf_in, zero_a;
         
         function new(string name = "");
             super.new(name);
         endfunction: new;
         
         function string convert2string;
-            convert2string={$sformatf("Output = %b ",out)};
+            convert2string={$sformatf("Output = %b Snan = %b Qnan = %b Inf = %b Ine = %b Overflow = %b Underflow = %b Div By Zero = %b Zero = %b",out,snan,qnan,inf,ine,overflow,underflow,div_by_zero,zero)};
         endfunction: convert2string
 
     endclass: alu_transaction_out

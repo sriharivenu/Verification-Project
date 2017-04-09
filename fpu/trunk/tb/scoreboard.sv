@@ -59,10 +59,51 @@ function void alu_scoreboard::compare;
     //debugging purposes
     //alu_transaction_out tx;
 
+
+	 logic [39:0]res;
+    	 res=getresult;
+	
+	if(tx_out.out!=res[31:0])
+	begin
+	`uvm_info("0","OUT is wrong" ,UVM_HIGH);
+	end
+	if(tx_out.zero==res[39])
+	begin
+	`uvm_info("1","zero is wrong" ,UVM_HIGH);
+	end
+	if(tx_out.div_by_zero==res[38])
+	begin
+	`uvm_info("2","div by zero is wrong" ,UVM_HIGH);
+	end	
+	if(tx_out.underflow==res[37])
+	begin
+	`uvm_info("3","underflow is wrong" ,UVM_HIGH);
+	end	
+	if(tx_out.overflow==res[36])
+	begin
+	`uvm_info("4","overflow is wrong" ,UVM_HIGH);
+	end	
+	if(tx_out.ine==res[35])
+	begin
+	`uvm_info("5","ine is wrong" ,UVM_HIGH);
+	end	
+	if(tx_out.inf==res[34])
+	begin
+	`uvm_info("6","inf is wrong" ,UVM_HIGH);
+	end	
+	if(tx_out.qnan==res[34])
+	begin
+	`uvm_info("7","qnan is wrong" ,UVM_HIGH);
+	end	
+	if(tx_out.snan==res[33])
+	begin
+	`uvm_info("8","snan is wrong" ,UVM_HIGH);
+	end	
+	
+
 endfunction
 
 function [39:0] alu_scoreboard::getresult;
-
 // This function returns a 46 bit answer, for the input and used to comapre the results of the DUT.
 // The concatination of the output: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
 	alu_transaction_in tx;
@@ -84,19 +125,30 @@ endfunction
 // Not sure how the float to integer works
 
 
-// function [39:0] alu_scoreboard::flt_int(logic [31:0] in_a);
-// 	logic [31:0] final_ans;
-// 	final_ans = 32'b0;
-// 	final_ans = {8'b0, 1'b1, in_a[22:0]};
-// 	if(in_a[30:23] <= 127) begin
-// 		return 40'b0;
-// 	end
-// 	else begin
-// 		final_ans = final_ans << (in_a[30:23] - 8'd127);
 
 
 
 // endfunction
+
+
+
+
+function [39:0] alu_scoreboard::flt_int(logic [31:0] in_a);
+	logic [30:0] int_num;
+	logic [7:0] exp_ans;
+	logic [22:0] frac;
+	logic sign;
+	sign=in_a[31];
+	exp_ans=in_a[30:23]-127;
+	frac=in_a[22:0];
+	while(exp_ans>8'd0)
+		begin
+			int_num=frac<<1;
+			exp_ans=exp_ans-8'd1;
+		end	
+	return {sign,int_num,8'b0};
+endfunction
+
 
 function [39:0] alu_scoreboard::int_flt(logic [31:0] in_a);
 	// I am guessing that it only uses int_flt for in_a
