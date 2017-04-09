@@ -111,7 +111,7 @@ function [39:0] alu_scoreboard::getresult;
 	case(tx.fpu_op)
 		3'b000: return add_sub(tx.opa, tx.opb, 0, tx.rmode); // For addition - 0
 		3'b001: return add_sub(tx.opa, tx.opb, 1, tx.rmode); // For subtraction - 1
-		3'b010: return mul_div(tx,opa, tx.opb, 0, tx.rmode); // For multiplication - 0
+		3'b010: return mul_div(tx.opa, tx.opb, 0, tx.rmode); // For multiplication - 0
 		3'b011: return mul_div(tx.opa, tx.opb, 1, tx.rmode); // For division - 0
 		3'b100: return int_flt(tx.opa); 					 // For int to float conversion
 		3'b101: return flt_int(tx.opa);						 // For float to int
@@ -174,6 +174,7 @@ function [39:0] alu_scoreboard::int_flt(logic [31:0] in_a);
 endfunction
 
 function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, logic add, logic [1:0] rmode) ;
+	
 	// First need to pre normalise the result and then proceed to addition or subtraction.
 	logic [7:0] exp_a;
 	logic sign_a;
@@ -185,20 +186,8 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	// Output needed to find
 	logic zero_a, inf_in, aeqb, blta, altb, unordered;
 	logic zero, div_by_zero, underflow, overflow;
-	logic ine, inf, qnan, snan, out;
+	logic ine, inf, qnan, snan;
 	logic [31:0] out;
-
-	// Inputs
-	exp_a = in_a[30:23];
-	sign_a = in_a[31];
-	fraction_a = in_a[22:0];
-
-	exp_b = in_b[30:23];
-	sign_b = in_b[31];
-	fraction_b = in_b[22:0];
-
-	// Normalization of the input for proper addition/subtraction.
-	logic [7:0] exp_diff;
 	logic expa_subnormal;
 	logic expb_subnormal;
 	logic [7:0] temp_exp_var;
@@ -212,7 +201,42 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	logic sign_ans_un;
 	logic [7:0] exp_ans_un;
 	logic [1:0] carry_un;
+	logic [7:0] exp_diff;
+	logic [4:0] exp_sft_ans;
+	logic sign_ans;
+	logic ch;logic [4:0]count;
+	logic [4:0] round_value;
+	logic carry;
+	logic [22:0] frac_final;
+	logic Bfr_point;
+	logic original_value_fraction_ans_un ;
+	logic Inf_in;
+	// Inputs
+	exp_a = in_a[30:23];
+	sign_a = in_a[31];
+	fraction_a = in_a[22:0];
 
+	exp_b = in_b[30:23];
+	sign_b = in_b[31];
+	fraction_b = in_b[22:0];
+
+	// Normalization of the input for proper addition subtraction.
+	
+	/*logic [7:0] exp_diff;
+	logic expa_subnormal;
+	logic expb_subnormal;
+	logic [7:0] temp_exp_var;
+	logic [22:0] temp_frac_var;
+	logic temp_sign_var;
+	logic altb_a, blta_a, aeqb_a;
+	logic [27:0] fraction_b_sft;
+	logic [4:0] exp_sft;
+	logic [27:0] fraction_a_ext; // Extension of fraction A by 5 bits to help in rounding;
+	logic [27:0] fraction_ans_un;// These _un are the answers that are unnormalized.
+	logic sign_ans_un;
+	logic [7:0] exp_ans_un;
+	logic [1:0] carry_un;
+*/
 	// FCMP scoreboard answers.
 
 	if(exp_a == 8'b0)
@@ -387,9 +411,10 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	end
 
 	// Normalization the answer.
-	logic [4:0] exp_sft_ans;
+	/*logic [4:0] exp_sft_ans;
 	logic sign_ans;
-	logic ch;logic [4:0]count;
+	logic ch;logic [4:0]count;*/
+
 	ch=1'b0;
 	while(ch==1'b0)
 	begin
@@ -411,9 +436,9 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	end
 
 
-	logic [4:0] round_value;
+	/*logic [4:0] round_value;
 	logic carry;
-	logic [22:0] frac_final;
+	logic [22:0] frac_final;*/
 
 	original_value_fraction_ans_un = fraction_ans_un;
 	round_value = fraction_ans_un[4:0];
@@ -494,7 +519,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	return {zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction
 
-function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
+function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic [1:0] rmode);
 	
 	logic [7:0] exp_a;
 	logic [22:0] frac_a;
@@ -503,7 +528,6 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	logic [22:0] frac_b;
 	logic sign_b;
 	logic sign_ans;
-
 	logic [8:0] exp_ans_un;
 	logic [47:0] frac_ans_un;
 	logic [23:0] frac_ans_div;
@@ -516,25 +540,25 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	logic [47:0] remnd;
 	logic [7:0] exp_a_n;
 	logic [7:0] exp_b_n;
-	integer count;
 	logic a_sub;
 	logic b_sub;
-
 	logic more_one_sft;
 	logic [5:0] cntr;
-
+	logic [22:0] frac_final;
 	// Output needed to find
+	
 	logic zero_a, inf_in, aeqb, blta, altb, unordered;
 	logic zero, div_by_zero, underflow, overflow;
-	logic ine, inf, qnan, snan, out;
+	logic ine, inf, qnan, snan;
 	logic [31:0] out;
-	logic zero_a;
 	logic zero_b;
-
+	logic ch;
+	logic [4:0]count;
+	logic carry;
+	logic sign_ans_un;	
 	exp_a = in_a[30:23];
 	sign_a = in_a[31];
 	frac_a = in_a[22:0];
-
 	exp_b = in_b[30:23];
 	sign_b = in_b[31];
 	frac_b = in_b[22:0];
@@ -565,7 +589,6 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 	count = 0;
 	multiplicand = {a_sub, frac_a};
 	multiplier = {b_sub, frac_b};
-
 
 	divident = {a_sub,frac_a};
 	divisor = {b_sub, frac_b};
@@ -632,8 +655,8 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 
 
 	// Normalization
-	logic ch;
-	logic [4:0]count;
+	/*logic ch;
+	logic [4:0]count;*/
 	if(! mul) begin
 		ch=1'b0;
 		while(ch==1'b0)
@@ -671,7 +694,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 		else begin
 			ine = 1'b1;	
 		end
-
+	end
 	// Rounding method
 
 	case(rmode)
@@ -683,18 +706,18 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 				// Example: -23.5 and -24.5 both will round to -24.
 					if(!mul) begin	
 						if(frac_ans_un[25]) begin// To check if it is ODD
-							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'b0};
+							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 							frac_ans_un = frac_ans_un[47:1]>>carry;
 							frac_final=frac_ans_un[47:25];
 						end
 						else begin // Because roundin to nearest even needs it to get truncated.
-							frac_final = fraction_ans_un[47:25];
+							frac_final = frac_ans_un[47:25];
 						end
 					end
 					else begin // division
 						if(quot[25]) begin// To check if it is ODD
-							{carry, quot} = quot + {|(quot[24:0]), 25'b0};
+							{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 							quot = quot[47:1]>>carry;
 							frac_final=quot[47:25];
@@ -704,6 +727,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 						end
 
 				end
+			end
 		2'b01:	begin
 				// Rounding to zero is simply truncation
 
@@ -713,17 +737,17 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 				// Rounding to +INF
 				// Here it depends on the sign if it is -24.5 it is rounded of to -24, but if it is 24.5 it is rounded of to 25
 				if(sign_ans_un) begin
-						frac_final = (mul) ? quot[47:25] : fraction_ans_un[47:25];
+						frac_final = (mul) ? quot[47:25] : frac_ans_un[47:25];
 				end
 				else begin
 						if(!mul) begin
-							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25b'0};
+							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 							frac_ans_un = frac_ans_un[47:1]>>carry;
 							frac_final=frac_ans_un[47:25];
 							end
 						else begin
-							{carry, quot} = quot + {|(quot[24:0]), 25'b0};
+							{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 							quot = quot[47:1]>>carry;
 							frac_final=quot[47:25];
@@ -735,19 +759,20 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 				// Here if it 24.5 it is rounded of to 24, but if it is -24.5 it is rounded of to -25
 				if(sign_ans_un) begin
 					if(! mul) begin
-						{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25b'0};
+						{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
 						exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 						frac_ans_un = frac_ans_un[47:1]>>carry;
 						frac_final = frac_ans_un[47:5];
 						end
 					else begin
-						{carry, quot} = quot + {|(quot[24:0]), 25'b0};
+						{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 							quot = quot[47:1]>>carry;
 							frac_final=quot[47:25];
-					end	
+					end
+				end	
 				else begin
-						frac_final = (mul) ? quot[47:25] : fraction_ans_un[47:25];
+						frac_final = (mul) ? quot[47:25] : frac_ans_un[47:25];
 				end
 			end
 	endcase // rmode
@@ -774,8 +799,11 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 		if( (! (!(| exp_a) && !(| frac_a)) || (!(| exp_b) && !(| frac_b)) )) begin // If neither are zero
 			underflow = (!(| exp_ans_un) && !(| frac_final));
 		end
+	
 		else
+		begin
 			underflow = 1'b0;
+	end
 	end
 	else begin
 		if(!div_by_zero) begin
@@ -786,7 +814,7 @@ function [45:0] mul_div (logic [31:0] in_a, logic [31:0] in_b, logic mul, logic 
 				underflow = (!(| exp_ans_un) && !(| frac_final));
 			end
 		end
-	end
+	end	
 
 	// Zero
 

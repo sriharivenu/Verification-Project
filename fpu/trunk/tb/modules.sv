@@ -134,12 +134,12 @@ class alu_monitor_out extends uvm_monitor;
         tx.underflow=dut_vi_out.underflow;
 	    tx.zero=dut_vi_out.zero;
 	    tx.div_by_zero=dut_vi_out.div_by_zero;
-	    tx.unordered = dut_vi_out.unordered;
-        tx.altb = dut_vi_out.altb;
-        tx.blta = dut_vi_out.blta;
-        tx.aeqb = dut_vi_out.aeqb;
-        tx.inf_in = dut_vi_out.inf_in;
-        tx.zero_a = dut_vi_out.zero_a;
+	    //tx.unordered = dut_vi_out.unordered;
+       // tx.altb = dut_vi_out.altb;
+       // tx.blta = dut_vi_out.blta;
+        //tx.aeqb = dut_vi_out.aeqb;
+        //tx.inf_in = dut_vi_out.inf_in;
+        //tx.zero_a = dut_vi_out.zero_a;
         aport.write(tx);
       end
     endtask: run_phase

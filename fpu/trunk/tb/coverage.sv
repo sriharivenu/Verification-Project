@@ -89,7 +89,7 @@ class alu_subscriber_in extends uvm_subscriber #(alu_transaction_in);
         fpu_op={t.fpu_op};
         rmode={t.rmode};
         /* TODO: Uncomment*/
-    //     inputs.sample();
+         inputs.sample();
         
     endfunction: write
 
@@ -105,7 +105,7 @@ class alu_subscriber_out extends uvm_subscriber #(alu_transaction_out);
     logic zero;
     logic div_by_zero;
 
-    covergroup output;
+    covergroup outputs;
         output_cov: coverpoint out {
             option.auto_bin_max = 32;
         }
@@ -151,14 +151,14 @@ class alu_subscriber_out extends uvm_subscriber #(alu_transaction_out);
         }
 
         snan_qnan_out_cross: cross output_cov, snan_cov, qnan_cov;
-        inf_overflow_underflow_out_cross: cross inf_cov, out_cov, overflow_cov, underflow_cov;
+        //inf_overflow_underflow_out_cross: cross inf_cov, out_cov, overflow_cov, underflow_cov;
         ine_zero_div_out_cross: cross ine_cov, zero_cov, div_by_zero_cov, output_cov; 
 
-    endgroup: output
+    endgroup: outputs
 
 function new(string name, uvm_component parent);
     super.new(name,parent);
-  //   outputs=new;
+     outputs=new;
     
 endfunction: new
 
@@ -172,7 +172,7 @@ function void write(alu_transaction_out t);
     underflow={t.underflow};
     zero={t.zero};
     div_by_zero={t.div_by_zero};		
-    //outputs.sample();
+    outputs.sample();
     
 endfunction: write
 endclass: alu_subscriber_out

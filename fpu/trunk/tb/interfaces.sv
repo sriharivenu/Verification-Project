@@ -6,6 +6,7 @@ interface dut_in;
 endinterface: dut_in
 
 interface dut_out;
+    logic clk;
     logic   [31:0]  out;
     logic   	    inf,snan,qnan;
     logic           ine;
