@@ -293,7 +293,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	
 	// Carry is made zero at start
 	carry_un = 2'b0;
-
+	fraction_ans_un = 28'b0;
 	if(! add) begin
 		// This is for adding two numbers
 		if(sign_b == sign_a) begin
@@ -384,11 +384,13 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 		exp_ans_un = exp_ans_un + 1'b1;
 	end
 
+	`uvm_info("print result", $sformatf("expdiff = %h A = %h B= %h SB out: %h, INA: %h, INB: %h",exp_diff, fraction_a_ext,fraction_b_sft,{sign_ans_un,exp_ans_un,fraction_ans_un[27:5]}, in_a, in_b) ,UVM_HIGH);
+
 	// Normalization the answer.
 	/*logic [4:0] exp_sft_ans;
 	logic sign_ans;
 	logic ch;logic [4:0]count;*/
-
+	count = 5'b0;
 	ch=1'b0;
 	while(ch==1'b0)
 	begin
@@ -413,7 +415,8 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	/*logic [4:0] round_value;
 	logic carry;
 	logic [22:0] frac_final;*/
-
+	carry = 1'b0;
+	frac_final = 23'b0;
 	original_value_fraction_ans_un = fraction_ans_un;
 	round_value = fraction_ans_un[4:0];
 	case(rmode)
@@ -529,7 +532,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	logic ch;
 	logic [4:0]count;
 	logic carry;
-	logic sign_ans_un;	
+	logic sign_ans_un;
+	logic [5:0] itr;
+	itr = 6'b0;	
 	exp_a = in_a[30:23];
 	sign_a = in_a[31];
 	frac_a = in_a[22:0];
@@ -625,8 +630,10 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		else begin
 			remnd = remnd << 1;
 			remnd[0] = divident[23];
+			//`uvm_info("Disp-3", $sformatf("Remainder: %h, divident: %h", remnd, divident), UVM_HIGH);
 			divident = divident << 1;
 			while (cntr < 48) begin
+				//`uvm_info("Disp-1", $sformatf("The remainder: %h, quotient: %h, count: %d, ina: %h, inb: %h", remnd, quot, cntr, in_a, in_b), UVM_HIGH);
 				if(remnd < divisor) begin
 					if(more_one_sft) begin
 						quot = quot << 1;
@@ -635,9 +642,11 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 					remnd[0] = divident[23];
 					divident = divident << 1;
 					more_one_sft = 1'b1;
+					cntr = cntr + 1;
 
 				end
 				else begin
+					//`uvm_info("Disp-2", $sformatf("Enterred this part"), UVM_HIGH);
 					remnd = remnd - divisor;
 					remnd = remnd << 1;
 					remnd[0] = divident[23];
@@ -645,6 +654,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 					quot = quot << 1;
 					quot[0] = 1'b1;
 					more_one_sft = 1'b0;
+					cntr = cntr + 1;
 				end
 			end
 		end
@@ -654,26 +664,29 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	end
 
 
-
+	
 	// Normalization
 	/*logic ch;
 	logic [4:0]count;*/
 	if(! mul) begin
 		ch=1'b0;
-		while(ch==1'b0)
+		while((ch==1'b0) && (itr < 48))
 		begin
 			{ch,frac_ans_un}=frac_ans_un << 1'b1;
 			count=count+5'd1;
+			itr = itr + 1;
 		end
 
 		exp_ans_un = exp_ans_un + count;
 	end
 	else begin
 		ch=1'b0;
-		while(ch==1'b0)
+		while((ch==1'b0) && (itr < 48))
 		begin
+			//`uvm_info("Disp-2", $sformatf("Got stuck!!!"), UVM_HIGH);
 			{ch,quot}=quot << 1'b1;
 			count=count+5'd1;
+			itr = itr + 1;
 		end
 
 		exp_ans_un = exp_ans_un + count;
