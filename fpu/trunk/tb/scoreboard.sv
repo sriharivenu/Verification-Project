@@ -208,7 +208,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	exp_b = in_b[30:23];
 	sign_b = in_b[31];
 	fraction_b = in_b[22:0];
-
+	expb_subnormal=1'd0;
 	if(exp_a == 8'b0)
 		expa_subnormal = 1'b1;
 	if(exp_b == 8'b0)
@@ -284,8 +284,8 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	exp_diff = exp_a - exp_b;
 	// The fraction bit is made 28 bits to help in rounding
 	fraction_b_sft = {!(expb_subnormal), fraction_b, 4'b0};
-	exp_sft = ( exp_diff > 28) ? 5'd28: exp_diff[4:0];
-	fraction_b_sft = fraction_b_sft >> exp_sft;
+	//exp_sft = ( exp_diff > 28) ? 5'd28: exp_diff[4:0];
+	fraction_b_sft = fraction_b_sft >> exp_diff;
 	fraction_a_ext = {fraction_a, 5'b0};
 
 	// Now we have both input normalized and the output will have the power of input A.
@@ -299,8 +299,13 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 		if(sign_b == sign_a) begin
 			sign_ans_un = sign_a;
 			{carry_un, fraction_ans_un} = fraction_a_ext + fraction_b_sft; // This is to make sure if there is any carry generated from addition of fraction.
-			carry_un = carry_un + 1'b1;
-			exp_ans_un = exp_a;
+			//carry_un = carry_un + 1'b1;
+			exp_ans_un = exp_a;			
+			if(carry_un) begin		
+			fraction_ans_un = fraction_ans_un >> 1'd1;
+			exp_ans_un = exp_a +1'd1;
+			end
+		//`uvm_info("print result", $sformatf("OUT is wrong!!!expdiff = %h A = %h B= %h SB out: %h",exp_diff, fraction_a_ext,fraction_b_sft,{sign_ans_un,exp_ans_un,fraction_ans_un[27:5]}) ,UVM_HIGH);
 		end
 		else if(sign_a) begin
 			if(aeqb) begin
@@ -319,9 +324,10 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 			fraction_ans_un = fraction_a_ext - fraction_b_sft;
 			exp_ans_un = exp_a;
 		end
+		//`uvm_info("print result", $sformatf("OUT is wrong!!!  SB out: %h", {sign_ans_un,exp_ans_un,fraction_ans_un[27:5]}) ,UVM_HIGH);
 		// Taking care of Overflow, Assuming Overflow need not signal if one of the input is infinity as other exception 
 		// Can underflow happen in Addition ?????????????? Not sure
-		if(carry_un > 1'b1) begin
+		if(carry_un > 1'b0) begin
 			if(exp_ans_un + 1'b1 >= 8'hff) begin
 				overflow = 1'b1;
 			end
@@ -603,7 +609,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		end
 		else if ((& exp_a) && !(| frac_a)) begin
 			// If A is inf
-			quot = 48'0;
+			quot = 48'd0;
 			exp_ans_un = 8'hff;
 		end
 		else if((& exp_b) && !(|frac_b)) begin

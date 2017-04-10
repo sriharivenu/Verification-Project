@@ -16,7 +16,9 @@ package sequences;
 	    constraint opcode_constraint{fpu_op inside{[0:7]};}
         constraint rmode_constraint {rmode inside {[0:3]};}
 
-
+	constraint op_a { (opa == 32'd1073741824);}
+	constraint op_b { (opb == 32'd1073741824);}
+	 
         constraint opcode_0 { fpu_op inside {0}; }
         constraint opcode_1 { fpu_op inside {1}; }
         constraint opcode_2 { fpu_op inside {2}; }  
@@ -71,7 +73,7 @@ package sequences;
             alu_transaction_in tx;
             tx=alu_transaction_in::type_id::create("tx");
             start_item(tx);
-            tx.opcode_0.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
             tx.opcode_1.constraint_mode(0);
             tx.opcode_2.constraint_mode(0);
             tx.opcode_3.constraint_mode(0);
