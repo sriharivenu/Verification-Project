@@ -63,43 +63,41 @@ function void alu_scoreboard::compare;
 	 logic [39:0]res;
     	 res=getresult;
 	
-	if(tx_out.out!=res[31:0])
-	begin
-	`uvm_info("0","OUT is wrong" ,UVM_HIGH);
+    // General order of exception:
+    // 1) Stack Overflow and Underflow
+	// 2) SNaN operand
+	// 3) Divide by zero
+	// 4) Numeric overflow and underflow
+	// 5) Inexact
+	// 6) QNaN (divide by zero is QNaN and not divide by zero)
+
+	if(tx_out.snan != res[33]) begin
+		`uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[33], tx_out.snan, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
 	end
-	if(tx_out.zero==res[39])
-	begin
-	`uvm_info("1","zero is wrong" ,UVM_HIGH);
+	if(tx.div_by_zero != res[38]) begin
+		`uvm_info("ERROR MSG-2", $sformatf("Div by zero is wrong!!! SB DIV by zero: %b, DUT DIV by zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[38], tx_out.div_by_zero, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
 	end
-	if(tx_out.div_by_zero==res[38])
-	begin
-	`uvm_info("2","div by zero is wrong" ,UVM_HIGH);
-	end	
-	if(tx_out.underflow==res[37])
-	begin
-	`uvm_info("3","underflow is wrong" ,UVM_HIGH);
-	end	
-	if(tx_out.overflow==res[36])
-	begin
-	`uvm_info("4","overflow is wrong" ,UVM_HIGH);
-	end	
-	if(tx_out.ine==res[35])
-	begin
-	`uvm_info("5","ine is wrong" ,UVM_HIGH);
-	end	
-	if(tx_out.inf==res[34])
-	begin
-	`uvm_info("6","inf is wrong" ,UVM_HIGH);
-	end	
-	if(tx_out.qnan==res[34])
-	begin
-	`uvm_info("7","qnan is wrong" ,UVM_HIGH);
-	end	
-	if(tx_out.snan==res[33])
-	begin
-	`uvm_info("8","snan is wrong" ,UVM_HIGH);
-	end	
-	
+	if(tx.inf != res[34]) begin
+		`uvm_info("ERROR MSG-3", $sformatf("Inf is wrong!!! SB Inf: %b, DUT Inf: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.inf, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
+	if(tx_out.overflow != res[36]) begin
+		`uvm_info("ERROR MSG-4", $sformatf("Overflow is wrong!!! SB overflow: %b, DUT overflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[36], tx_out.overflow, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
+	if(tx_out.underflow != res[37]) begin
+		`uvm_info("ERROR MSG-5", $sformatf("Underflow is wrong!!! SB underflow: %b, DUT underflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[37], tx_out.underflow, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
+	if(tx_out.ine != res[35]) begin
+		`uvm_info("ERROR MSG-6", $sformatf("Inexact is wrong!!! SB ine: %b, DUT ine: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[35], tx_out.ine, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
+	if(tx_out.zero != res[39]) begin
+		`uvm_info("ERROR MSG-7", $sformatf("Zero is wrong!!! SB zero: %b, DUT zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[39], tx_out.zero, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
+	if(tx_out.qnan != res[34]) begin
+		`uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.qnan, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
+	if(tx_out.out != res[31:0]) begin
+		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h", tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	end
 
 endfunction
 
@@ -122,16 +120,6 @@ function [39:0] alu_scoreboard::getresult;
 return 40'b0;
 endfunction
 
-// Not sure how the float to integer works
-
-
-
-
-
-// endfunction
-
-
-
 
 function [39:0] alu_scoreboard::flt_int(logic [31:0] in_a);
 	logic [30:0] int_num;
@@ -147,6 +135,7 @@ function [39:0] alu_scoreboard::flt_int(logic [31:0] in_a);
 			exp_ans=exp_ans-8'd1;
 		end	
 	return {sign,int_num,8'b0};
+	//return {8'b0, sign, int_num};
 endfunction
 
 
@@ -220,25 +209,6 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	sign_b = in_b[31];
 	fraction_b = in_b[22:0];
 
-	// Normalization of the input for proper addition subtraction.
-	
-	/*logic [7:0] exp_diff;
-	logic expa_subnormal;
-	logic expb_subnormal;
-	logic [7:0] temp_exp_var;
-	logic [22:0] temp_frac_var;
-	logic temp_sign_var;
-	logic altb_a, blta_a, aeqb_a;
-	logic [27:0] fraction_b_sft;
-	logic [4:0] exp_sft;
-	logic [27:0] fraction_a_ext; // Extension of fraction A by 5 bits to help in rounding;
-	logic [27:0] fraction_ans_un;// These _un are the answers that are unnormalized.
-	logic sign_ans_un;
-	logic [7:0] exp_ans_un;
-	logic [1:0] carry_un;
-*/
-	// FCMP scoreboard answers.
-
 	if(exp_a == 8'b0)
 		expa_subnormal = 1'b1;
 	if(exp_b == 8'b0)
@@ -289,8 +259,6 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	unordered = ( ((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ); 
 	
 	qnan= (&exp_a) && (&exp_b) && (sign_a!=sign_b);
-
-
 
 	// Finding if it is SNAN
 	//qnan = unordered;
@@ -817,8 +785,13 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	end	
 
 	// Zero
+	if(mul) begin // for division if B is INF and A is finite then the answer is zero.
+		if( ((& exp_b) && !(| frac_b)) && ( !(& exp_a)) ) begin
+			zero = 1'b1;
+		end
+	end
 
-	zero = (!(| exp_ans_un) && !(| frac_final));
+	zero = (!(| exp_ans_un) && !(| frac_final)) || zero;
 
 	out = {sign_ans,exp_ans_un,frac_final};
 	return {zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
