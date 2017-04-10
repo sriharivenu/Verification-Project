@@ -591,28 +591,55 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	else if((! div_by_zero) && mul ) begin // for division 
 		// Long division method
 		// quot is the final answer
-		remnd = remnd << 1;
-		remnd[0] = divident[23];
-		divident = divident << 1;
-		while (cntr < 48) begin
-			if(remnd < divisor) begin
-				if(more_one_sft) begin
-					quot = quot << 1;
-				end
-				remnd = remnd << 1;
-				remnd[0] = divident[23];
-				divident = divident << 1;
-				more_one_sft = 1'b1;
+		if( ((&exp_a) && (| frac_a)) || ((& exp_b) && (| frac_b)) ) begin
+			// If any one is NaN
+			quot = 48'b1;
+			exp_ans_un = 8'hff;
+		end
+		else if( ((& exp_a) && !(| frac_a)) && ((& exp_b) && !(|frac_b)) ) begin
+			// It both are infinity
+			quot = 48'b1;
+			exp_ans_un = 8'hff;
+		end
+		else if ((& exp_a) && !(| frac_a)) begin
+			// If A is inf
+			quot = 48'0;
+			exp_ans_un = 8'hff;
+		end
+		else if((& exp_b) && !(|frac_b)) begin
+			// If B is inf
+			quot = 48'b0;
+			exp_ans_un = 8'h00;
+		end
+		else if( (!(| exp_b) && !(| frac_b)) && (!(& exp_a) && (| frac_a) )) begin
+			// If B is zero and A is finite
+			quot = 48'b0;
+			exp_ans_un = 8'hff;
+		end
+		else begin
+			remnd = remnd << 1;
+			remnd[0] = divident[23];
+			divident = divident << 1;
+			while (cntr < 48) begin
+				if(remnd < divisor) begin
+					if(more_one_sft) begin
+						quot = quot << 1;
+					end
+					remnd = remnd << 1;
+					remnd[0] = divident[23];
+					divident = divident << 1;
+					more_one_sft = 1'b1;
 
-			end
-			else begin
-				remnd = remnd - divisor;
-				remnd = remnd << 1;
-				remnd[0] = divident[23];
-				divident = divident << 1;
-				quot = quot << 1;
-				quot[0] = 1'b1;
-				more_one_sft = 1'b0;
+				end
+				else begin
+					remnd = remnd - divisor;
+					remnd = remnd << 1;
+					remnd[0] = divident[23];
+					divident = divident << 1;
+					quot = quot << 1;
+					quot[0] = 1'b1;
+					more_one_sft = 1'b0;
+				end
 			end
 		end
 	end
