@@ -72,31 +72,31 @@ function void alu_scoreboard::compare;
 	// 6) QNaN (divide by zero is QNaN and not divide by zero)
 
 	if(tx_out.snan != res[33]) begin
-		`uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[33], tx_out.snan, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[33], tx_out.snan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
-	if(tx.div_by_zero != res[38]) begin
-		`uvm_info("ERROR MSG-2", $sformatf("Div by zero is wrong!!! SB DIV by zero: %b, DUT DIV by zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[38], tx_out.div_by_zero, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	if(tx_out.div_by_zero != res[38]) begin
+		`uvm_info("ERROR MSG-2", $sformatf("Div by zero is wrong!!! SB DIV by zero: %b, DUT DIV by zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[38], tx_out.div_by_zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
-	if(tx.inf != res[34]) begin
-		`uvm_info("ERROR MSG-3", $sformatf("Inf is wrong!!! SB Inf: %b, DUT Inf: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.inf, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+	if(tx_out.inf != res[34]) begin
+		`uvm_info("ERROR MSG-3", $sformatf("Inf is wrong!!! SB Inf: %b, DUT Inf: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.inf, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.overflow != res[36]) begin
-		`uvm_info("ERROR MSG-4", $sformatf("Overflow is wrong!!! SB overflow: %b, DUT overflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[36], tx_out.overflow, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-4", $sformatf("Overflow is wrong!!! SB overflow: %b, DUT overflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[36], tx_out.overflow, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.underflow != res[37]) begin
-		`uvm_info("ERROR MSG-5", $sformatf("Underflow is wrong!!! SB underflow: %b, DUT underflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[37], tx_out.underflow, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-5", $sformatf("Underflow is wrong!!! SB underflow: %b, DUT underflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[37], tx_out.underflow, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.ine != res[35]) begin
-		`uvm_info("ERROR MSG-6", $sformatf("Inexact is wrong!!! SB ine: %b, DUT ine: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[35], tx_out.ine, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-6", $sformatf("Inexact is wrong!!! SB ine: %b, DUT ine: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[35], tx_out.ine, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.zero != res[39]) begin
-		`uvm_info("ERROR MSG-7", $sformatf("Zero is wrong!!! SB zero: %b, DUT zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[39], tx_out.zero, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-7", $sformatf("Zero is wrong!!! SB zero: %b, DUT zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[39], tx_out.zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.qnan != res[34]) begin
-		`uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.qnan, tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.qnan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.out != res[31:0]) begin
-		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h", tx_out.out, res[31:0], tx.opa, tx.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h", tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 
 endfunction
@@ -104,15 +104,15 @@ endfunction
 function [39:0] alu_scoreboard::getresult;
 // This function returns a 46 bit answer, for the input and used to comapre the results of the DUT.
 // The concatination of the output: {zero_a, inf_in, aeqb, blta, altb, unordered, zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out}
-	alu_transaction_in tx;
+	//alu_transaction_in tx;
 	
-	case(tx.fpu_op)
-		3'b000: return add_sub(tx.opa, tx.opb, 0, tx.rmode); // For addition - 0
-		3'b001: return add_sub(tx.opa, tx.opb, 1, tx.rmode); // For subtraction - 1
-		3'b010: return mul_div(tx.opa, tx.opb, 0, tx.rmode); // For multiplication - 0
-		3'b011: return mul_div(tx.opa, tx.opb, 1, tx.rmode); // For division - 0
-		3'b100: return int_flt(tx.opa); 					 // For int to float conversion
-		3'b101: return flt_int(tx.opa);						 // For float to int
+	case(tx_in.fpu_op)
+		3'b000: return add_sub(tx_in.opa, tx_in.opb, 0, tx_in.rmode); // For addition - 0
+		3'b001: return add_sub(tx_in.opa, tx_in.opb, 1, tx_in.rmode); // For subtraction - 1
+		3'b010: return mul_div(tx_in.opa, tx_in.opb, 0, tx_in.rmode); // For multiplication - 0
+		3'b011: return mul_div(tx_in.opa, tx_in.opb, 1, tx_in.rmode); // For division - 0
+		3'b100: return int_flt(tx_in.opa); 					 // For int to float conversion
+		3'b101: return flt_int(tx_in.opa);						 // For float to int
 		default: return {40'b0};
 	endcase
 		// Need to write cases for other opcodes
