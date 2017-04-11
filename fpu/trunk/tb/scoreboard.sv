@@ -636,6 +636,13 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	logic carry;
 	logic sign_ans_un;
 	logic [5:0] itr;
+	
+	logic [7:0] chk_expa;
+	logic [7:0] chk_expb;
+	
+	chk_expa = 8'b0;
+	chk_expb = 8'b0; 
+
 	itr = 6'b0;	
 	exp_a = in_a[30:23];
 	sign_a = in_a[31];
@@ -658,19 +665,39 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 
 	zero_b = !(| exp_b)&& !(| frac_b);
 	//To calculate the proper exponent
-	exp_ans_un = (! mul)? (exp_a + exp_b): (exp_a - exp_b);
+	underflow = 1'b0;
+	overflow = 1'b0;
+	if(! mul) begin
+		if((exp_a + exp_b) < 8'd128) begin // This is because any value less than -126 can't be expressed.
+			underflow = 1'b1;	   // exp_a + exp_b < -126, as both are informat of 0 to 255, so it is converted as -126+127+127=128	
+		end
+		if((exp_a + exp_b) > 9'd381) begin
+			overflow = 1'b1;
+		end
+	end
+	else begin
+		if((exp_a - exp_b) < 8'd128) begin // This is because any value less than -126 can't be expressed.
+			underflow = 1'b1;	   // exp_a + exp_b < -126, as both are informat of 0 to 255, so it is converted as -126+127+127=128	
+		end
+		if((exp_a - exp_b) > 9'd381) begin
+			overflow = 1'b1;
+		end
+	end
+	exp_ans_un = (! mul)? (exp_a + exp_b+ 2'd2): (exp_a - exp_b);
 
 	// No need to worry about shifting.
 	// Now the fraction part
 	frac_ans_un = 48'b0;
 	// a * b , so we are going to a as multiplicand and b as multiplier
-
+	a_sub = 1'b0;
+	b_sub = 1'b0;
 	a_sub = !(| exp_a);
 	b_sub = !(| exp_b);
-	count = 0;
-	multiplicand = {a_sub, frac_a};
-	multiplier = {b_sub, frac_b};
+	count = 5'b0;
+	multiplicand = {!a_sub, frac_a};
+	multiplier = {!b_sub, frac_b};
 
+	//`uvm_info("MULTI", $sformatf("Multiplier: %b, Multiplicand: %b", multiplier, multiplicand), UVM_HIGH);
 	divident = {a_sub,frac_a};
 	divisor = {b_sub, frac_b};
 	exp_a_n = exp_a;
@@ -694,6 +721,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	divident = divident << 27;
 
 	//Multiplication
+	if(!(underflow) || !(overflow)) begin 
 	if(!mul) begin
 		while (count < 24) begin
 			temp = (multiplier[count])? multiplicand : 24'b0;
@@ -764,9 +792,13 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	else if(mul && div_by_zero) begin
 		quot = 48'b0;
 	end
-
-
 	
+	end
+
+	//`uvm_info("print result", $sformatf("expans: %d frac_ans_un: %b, INA: %h, INB: %h",exp_ans_un,frac_ans_un, in_a, in_b) ,UVM_HIGH);
+
+
+	count = 5'b0;
 	// Normalization
 	/*logic ch;
 	logic [4:0]count;*/
@@ -779,7 +811,8 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 			itr = itr + 1;
 		end
 
-		exp_ans_un = exp_ans_un + count;
+		exp_ans_un = exp_ans_un - count;
+		exp_ans_un = (exp_ans_un - 8'd127);
 	end
 	else begin
 		ch=1'b0;
@@ -791,8 +824,11 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 			itr = itr + 1;
 		end
 
-		exp_ans_un = exp_ans_un + count;
+		exp_ans_un = exp_ans_un - count;
+		exp_ans_un = (exp_ans_un + 8'd127);
 	end
+	
+	//`uvm_info("After normalisation", $sformatf("expans: %d frac_ans_un: %b, INA: %h, INB: %h",exp_ans_un,frac_ans_un, in_a, in_b) ,UVM_HIGH);
 
 	//INE
 	if(!mul) begin
@@ -906,28 +942,29 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 
 	// Overflow
 
-	overflow = ((& exp_ans_un) && !(| frac_final));
+	overflow = ((& exp_ans_un) && !(| frac_final)) || overflow;
 
 	// Underflow
 
 	if(! mul) begin
 		// For multiplication
 		if( (! (!(| exp_a) && !(| frac_a)) || (!(| exp_b) && !(| frac_b)) )) begin // If neither are zero
-			underflow = (!(| exp_ans_un) && !(| frac_final));
+			underflow = (!(| exp_ans_un) && !(| frac_final)) || underflow;
 		end
 	
 		else
 		begin
-			underflow = 1'b0;
+			underflow = 1'b0 || underflow;
+		end
 	end
-	end
+	
 	else begin
 		if(!div_by_zero) begin
 			if(!(| exp_a) && !(| frac_a)) begin
-				underflow = 1'b0;
+				underflow = 1'b0 || underflow;
 			end
 			else begin
-				underflow = (!(| exp_ans_un) && !(| frac_final));
+				underflow = (!(| exp_ans_un) && !(| frac_final)) || underflow;
 			end
 		end
 	end	
