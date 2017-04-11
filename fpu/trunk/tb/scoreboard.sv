@@ -718,7 +718,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		exp_b_n = exp_b_n -1;
 	end
 
-	divident = divident << 27;
+	//divident = divident << 27;
 
 	//Multiplication
 	if(!(underflow) || !(overflow)) begin 
@@ -860,7 +860,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 						if(frac_ans_un[25]) begin// To check if it is ODD
 							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							frac_ans_un = frac_ans_un[47:1]>>carry;
+							frac_ans_un = frac_ans_un >>carry;
 							frac_final=frac_ans_un[47:25];
 						end
 						else begin // Because roundin to nearest even needs it to get truncated.
@@ -871,7 +871,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 						if(quot[25]) begin// To check if it is ODD
 							{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							quot = quot[47:1]>>carry;
+							quot = quot >>carry;
 							frac_final=quot[47:25];
 						end
 						else begin // Because roundin to nearest even needs it to get truncated.
@@ -895,13 +895,13 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 						if(!mul) begin
 							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							frac_ans_un = frac_ans_un[47:1]>>carry;
+							frac_ans_un = frac_ans_un >>carry;
 							frac_final=frac_ans_un[47:25];
 							end
 						else begin
 							{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							quot = quot[47:1]>>carry;
+							quot = quot >>carry;
 							frac_final=quot[47:25];
 						end
 				end
@@ -913,13 +913,13 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 					if(! mul) begin
 						{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
 						exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-						frac_ans_un = frac_ans_un[47:1]>>carry;
+						frac_ans_un = frac_ans_un >>carry;
 						frac_final = frac_ans_un[47:5];
 						end
 					else begin
 						{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							quot = quot[47:1]>>carry;
+							quot = quot >>carry;
 							frac_final=quot[47:25];
 					end
 				end	
