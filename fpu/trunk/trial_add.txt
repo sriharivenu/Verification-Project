@@ -1,0 +1,45 @@
+
+# UVM_INFO ../tb/scoreboard.sv(331) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 0, FracA = 1bfdb640 FracB= 000000cd
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eb5fedab, In A: eb5fedb2, In B: 614ddb94
+
+
+# UVM_INFO ../tb/scoreboard.sv(331) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 0, FracA = 13112380 FracB= 001ef970
+# UVM_INFO ../tb/scoreboard.sv(99) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: c3a5b04c, SB out: a0179150, In A: 1cf7cb80, In B: a018891c
+# UVM_INFO ../tb/scoreboard.sv(331) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 0, FracA = 1df17220 FracB= 00000000
+# UVM_INFO ../tb/scoreboard.sv(99) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 72a5f407, SB out: 306f8b91, In A: 88f8ef77, In B: 306f8b91
+# UVM_INFO ../tb/scoreboard.sv(331) @ 850: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 0, FracA = 168f3c40 FracB= 00000000
+
+
+
+# UVM_INFO ../tb/scoreboard.sv(431) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [print result] expdiff =  21 FracA = 1bfdb640 FracB= 000000cd fracA-fracB: 1bfdb573, INA: eb5fedb2, INB: 614ddb94
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eb5fedab, In A: eb5fedb2, In B: 614ddb94
+
+
+# UVM_INFO ../tb/scoreboard.sv(333) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 1, FracA = 10111111110110110110010 FracB= 000000cd
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eb5fedab, In A: eb5fedb2, In B: 614ddb94
+
+
+# UVM_INFO ../tb/scoreboard.sv(333) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 1, FracA = 11011111111011011011001000000 FracB= 000000cd
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eb5fedab, In A: eb5fedb2, In B: 614ddb94
+
+
+
+# UVM_INFO ../tb/scoreboard.sv(333) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [frac result] expa_sub: 1, FracA = 11011111111011011011001000000 FracB= 00000000000000000000110011011
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eadfeda5, In A: eb5fedb2, In B: 614ddb94
+
+UVM_INFO ../tb/scoreboard.sv(431) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [print result] expdiff =  20 FracA = 1bfdb640 FracB= 0000019b fracA-fracB: 1bfdb4a5, INA: eb5fedb2, INB: 614ddb94
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eadfeda5, In A: eb5fedb2, In B: 614ddb94
+
+
+# UVM_INFO ../tb/scoreboard.sv(446) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [After normalization]  fraction ans: 17fb694a, exp ans: 213
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eadfeda5, In A: eb5fedb2, In B: 614ddb94
+
+
+
+# UVM_INFO ../tb/scoreboard.sv(491) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5feda5, fraction_ans_un: 17fb694a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eadfeda5, In A: eb5fedb2, In B: 614ddb94
+
+
+# UVM_INFO ../tb/scoreboard.sv(491) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5feda5, fraction_ans_un: 17fb694a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eb5feda5, In A: eb5fedb2, In B: 614ddb94
+

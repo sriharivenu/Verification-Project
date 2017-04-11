@@ -1,6 +1,17 @@
 # do run.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt2".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt3".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt4".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt5".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt6".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt7".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt8".  Locker is svenugopalan@luigi.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt9".  Locker is svenugopalan@luigi.
+# ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 16:19:52 on Apr 10,2017
+# Start time: 22:04:25 on Apr 10,2017
 # vlog ../lib/gscl45nm.v 
 # -- Compiling module AND2X1
 # -- Compiling module AND2X2
@@ -72,10 +83,10 @@
 # 	TBUFX2
 # 	XNOR2X1
 # 	XOR2X1
-# End time: 16:19:52 on Apr 10,2017, Elapsed time: 0:00:00
+# End time: 22:04:25 on Apr 10,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 16:19:52 on Apr 10,2017
+# Start time: 22:04:25 on Apr 10,2017
 # vlog ../verilog/fpu.v ../verilog/pre_norm.v ../verilog/primitives.v ../verilog/post_norm.v ../verilog/except.v ../verilog/pre_norm_fmul.v 
 # -- Compiling module fpu
 # -- Compiling module pre_norm
@@ -88,10 +99,10 @@
 # 
 # Top level modules:
 # 	fpu
-# End time: 16:19:52 on Apr 10,2017, Elapsed time: 0:00:00
+# End time: 22:04:25 on Apr 10,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 16:19:52 on Apr 10,2017
+# Start time: 22:04:25 on Apr 10,2017
 # vlog "+cover" -sv ../tb/interfaces.sv ../tb/sequences.sv ../tb/coverage.sv ../tb/scoreboard.sv ../tb/modules.sv ../tb/tests.sv ../tb/tb.sv 
 # -- Compiling interface dut_in
 # -- Compiling interface dut_out
@@ -118,10 +129,10 @@
 # 
 # Top level modules:
 # 	top
-# End time: 16:19:54 on Apr 10,2017, Elapsed time: 0:00:02
+# End time: 22:04:26 on Apr 10,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -c top 
-# Start time: 16:19:54 on Apr 10,2017
+# Start time: 22:04:26 on Apr 10,2017
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.4b May 26 2015 Linux 2.6.32-642.11.1.el6.x86_64
 # //
@@ -174,20 +185,215 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.2
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test test1...
+# UVM_INFO ../tb/scoreboard.sv(491) @ 250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5693c0, fraction_ans_un: 15a4f000
+# UVM_INFO ../tb/scoreboard.sv(491) @ 350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 25b04d, fraction_ans_un: 096c1340
+# UVM_INFO ../tb/scoreboard.sv(491) @ 450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 25f408, fraction_ans_un: 097d0200
+# UVM_INFO ../tb/scoreboard.sv(491) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5feda5, fraction_ans_un: 17fb694a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf5693bf, SB out: eb5feda5, In A: eb5fedb2, In B: 614ddb94
+# UVM_INFO ../tb/scoreboard.sv(491) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 169985, fraction_ans_un: 05a66140
+# UVM_INFO ../tb/scoreboard.sv(99) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: c3a5b04c, SB out: a0169985, In A: 1cf7cb80, In B: a018891c
+# UVM_INFO ../tb/scoreboard.sv(491) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6f8b91, fraction_ans_un: 1be2e440
+# UVM_INFO ../tb/scoreboard.sv(99) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 72a5f407, SB out: 306f8b91, In A: 88f8ef77, In B: 306f8b91
+# UVM_INFO ../tb/scoreboard.sv(491) @ 850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 3479e2, fraction_ans_un: 0d1e7880
+# UVM_INFO ../tb/scoreboard.sv(99) @ 850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: eb5feda5, SB out: 7ab479e2, In A: 7ab479e2, In B: 156fa382
+# UVM_INFO ../tb/scoreboard.sv(491) @ 950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 648fa7, fraction_ans_un: 1923e9f8
+# UVM_INFO ../tb/scoreboard.sv(99) @ 950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: a0169985, SB out: d6648fa7, In A: cc0e7772, In B: d6648f9f
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 58adf7, fraction_ans_un: 162b7dc0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 306f8b90, SB out: cbd8adf7, In A: cbd8adf7, In B: 00923470
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5da22d, fraction_ans_un: 17688b40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 7ab479e2, SB out: f3dda22d, In A: a9021ba5, In B: f3dda22d
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 04d6cf, fraction_ans_un: 0135b3c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: d6648fa7, SB out: c284d6cf, In A: c284d6cf, In B: 9b90d843
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 2c423d, fraction_ans_un: 0b108f78
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cbd8adf6, SB out: 662c423d, In A: 60929712, In B: 662c2feb
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 3417fc, fraction_ans_un: 0d05ff00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: f3dda22d, SB out: f0b417fc, In A: 39412ec1, In B: f0b417fc
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 79cd5d, fraction_ans_un: 1e73575e
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: c284d6cf, SB out: 3379cd5d, In A: 3379cca2, In B: 2b3b7da8
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 77b7f0, fraction_ans_un: 1dedfc00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 662c423d, SB out: e877b7f0, In A: 89cf21df, In B: e877b7f0
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 71faf2, fraction_ans_un: 1c7ebc80
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: f0b417fb, SB out: 6df1faf2, In A: d718512b, In B: 6df1faf2
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 35fd67, fraction_ans_un: 0d7f59dc
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 3379cd5d, SB out: 64b5fd67, In A: 5b23a770, In B: 64b5fd53
+# UVM_INFO ../tb/scoreboard.sv(491) @ 1950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 05120f, fraction_ans_un: 014483ec
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e877b7f0, SB out: 2085120f, In A: 942b7884, In B: 20851210
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 2e3aee, fraction_ans_un: 0b8ebb90
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 6df1faf1, SB out: aeae3aee, In A: aeae3ac0, In B: a5b91929
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 3ce472, fraction_ans_un: 0f391c80
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 64b5fd67, SB out: 713ce472, In A: d53efd30, In B: 713ce472
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 08d8a1, fraction_ans_un: 02362840
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 2085120f, SB out: ce08d8a1, In A: b7c003e3, In B: ce08d8a1
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5eac83, fraction_ans_un: 17ab20c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: aeae3aee, SB out: 655eac83, In A: 655eac83, In B: 1b5ad5e5
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 65ff56, fraction_ans_un: 197fd580
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 713ce471, SB out: 5e65ff56, In A: 12a61d74, In B: 5e65ff56
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 298744, fraction_ans_un: 0a61d110
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ce08d8a1, SB out: 6fa98744, In A: 6fbf9bb4, In B: ee30a37e
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6989f4, fraction_ans_un: 1a627d28
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 655eac83, SB out: a2e989f4, In A: a2e98a14, In B: 197b308c
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 721dbe, fraction_ans_un: 1c876fa0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 5e65ff56, SB out: 94f21dbe, In A: 94f21d73, In B: 8c170389
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 7501c0, fraction_ans_un: 1d407000
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 6fa98744, SB out: dd7501c0, In A: a3458144, In B: dd7501c0
+# UVM_INFO ../tb/scoreboard.sv(491) @ 2950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 515aa8, fraction_ans_un: 1456aa00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: a2e989f4, SB out: b2d15aa8, In A: 110e33c3, In B: b2d15aa8
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 212e23, fraction_ans_un: 084b88c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 94f21dbe, SB out: 98212e23, In A: 03c5c1a2, In B: 98212e23
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 50ee2d, fraction_ans_un: 143b8b40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: dd7501c0, SB out: 6dd0ee2d, In A: 6dd0ee2d, In B: dc4de2e9
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 18c7ff, fraction_ans_un: 0631fffa
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b2d15aa7, SB out: dd18c7ff, In A: 4fdec827, In B: dd18c800
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 719794, fraction_ans_un: 1c65e500
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 98212e22, SB out: fd719794, In A: 51ab300c, In B: fd719794
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 01813c, fraction_ans_un: 00604f00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 6dd0ee2c, SB out: f901813c, In A: 35d2fc41, In B: f901813c
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 72204a, fraction_ans_un: 1c881280
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: dd18c7ff, SB out: 75f2204a, In A: 755c0a64, In B: 75841b18
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 021dcd, fraction_ans_un: 00877340
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: fd719793, SB out: 4f021dcd, In A: 82b7757c, In B: 4f021dcd
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 191242, fraction_ans_un: 06449080
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: f901813b, SB out: 63991242, In A: 63991242, In B: 40d6ea4b
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 765d00, fraction_ans_un: 1d974000
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 75f2204a, SB out: b0765d00, In A: b0765d00, In B: 9b6c984a
+# UVM_INFO ../tb/scoreboard.sv(491) @ 3950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 005d46, fraction_ans_un: 00175180
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 4f021dcc, SB out: e2805d46, In A: e2805d46, In B: 9be9ea06
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 19d923, fraction_ans_un: 067648c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 63991242, SB out: da19d923, In A: da19d923, In B: cab3a5d7
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 4b703d, fraction_ans_un: 12dc0f40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b0765d00, SB out: 2e4b703d, In A: 2e4b703d, In B: 9f43d9e1
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 7c82bc, fraction_ans_un: 1f20af00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e2805d46, SB out: b07c82bc, In A: 903b14c0, In B: b07c82bc
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 69284b, fraction_ans_un: 1a4a12c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: da19d923, SB out: e8e9284b, In A: e8e9284b, In B: a273d6e4
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 109df4, fraction_ans_un: 04277d00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 2e4b703c, SB out: 74909df4, In A: 37b0b104, In B: 74909df4
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 18e199, fraction_ans_un: 06386678
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b07c82bc, SB out: 1f18e199, In A: 1f1a2205, In B: 9ba03590
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 03ccbf, fraction_ans_un: 00f32fc0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e8e9284b, SB out: 9f03ccbf, In A: 9f03ccbf, In B: 0d37d58f
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 36a3c7, fraction_ans_un: 0da8f1c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 74909df4, SB out: d5b6a3c7, In A: d5b6a3c7, In B: c554ad99
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 11101a, fraction_ans_un: 04440680
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 1f18e199, SB out: 6611101a, In A: 6611101a, In B: cc498f89
+# UVM_INFO ../tb/scoreboard.sv(491) @ 4950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5d807f, fraction_ans_un: 17601ff2
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 9f03ccbe, SB out: 19dd807f, In A: 19da305d, In B: 16d408b2
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 3c5636, fraction_ans_un: 0f158d88
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: d5b6a3c7, SB out: 96bc5636, In A: 96bc5639, In B: 0bb9f8aa
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 7e36d7, fraction_ans_un: 1f8db5c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 66111019, SB out: 537e36d7, In A: 12ca0182, In B: 537e36d7
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5e54df, fraction_ans_un: 179537c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 19dd807f, SB out: 795e54df, In A: 795e54df, In B: a88a7e18
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 0ddebd, fraction_ans_un: 0377af40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 96bc5636, SB out: fc0ddebd, In A: fc0ddebd, In B: 98bfc2ac
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 106241, fraction_ans_un: 04189060
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 537e36d7, SB out: f5906241, In A: 74973bd2, In B: f5b63136
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 0a8455, fraction_ans_un: 02a11540
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 795e54de, SB out: 780a8455, In A: 780a8455, In B: 4911b5fe
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 54e928, fraction_ans_un: 153a4a00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: fc0ddebd, SB out: 3754e928, In A: 8dd9ab23, In B: 3754e928
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 49955d, fraction_ans_un: 1265574c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: f5906241, SB out: d1c9955d, In A: 4fb5766d, In B: d1d4ecc4
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 4991ef, fraction_ans_un: 12647bc0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 780a8455, SB out: 0d4991ef, In A: 0d5ffdcf, In B: 8bb35f00
+# UVM_INFO ../tb/scoreboard.sv(491) @ 5950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 367648, fraction_ans_un: 0d9d9200
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 3754e927, SB out: d3367648, In A: d3367648, In B: ae6208e1
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 542cd0, fraction_ans_un: 150b3400
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: d1c9955d, SB out: b7542cd0, In A: b7542cd0, In B: a05ff3c0
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 558c15, fraction_ans_un: 1563057c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0d4991ef, SB out: 9bd58c15, In A: 1681c859, In B: 9bd5ac88
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 4ceb3b, fraction_ans_un: 133acec0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: d3367648, SB out: c0cceb3b, In A: afd59b86, In B: c0cceb3b
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 412ce1, fraction_ans_un: 104b3840
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b7542cd0, SB out: b1412ce1, In A: b1412ce1, In B: 00da9c62
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6b8465, fraction_ans_un: 1ae11940
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 9bd58c15, SB out: 606b8465, In A: 606b8465, In B: aa6c2c2f
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 510c67, fraction_ans_un: 144319c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: c0cceb3b, SB out: d6d10c67, In A: d6d10c67, In B: 1c21772a
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 4767aa, fraction_ans_un: 11d9ea80
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b1412ce0, SB out: 554767aa, In A: 554767aa, In B: a76d301b
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5eb79b, fraction_ans_un: 17ade6c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 606b8464, SB out: 78deb79b, In A: 78deb79b, In B: 27c9a658
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 12c4f3, fraction_ans_un: 04b13ce4
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: d6d10c66, SB out: 1412c4f3, In A: 0e2e7955, In B: 1412ba0c
+# UVM_INFO ../tb/scoreboard.sv(491) @ 6950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 14bde9, fraction_ans_un: 052f7a4a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 554767a9, SB out: 7594bde9, In A: 7594bde9, In B: 68acec72
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 673de7, fraction_ans_un: 19cf79c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 78deb79b, SB out: e0e73de7, In A: bccf1ae3, In B: e0e73de7
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6ce30f, fraction_ans_un: 1b38c3c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 1412c4f3, SB out: db6ce30f, In A: 2b95c626, In B: db6ce30f
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6ef2c2, fraction_ans_un: 1bbcb080
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 7594bde9, SB out: baeef2c2, In A: 85b2ebab, In B: baeef2c2
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 0e6ad9, fraction_ans_un: 039ab640
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e0e73de7, SB out: da0e6ad9, In A: a3f82617, In B: da0e6ad9
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5114a0, fraction_ans_un: 14452834
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: db6ce30e, SB out: 51d114a0, In A: 4f55c21a, In B: 51ca6690
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 223cf1, fraction_ans_un: 088f3c40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: baeef2c2, SB out: e0223cf1, In A: e0223cf1, In B: ab821889
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 17c264, fraction_ans_un: 05f09900
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: da0e6ad9, SB out: e917c264, In A: e917c264, In B: a1e65a1c
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 7933cc, fraction_ans_un: 1e4cf300
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 51d114a0, SB out: 3cf933cc, In A: 3cf933cc, In B: 211f6d9c
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 15edb1, fraction_ans_un: 057b6c40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e0223cf1, SB out: 3e15edb1, In A: 936d0b06, In B: 3e15edb1
+# UVM_INFO ../tb/scoreboard.sv(491) @ 7950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 1f802e, fraction_ans_un: 07e00b80
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e917c264, SB out: c69f802e, In A: 839db26d, In B: c69f802e
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 4e7c55, fraction_ans_un: 139f1540
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 3cf933cc, SB out: c04e7c55, In A: a317448c, In B: c04e7c55
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 140ddb, fraction_ans_un: 050376f0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 3e15edb0, SB out: 27140ddb, In A: 27492445, In B: a65459a5
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 652508, fraction_ans_un: 19494200
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: c69f802e, SB out: ade52508, In A: 18c225ee, In B: ade52508
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5780fc, fraction_ans_un: 15e03f00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: c04e7c55, SB out: dcd780fc, In A: 989b99a1, In B: dcd780fc
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 73e5f6, fraction_ans_un: 1cf97d80
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 27140ddb, SB out: 4af3e5f6, In A: 37656802, In B: 4af3e5f6
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6e9364, fraction_ans_un: 1ba4d900
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ade52507, SB out: e6ee9364, In A: e6ee9364, In B: cf21dc7a
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 745c96, fraction_ans_un: 1d172580
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: dcd780fc, SB out: bcf45c96, In A: bcf45c96, In B: 1d37ceda
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 5fb4c0, fraction_ans_un: 17ed3000
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 4af3e5f6, SB out: cd5fb4c0, In A: add376ac, In B: cd5fb4c0
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 646347, fraction_ans_un: 1918d1c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: e6ee9364, SB out: cb646347, In A: 15bb4ece, In B: cb646347
+# UVM_INFO ../tb/scoreboard.sv(491) @ 8950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 3834d6, fraction_ans_un: 0e0d3580
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: bcf45c95, SB out: b63834d6, In A: b63834d6, In B: 808e00aa
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9050: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 61a9fe, fraction_ans_un: 186a7f80
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cd5fb4c0, SB out: 74e1a9fe, In A: 74e1a9fe, In B: 1ba9ccb9
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9150: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 34a846, fraction_ans_un: 0d2a1180
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cb646346, SB out: b234a846, In A: 814a8275, In B: b234a846
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9250: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 361e15, fraction_ans_un: 0d878540
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b63834d6, SB out: 3cb61e15, In A: a329d773, In B: 3cb61e15
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9350: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 235672, fraction_ans_un: 08d59cae
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 74e1a9fe, SB out: d4235672, In A: d421ad07, In B: d0d4b5dc
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9450: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 136985, fraction_ans_un: 04da6140
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: b234a846, SB out: 63136985, In A: 63136985, In B: 3ea9db9a
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9550: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 001351, fraction_ans_un: 0004d440
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 3cb61e14, SB out: fc001351, In A: fc001351, In B: b3fb668e
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9650: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 6816bb, fraction_ans_un: 1a05aec0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: d4235672, SB out: 54e816bb, In A: 4ed1407a, In B: 54e809a7
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9750: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 45f54c, fraction_ans_un: 117d5300
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 63136985, SB out: c9c5f54c, In A: ca3899b0, In B: ca2a60f6
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9850: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 480571, fraction_ans_un: 12015c40
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: fc001351, SB out: 49480571, In A: 49480571, In B: 2aec55cf
+# UVM_INFO ../tb/scoreboard.sv(491) @ 9950: uvm_test_top.alu_env_h.alu_scoreboard_h [After rounding] frac_final: 440cda, fraction_ans_un: 11033680
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 54e816bb, SB out: d7440cda, In A: 9850be8e, In B: d7440cda
 # UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 9950: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :    4
+# UVM_INFO :  197
 # UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
+# [After rounding]    98
+# [ERROR MSG-9]    95
 # [Questa UVM]     2
 # [RNTST]     1
 # [TEST_DONE]     1
 # ** Note: $finish    : /misc/linuxws/packages/mentor_2015/modelsim/modeltech/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 995 ns  Iteration: 70  Instance: /top
-# End time: 16:20:04 on Apr 10,2017, Elapsed time: 0:00:10
+# End time: 22:04:33 on Apr 10,2017, Elapsed time: 0:00:07
 # Errors: 0, Warnings: 0

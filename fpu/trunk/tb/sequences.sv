@@ -13,12 +13,11 @@ package sequences;
 
         //TODO: Add constraints here
 	
-	    constraint opcode_constraint{fpu_op inside{[0:7]};}
-        constraint rmode_constraint {rmode inside {[0:3]};}
-
-	constraint op_a { (opa == 32'd1073741824);}
-	constraint op_b { (opb == 32'd1073741824);}
-	 
+	//constraint opcode_constraint{fpu_op inside{[0:7]};}
+        //constraint rmode_constraint {rmode inside {[0:3]};}
+	constraint rmode_constraint {rmode inside {1};}
+	//constraint input_A { opa == 32'd1073741824;}
+	//constraint input_B { opb == 32'd1073741824;}
         constraint opcode_0 { fpu_op inside {0}; }
         constraint opcode_1 { fpu_op inside {1}; }
         constraint opcode_2 { fpu_op inside {2}; }  
