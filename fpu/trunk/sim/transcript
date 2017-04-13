@@ -1,6 +1,12 @@
 # do run.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is tchouhan@wario.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is tchouhan@wario.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt2".  Locker is tchouhan@wario.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt3".  Locker is tchouhan@wario.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt4".  Locker is tchouhan@wario.
+# ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 16:19:52 on Apr 10,2017
+# Start time: 23:34:43 on Apr 12,2017
 # vlog ../lib/gscl45nm.v 
 # -- Compiling module AND2X1
 # -- Compiling module AND2X2
@@ -72,10 +78,10 @@
 # 	TBUFX2
 # 	XNOR2X1
 # 	XOR2X1
-# End time: 16:19:52 on Apr 10,2017, Elapsed time: 0:00:00
+# End time: 23:34:44 on Apr 12,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 16:19:52 on Apr 10,2017
+# Start time: 23:34:44 on Apr 12,2017
 # vlog ../verilog/fpu.v ../verilog/pre_norm.v ../verilog/primitives.v ../verilog/post_norm.v ../verilog/except.v ../verilog/pre_norm_fmul.v 
 # -- Compiling module fpu
 # -- Compiling module pre_norm
@@ -88,10 +94,10 @@
 # 
 # Top level modules:
 # 	fpu
-# End time: 16:19:52 on Apr 10,2017, Elapsed time: 0:00:00
+# End time: 23:34:44 on Apr 12,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 16:19:52 on Apr 10,2017
+# Start time: 23:34:44 on Apr 12,2017
 # vlog "+cover" -sv ../tb/interfaces.sv ../tb/sequences.sv ../tb/coverage.sv ../tb/scoreboard.sv ../tb/modules.sv ../tb/tests.sv ../tb/tb.sv 
 # -- Compiling interface dut_in
 # -- Compiling interface dut_out
@@ -118,10 +124,10 @@
 # 
 # Top level modules:
 # 	top
-# End time: 16:19:54 on Apr 10,2017, Elapsed time: 0:00:02
+# End time: 23:34:46 on Apr 12,2017, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
 # vsim -c top 
-# Start time: 16:19:54 on Apr 10,2017
+# Start time: 23:34:46 on Apr 12,2017
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.4b May 26 2015 Linux 2.6.32-642.11.1.el6.x86_64
 # //
@@ -174,20 +180,9 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.2
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test test1...
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 9950: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# Break key hit
+# Break in Function scoreboard/alu_scoreboard::mul_div at ../tb/scoreboard.sv line 583
+# Stopped at ../tb/scoreboard.sv line 583
+# Control-C interrupt
 # 
-# --- UVM Report Summary ---
-# 
-# ** Report counts by severity
-# UVM_INFO :    4
-# UVM_WARNING :    0
-# UVM_ERROR :    0
-# UVM_FATAL :    0
-# ** Report counts by id
-# [Questa UVM]     2
-# [RNTST]     1
-# [TEST_DONE]     1
-# ** Note: $finish    : /misc/linuxws/packages/mentor_2015/modelsim/modeltech/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 995 ns  Iteration: 70  Instance: /top
-# End time: 16:20:04 on Apr 10,2017, Elapsed time: 0:00:10
-# Errors: 0, Warnings: 0
+# MACRO ./run.do PAUSED at line 19
