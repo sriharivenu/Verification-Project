@@ -37,7 +37,7 @@ end
 
 initial begin
     dut_out1.clk<=0;
-    forever #50 dut_out1.clk<=~dut_out1.clk;
+    forever #150 dut_out1.clk<=~dut_out1.clk;
 end
 
 

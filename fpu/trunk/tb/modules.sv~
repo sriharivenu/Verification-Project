@@ -85,7 +85,7 @@ class alu_monitor_in extends uvm_monitor;
 	    tx.fpu_op=dut_vi_in.fpu_op;
 	    tx.opa=dut_vi_in.opa;
 	    tx.opb=dut_vi_in.opb;
-	    //`uvm_info("Monitor IN",$sformatf("TX INA: %h, TX INB: %h ", tx.opa, tx.opb), UVM_HIGH);
+	    `uvm_info("Monitor IN",$sformatf("TX INA: %h, TX INB: %h ", tx.opa, tx.opb), UVM_HIGH);
     	aport.write(tx);
       end
     endtask: run_phase
@@ -146,7 +146,7 @@ class alu_monitor_out extends uvm_monitor;
         //tx.inf_in = dut_vi_out.inf_in;
         //tx.zero_a = dut_vi_out.zero_a;
         aport.write(tx);
-	//`uvm_info("Monitor OUT",$sformatf("TX out: %h ", tx.out), UVM_HIGH);
+	`uvm_info("Monitor OUT",$sformatf("TX out: %h ", tx.out), UVM_HIGH);
       end
     endtask: run_phase
 endclass: alu_monitor_out

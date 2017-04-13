@@ -15,9 +15,9 @@ package sequences;
 	
 	//constraint opcode_constraint{fpu_op inside{[0:7]};}
         //constraint rmode_constraint {rmode inside {[0:3]};}
-	constraint rmode_constraint {rmode inside {1};}
-	//constraint input_A { opa == 32'd1073741824;}
-	//constraint input_B { opb == 32'd1073741824;}
+	constraint rmode_constraint {rmode inside {2};}
+	//constraint input_A { opa inside {32'h94f21d73};}
+	//constraint input_B { opb inside {32'h8c170389};}
         constraint opcode_0 { fpu_op inside {0}; }
         constraint opcode_1 { fpu_op inside {1}; }
         constraint opcode_2 { fpu_op inside {2}; }  
