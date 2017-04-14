@@ -95,8 +95,8 @@ function void alu_scoreboard::compare;
 	if(tx_out.qnan != res[34]) begin
 		`uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.qnan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end*/
-	if(tx_out.out != res[31:0]) begin
-		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode) ,UVM_HIGH);
+	if((tx_out.out != res[31:0]) && !(tx_out.overflow) && !(tx_out.underflow) ) begin
+		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d, snan: %b, qnan: %b, inf: %b", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode, tx_out.snan, tx_out.qnan, tx_out.inf) ,UVM_HIGH);
 	end
 
 endfunction
@@ -645,7 +645,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	logic [22:0] frac_b;
 	logic sign_b;
 	logic sign_ans;
-	logic [8:0] exp_ans_un;
+	logic [7:0] exp_ans_un;
 	logic [47:0] frac_ans_un;
 	logic [23:0] frac_ans_div;
 	logic [23:0] multiplicand;
@@ -677,7 +677,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	logic carry;
 	logic sign_ans_un;
 	logic [5:0] itr;
-
+	logic [2:0] prec;
 
 	real a;
 	real b;
@@ -692,8 +692,8 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	power_b = 0;
 	bit_pow = 0;
 
-	
-
+	carry = 1'b0;
+	prec = 3'd0;
 	itr = 6'b0;	
 	exp_a = in_a[30:23];
 	sign_a = in_a[31];
@@ -705,6 +705,8 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	// sign bit
 
 	sign_ans = (sign_b == sign_a)? 1'b0: 1'b1; 
+
+
 	// Div by zero
 	div_by_zero = (mul) ?(!(|(exp_b)) && !(|(frac_b)) ) : 1'b0;
 
@@ -771,9 +773,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 			overflow = 1'b1;
 		end
 	end
-	exp_ans_un = (! mul)? (exp_a + exp_b+ 2'd2): (exp_a - exp_b);
+	exp_ans_un = (! mul)? ((exp_a - 8'd127)  + (exp_b - 8'd127) + 2'd2): (exp_a - exp_b);
 	
-
+/*
 	while(divident < divisor) begin
 		divident = divident << 1;
 		exp_ans_un = exp_ans_un - 8'd1;
@@ -801,7 +803,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	`uvm_info("NUmbers",$sformatf("A: %f, B:%f", a, b), UVM_HIGH);
 
 
-
+*/
 
 
 
@@ -811,11 +813,44 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	//Multiplication
 	if(!(underflow) || !(overflow)) begin 
 	if(!mul) begin
-		while (count < 24) begin
-			temp = (multiplier[count])? multiplicand : 24'b0;
-			frac_ans_un = frac_ans_un + (temp << count);
-			count =  count + 1;
+		if( ((&exp_a) && (| frac_a)) || ((& exp_b) && (| frac_b)) ) begin
+			// If any one is NaN
+			frac_ans_un = 48'd1;
+			exp_ans_un = 8'hff;
 		end
+		else if( (&exp_a) && (!(| frac_a)) ) begin
+			// If A is INF
+			frac_ans_un = 48'd0;
+			exp_ans_un = 8'hff;
+			if( !(| exp_b) && !(| frac_b)) begin
+				//If B is zero
+				frac_ans_un = 48'd1;
+				exp_ans_un = 8'hff;
+			end
+			
+		end
+		else if( (& exp_b) && (!(| frac_b)) ) begin
+			// If B is INF
+			frac_ans_un = 48'd0;
+			exp_ans_un = 8'hff;
+		end
+		else if( !(| exp_a) && !(| frac_a)) begin
+			// If A is zero
+			frac_ans_un = 48'd0;
+			exp_ans_un = 8'd0;
+		end
+		else if( !(| exp_b) && !(| frac_b) ) begin
+			// If B is zero
+			frac_ans_un = 48'd0;
+			exp_ans_un = 8'd0;
+		end
+		else begin	
+			while (count < 24) begin
+				temp = (multiplier[count])? multiplicand : 24'b0;
+				frac_ans_un = frac_ans_un + (temp << count);
+				count =  count + 1;
+			end
+		end	
 	end
 	else if((! div_by_zero) && mul ) begin // for division 
 		// Long division method
@@ -949,7 +984,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		end
 
 		exp_ans_un = exp_ans_un - count;
-		exp_ans_un = (exp_ans_un - 8'd127);
+		exp_ans_un = (exp_ans_un + 8'd127);
 	end
 	else begin
 		ch=1'b0;
@@ -986,6 +1021,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	end
 	// Rounding method
 
+	// ONLY MUL FOR NOW
+	prec = {frac_ans_un[24], frac_ans_un[23], (| frac_ans_un[22:0])};
+
 	case(rmode)
 		2'b00:	begin
 				//Rounding to nearest even
@@ -995,13 +1033,32 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 				// Example: -23.5 and -24.5 both will round to -24.
 					if(!mul) begin	
 						if(frac_ans_un[25]) begin// To check if it is ODD
-							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
-							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							frac_ans_un = frac_ans_un >>carry;
-							frac_final=frac_ans_un[47:25];
+							if( prec > 3'b100) begin
+								{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
+								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+								frac_ans_un = frac_ans_un >>carry;
+								frac_final=frac_ans_un[47:25];
+							end
+							else if( prec < 3'b100) begin
+								frac_final = frac_ans_un[47:25];
+							end
+							else if( prec == 3'b100) begin
+								{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
+								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+								frac_ans_un = frac_ans_un >>carry;
+								frac_final=frac_ans_un[47:25];
+							end
 						end
 						else begin // Because roundin to nearest even needs it to get truncated.
-							frac_final = frac_ans_un[47:25];
+							if( prec > 3'b100) begin
+								{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
+								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+								frac_ans_un = frac_ans_un >>carry;
+								frac_final=frac_ans_un[47:25];
+							end
+							else begin
+								frac_final = frac_ans_un[47:25];
+							end
 						end
 					end
 					else begin // division
@@ -1025,16 +1082,21 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		2'b10:	begin
 				// Rounding to +INF
 				// Here it depends on the sign if it is -24.5 it is rounded of to -24, but if it is 24.5 it is rounded of to 25
-				if(sign_ans_un) begin
+				if(sign_ans) begin
 						frac_final = (mul) ? quot[47:25] : frac_ans_un[47:25];
 				end
 				else begin
 						if(!mul) begin
-							{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
-							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-							frac_ans_un = frac_ans_un >>carry;
-							frac_final=frac_ans_un[47:25];
+							if( prec == 3'b000) begin
+								frac_final = frac_ans_un[47:25];
 							end
+							else begin
+								{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
+								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+								frac_ans_un = frac_ans_un >>carry;
+								frac_final=frac_ans_un[47:25];
+							end
+						end
 						else begin
 							{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
@@ -1046,13 +1108,24 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		2'b11:	begin
 				// Rounding to -INF
 				// Here if it 24.5 it is rounded of to 24, but if it is -24.5 it is rounded of to -25
-				if(sign_ans_un) begin
+				if(sign_ans) begin
 					if(! mul) begin
-						{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
-						exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
-						frac_ans_un = frac_ans_un >>carry;
-						frac_final = frac_ans_un[47:5];
+						if(sign_ans) begin
+							//`uvm_info("INF-", $sformatf("frac_ans: %h, prec: %b",frac_ans_un[47:25], prec), UVM_HIGH);
+							if( prec == 3'b000) begin
+									frac_final = frac_ans_un[47:25];
+							end
+							else begin						
+								{carry, frac_ans_un} = frac_ans_un + {|(frac_ans_un[24:0]), 25'd0};
+								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
+								frac_ans_un = frac_ans_un >>carry;
+								frac_final = frac_ans_un[47:25];
+							end
 						end
+						else begin
+							frac_final = frac_ans_un[47:25];
+						end						
+					end
 					else begin
 						{carry, quot} = quot + {|(quot[24:0]), 25'd0};
 							exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
@@ -1116,6 +1189,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	zero = (!(| exp_ans_un) && !(| frac_final)) || zero;
 
 	out = {sign_ans,exp_ans_un,frac_final};
+	
+	//`uvm_info("SIGN", $sformatf("sign ans: %b", sign_ans), UVM_HIGH);
+
 return {zero, div_by_zero, underflow, overflow, ine, inf, qnan, snan, out};
 endfunction		
 
