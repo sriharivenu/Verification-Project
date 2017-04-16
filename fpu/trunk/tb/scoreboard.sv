@@ -104,7 +104,7 @@ function void alu_scoreboard::compare;
 	end*/
 
 	if(tx_out.out != res[31:0]) begin
-		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h", tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode) ,UVM_HIGH);
 	end
 endfunction
 
@@ -736,7 +736,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	real epb;
 	integer jtr;
 	real denorm;
+	logic first;
 
+	first = 1'd0;
 	epa = 0.0;
 	denorm = 0.0;
 	epb = 0.0;
@@ -1058,6 +1060,11 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		begin
 			//`uvm_info("Disp-2", $sformatf("Got stuck!!!"), UVM_HIGH);
 			{ch,quot}=quot << 1'b1;
+			if( (((epa - epb + 127) <= 0) && ((epa - epb + 127) > -22))  && ! first) begin
+				`uvm_info("NOR", $sformatf(" Enterred!!!"), UVM_HIGH);
+				ch = 1'd0;
+				first = 1'd1;
+			end
 			count=count+5'd1;
 			itr = itr + 1;
 		end
@@ -1085,7 +1092,20 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		if( (epa - epb +127) <= 0) begin
 			exp_ans_un = 8'd0;
 		end
-		if( (epa - epb + 127) <= 0)
+		if( ((epa - epb + 127) <= 0) && ((epa - epb + 127) > -22) ) begin
+			denorm = (epa - epb + 127);
+			quot = quot >>1;
+			quot[47] = 1'd1;
+			while(denorm <= 0) begin
+				quot = quot >> 1;
+				last_three = last_three >> 1;
+				denorm = denorm + 1;
+			end
+		end
+		denorm = (epa - epb + 127);
+		if( (denorm <= 0) && (denorm > -22) ) begin
+			last_three = quot[27:25];
+		end 
 	end
 
 
