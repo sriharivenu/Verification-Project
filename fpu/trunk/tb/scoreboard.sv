@@ -71,9 +71,18 @@ function void alu_scoreboard::compare;
 	// 4) Numeric overflow and underflow
 	// 5) Inexact
 	// 6) QNaN (divide by zero is QNaN and not divide by zero)
-
-	/*if(tx_out.snan != res[33]) begin
-		`uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[33], tx_out.snan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+	
+	// Order of the bits:
+	// zero - 39
+	// div by zero - 38,
+	// underflow - 37
+	// overflow - 36
+	// ine - 35
+	// inf - 34
+	// qnan - 33,
+	// snan - 32, 
+	if(tx_out.snan != res[32]) begin
+		`uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[32], tx_out.snan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if(tx_out.div_by_zero != res[38]) begin
 		`uvm_info("ERROR MSG-2", $sformatf("Div by zero is wrong!!! SB DIV by zero: %b, DUT DIV by zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[38], tx_out.div_by_zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
@@ -96,16 +105,17 @@ function void alu_scoreboard::compare;
 	if(tx_out.zero != res[39]) begin
 		`uvm_info("ERROR MSG-7", $sformatf("Zero is wrong!!! SB zero: %b, DUT zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[39], tx_out.zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
-	if(tx_out.qnan != res[34]) begin
-		`uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.qnan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+	if(tx_out.qnan != res[33]) begin
+		`uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[33], tx_out.qnan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
 	end
 	if((tx_out.out != res[31:0]) && !(tx_out.overflow) && !(tx_out.underflow) && !(tx_out.snan) && !(tx_out.qnan) && !(tx_out.div_by_zero) && !(tx_out.inf)) begin
 		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d, snan: %b, qnan: %b, inf: %b", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode, tx_out.snan, tx_out.qnan, tx_out.inf) ,UVM_HIGH);
-	end*/
+	end
 
-	if(tx_out.out != res[31:0]) begin
+	/*if(tx_out.out != res[31:0]) begin
 		`uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode) ,UVM_HIGH);
 	end
+	*/
 endfunction
 
 function [39:0] alu_scoreboard::getresult;
@@ -681,8 +691,8 @@ function [26:0] alu_scoreboard:: divide (logic [23:0] in_a, logic [23:0] in_b);
 	guard = quotient[2];
 	rb = quotient[1];
 	sticky = (quotient[0] | (remainder != 51'd0));
-	`uvm_info("Quotient", $sformatf("Quot: %b",quotient[26:0]) ,UVM_HIGH);
-	return quotient[26:0];
+	//`uvm_info("Sticky", $sformatf("Sticky: %b, remainder: %b, stk: %b",quotient[0], (| remainder), sticky) ,UVM_HIGH);
+	return {quotient[26:3], guard, rb, sticky};
 endfunction
 
 
@@ -737,7 +747,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	integer jtr;
 	real denorm;
 	logic first;
+	logic stk;
 
+	stk = 1'b0;
 	first = 1'd0;
 	epa = 0.0;
 	denorm = 0.0;
@@ -810,23 +822,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	end
 
 
-	if(! mul) begin
-		if((exp_a + exp_b) < 9'd128) begin // This is because any value less than -126 can't be expressed.
-			//`uvm_info("UND", $sformatf("Enterred!!!"), UVM_HIGH);			
-			underflow = 1'b1;	   // exp_a + exp_b < -126, as both are informat of 0 to 255, so it is converted as -126+127+127=128	
-		end
-		if((exp_a + exp_b) > 9'd381) begin
-			overflow = 1'b1;
-		end
-	end
-	else begin
-		if((exp_a - exp_b) < 8'd128) begin // This is because any value less than -126 can't be expressed.
-			underflow = 1'b1;	   // exp_a + exp_b < -126, as both are informat of 0 to 255, so it is converted as -126+127+127=128	
-		end
-		if((exp_a - exp_b) > 9'd381) begin
-			overflow = 1'b1;
-		end
-	end
+	
 	exp_ans_un = (! mul)? ((exp_a - 8'd127)  + (exp_b - 8'd127) + 2'd2): (exp_a - exp_b);
 	//`uvm_info("Exp", $sformatf("expans: %d",exp_ans_un) ,UVM_HIGH);
 /*
@@ -869,6 +865,25 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		epb = epb + (exp_b[jtr]*(2**(jtr)) );
 	end
 
+
+	if(! mul) begin
+		if(((epa + epb) - 127) <= 0) begin // This is because any value less than -126 can't be expressed.
+			//`uvm_info("UND", $sformatf("Enterred!!!"), UVM_HIGH);			
+			underflow = 1'b1;	   // exp_a + exp_b < -126, as both are informat of 0 to 255, so it is converted as -126+127+127=128	
+		end
+		if((epa + epb - 127) > 255) begin
+			//`uvm_info("OVERfl", $sformatf("Exp: %d", (epa + epb - 127)), UVM_HIGH);
+			overflow = 1'b1;
+		end
+	end
+	else begin
+		if((epa - epb + 127) <= 0) begin // This is because any value less than -126 can't be expressed.
+			underflow = 1'b1;	   // exp_a + exp_b < -126, as both are informat of 0 to 255, so it is converted as -126+127+127=128	
+		end
+		if((epa - epb + 127) > 255) begin
+			overflow = 1'b1;
+		end
+	end
  
 	//divident = divident << 27;
 
@@ -948,86 +963,9 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 			quot_ans = divide(divident, divisor);
 			quot = {quot_ans, 21'd0};
 			last_three = quot_ans[2:0];
-			//`uvm_info("Quotient", $sformatf("Quot: %b",quot) ,UVM_HIGH);
-			/*remnd = remnd << 1;
-			remnd[0] = divident[23];
-			//`uvm_info("Disp-3", $sformatf("Remainder: %h, divident: %h", remnd, divident), UVM_HIGH);
-			divident = divident << 1;
-			while (cntr < 48) begin
-				//`uvm_info("Disp-1", $sformatf("The remainder: %b, divisor: %b", remnd, divisor), UVM_HIGH);
-				if(remnd < divisor) begin
-					if(more_one_sft) begin
-						quot = quot << 1;
-					end
-					remnd = remnd << 1;
-					remnd[0] = divident[23];
-					divident = divident << 1;
-					more_one_sft = 1'b1;
-					cntr = cntr + 1;
-
-				end
-				else begin
-					//`uvm_info("Disp-2", $sformatf("remnd: %b", remnd), UVM_HIGH);
-					remnd = remnd - {24'd0, divisor};
-					remnd = remnd << 1;
-					remnd[0] = divident[23];
-					divident = divident << 1;
-					quot = quot << 1;
-					quot[0] = 1'b1;
-					more_one_sft = 1'b0;
-					cntr = cntr + 1;
-				end
-			end
-			*/
-
-
-			/*// Repeated subtraction
-			remnd = divident;
-			cntr = 6'd0;
-			more_one_sft = 1'b0;
-			while (cntr <= 6'd47) begin
-				//`uvm_info("Disp-2", $sformatf("remnd: %b, cnt: %d", remnd, cntr), UVM_HIGH);
-				if(remnd >= divisor) begin
-					quot = quot + 48'd1;
-					remnd = remnd - divisor;
-					more_one_sft = 1'b0;
-				end
-				else begin
-					if(more_one_sft) begin
-						quot = quot << 1;
-					end
-					more_one_sft = 1'b1;
-					remnd = remnd << 1;
-				end
-				cntr = cntr + 6'd1;
-			end
-
-			*/
-
-			/*
-			// Restoration Algorithm
+			stk = quot_ans[0];
+			//`uvm_info("Last three", $sformatf("last three: %b",last_three) ,UVM_HIGH);
 			
-			divisor = divisor << 24;
-			cntr = 6'd0;
-			//`uvm_info("DIV",$sformatf("Divident: %b Divisor: %b", divident, divisor), UVM_HIGH);
-			while(cntr <= 6'd47) begin
-				a = (2*a - b);
-				divident = ((divident << 1) - divisor);
-				//`uvm_info("DIV",$sformatf("Divident: %b a: %f, b:%f ", divident,a, b), UVM_HIGH);
-				if(a >= 0) begin
-					quot[6'd47 - cntr] = 1'b1;
-				end
-				else begin
-					a = a + b;
-					quot[6'd47 - cntr] = 1'b0;
-					divident = divident + divisor;
-				end
-				cntr = cntr + 6'd1;
-			end
-			
-			*/
-		//import "DPI-C" function void divide(input logic [31:0] in_a, input logic [31:0] in_b, output logic [31:0] out);
-		//
 		end
 	end
 	else if(mul && div_by_zero) begin
@@ -1061,7 +999,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 			//`uvm_info("Disp-2", $sformatf("Got stuck!!!"), UVM_HIGH);
 			{ch,quot}=quot << 1'b1;
 			if( (((epa - epb + 127) <= 0) && ((epa - epb + 127) > -22))  && ! first) begin
-				`uvm_info("NOR", $sformatf(" Enterred!!!"), UVM_HIGH);
+				//`uvm_info("NOR", $sformatf(" Enterred!!!"), UVM_HIGH);
 				ch = 1'd0;
 				first = 1'd1;
 			end
@@ -1069,6 +1007,8 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 			itr = itr + 1;
 		end
 		last_three = last_three << (count - 6'd1);
+		last_three[0] = stk;
+		//`uvm_info("Last three", $sformatf("last three: %b, stk: %b",last_three, quot_ans[0]) ,UVM_HIGH);
 		exp_ans_un = exp_ans_un - count;
 		exp_ans_un = (exp_ans_un + 8'd128);
 	end
@@ -1081,8 +1021,12 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		// divide
 		if( ((epa - epb) + 127) > 255) begin
 			// Answer should be highest value
+
+			// Check this!!!!!!!!!!!!!!!!!!!!!
+			//`uvm_info("DIV", $sformatf("Enterred!!!"), UVM_HIGH);
 			exp_ans_un = 8'hfe;
-			quot = 48'hfffffe000000;
+			quot = 48'hffffff000000;
+			last_three = quot[27:25];
 		end
 		else if( (epa - epb + 127) <= -22) begin
 			// Answer should be zero
@@ -1106,6 +1050,14 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		if( (denorm <= 0) && (denorm > -22) ) begin
 			last_three = quot[27:25];
 		end 
+	end
+	else begin
+		// Multiply
+		if( ((epa + epb) - 127) > 255) begin
+			// Answer should be highest value 
+			exp_ans_un = 8'hfe;
+			frac_ans_un = 48'hffffff000000;
+		end
 	end
 
 
@@ -1173,7 +1125,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 						end
 					end
 					else begin // division
-						if(quot_ans[3]) begin// To check if it is ODD
+						if(quot[25]) begin// To check if it is ODD
 							if( prec > 3'b100) begin							
 								{carry, quot} = quot + {22'd0,1'd1, 25'd0};
 								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
@@ -1184,9 +1136,11 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 								frac_final = quot[47:25];
 							end
 							else if( prec == 3'b100) begin
-								{carry, quot} = quot + {22'd0,1'd1, 25'd0};
+								//`uvm_info("RNE", $sformatf("Enterred!!!"), UVM_HIGH);
+								{carry, quot} = quot + {1'd1, 25'd0};
 								exp_ans_un = exp_ans_un + carry; // This line is added if we have any carry
 								quot = quot >>carry;
+								//`uvm_info("RNE", $sformatf("Carry: %b, quot + 1: %h", carry, {quot + {22'd0,1'd1, 25'd0}}), UVM_HIGH);
 								frac_final=quot[47:25];
 							end
 						end
@@ -1243,7 +1197,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		2'b11:	begin
 				// Rounding to -INF
 				// Here if it 24.5 it is rounded of to 24, but if it is -24.5 it is rounded of to -25
-				if(sign_ans) begin
+				
 					if(! mul) begin
 						if(sign_ans) begin
 							//`uvm_info("INF-", $sformatf("frac_ans: %h, prec: %b",frac_ans_un[47:25], prec), UVM_HIGH);
@@ -1263,7 +1217,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 					end
 					else begin
 						if(sign_ans) begin
-							//`uvm_info("INF-", $sformatf("frac_ans: %h, prec: %b",frac_ans_un[47:25], prec), UVM_HIGH);
+							//`uvm_info("INF-", $sformatf("prec: %b", prec), UVM_HIGH);
 							if( prec == 3'b000) begin
 								frac_final = quot[47:25];
 							end
@@ -1277,27 +1231,24 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 						else begin
 							frac_final = quot[47:25];
 						end
-					end
-				end	
-				else begin
-						frac_final = (mul) ? quot[47:25] : frac_ans_un[47:25];
-				end
+					end	
+				
 			end
 	endcase // rmode
 
 	//Qnan
 
 	qnan = ((& exp_ans_un) && (|frac_final));
-
+	//`uvm_info("QNAN", $sformatf("QNAN: %b", qnan), UVM_HIGH);
 	//snan
 	snan = ((& exp_a) && (| frac_a))|| ((& exp_b) && (| frac_b));
 
 	// Inf
 
-	inf = ((& exp_a) && !(| frac_a)) || ((& exp_b) && !(| frac_b));
-
+	//inf = ((& exp_a) && !(| frac_a)) || ((& exp_b) && !(| frac_b));
+	inf = ((&exp_ans_un) && !(| frac_final));
 	// Overflow
-
+	//`uvm_info("OVERFLOW", $sformatf("Overflow: %b", overflow), UVM_HIGH);
 	overflow = ((& exp_ans_un) && !(| frac_final)) || overflow;
 
 	// Underflow
