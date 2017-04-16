@@ -12,13 +12,16 @@ package sequences;
         rand logic [1:0] rmode;
 
         //TODO: Add constraints here
-	
-	//constraint opcode_constraint{fpu_op inside{[0:7]};}
-        //constraint rmode_constraint {rmode inside {[0:3]};}
-	constraint rmode_constraint {rmode inside {2};}
-	//constraint input_A { opa inside {32'h94f21d73};}
-	//constraint input_B { opb inside {32'h8c170389};}
-        constraint opcode_0 { fpu_op inside {0}; }
+    
+    //constraint opcode_constraint{fpu_op inside{[0:7]};}
+        constraint rmode_constraint {rmode inside {[0:3]};}
+    //constraint rmode_constraint {rmode inside {0};}
+    constraint input_A { opa inside {32'h00000000};}
+    constraint input_B { opb inside {32'h00000000};}
+        //constraint input_A { opa inside {32'h000000ff};}
+    //constraint input_B { opb inside {32'h000000ff};}
+        
+    constraint opcode_0 { fpu_op inside {0}; }
         constraint opcode_1 { fpu_op inside {1}; }
         constraint opcode_2 { fpu_op inside {2}; }  
         constraint opcode_3 { fpu_op inside {3}; }
@@ -44,9 +47,9 @@ package sequences;
         logic [31:0] out;
         logic inf,snan,qnan;
         logic ine;
-	    logic overflow,underflow;
-	    logic zero;
-	    logic div_by_zero;
+        logic overflow,underflow;
+        logic zero;
+        logic div_by_zero;
         //logic unordered;
         //logic altb, blta, aeqb;
        // logic inf_in, zero_a;
@@ -72,10 +75,10 @@ package sequences;
             alu_transaction_in tx;
             tx=alu_transaction_in::type_id::create("tx");
             start_item(tx);
-            tx.opcode_0.constraint_mode(1);
+            tx.opcode_0.constraint_mode(0);
             tx.opcode_1.constraint_mode(0);
             tx.opcode_2.constraint_mode(0);
-            tx.opcode_3.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
             tx.opcode_4.constraint_mode(0);
             tx.opcode_5.constraint_mode(0);
             tx.opcode_6.constraint_mode(0);
