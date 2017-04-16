@@ -222,7 +222,9 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	logic gone_bits;
 	logic [7:0] itrt;
 	logic inp_zero;
-	
+	logic temp_vari;
+
+	temp_vari = 1'b0;	
 	inp_zero = 1'b0;
 	itrt = 8'd0;
 	gone_bits = 1'b0;
@@ -339,6 +341,9 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 		exp_a = temp_exp_var;
 		sign_a = temp_sign_var;
 		fraction_a = temp_frac_var;
+		temp_vari = expb_subnormal;
+		expb_subnormal = expa_subnormal;
+		expa_subnormal = temp_vari;
 		swap = 1'b1;
 	end
 		// From now on abs(A) is greater or equal to abs(B).
@@ -370,7 +375,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	fraction_a_ext[28] = expa_subnormal;
 	fraction_a_ext[27:5] = fraction_a;
 	fraction_a_ext[4:0] = 5'b0;
-	//`uvm_info("frac result", $sformatf("expa_sub: %b, FracA = %b fraca: %b",expa_subnormal,fraction_a_ext, fraction_a), UVM_HIGH);
+	//`uvm_info("frac result", $sformatf("expa_sub: %b,fraca: %h",expa_subnormal, fraction_a), UVM_HIGH);
 
 	// Now we have both input normalized and the output will have the power of input A.
 	// Now lets check the sign bits and addition and subtraction.
@@ -390,6 +395,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 				fraction_ans_un[28] = 1'b1;
 				exp_ans_un = exp_a +1'd1;
 			end
+		//`uvm_info("print result", $sformatf("OUT!!!exp: %d, fraction_ans: %h", exp_ans_un,{1'd0, exp_ans_un, fraction_ans_un[28:5]}), UVM_HIGH); 
 		//`uvm_info("print result", $sformatf("OUT!!!expdiff = %h A = %h B= %h SB out: %h",exp_diff, fraction_a_ext,fraction_b_sft,{sign_ans_un,exp_ans_un,fraction_ans_un[28:5]}) ,UVM_HIGH);
 		end
 		else if(sign_a) begin
@@ -968,7 +974,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	logic [4:0]count;*/
 	if(! mul) begin
 		ch=1'b0;
-		while((ch==1'b0) && (itr < 48))
+		while(((ch==1'b0) && (itr < 48)) && (!a_sub && !b_sub))
 		begin
 			{ch,frac_ans_un}=frac_ans_un << 1'b1;
 			count=count+5'd1;
@@ -999,7 +1005,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 		exp_ans_un = (exp_ans_un + 8'd128);
 	end
 	//`uvm_info("After normalisation", $sformatf("expans: %d",(exp_ans_un - 8'd127)) ,UVM_HIGH);
-	//`uvm_info("After normalisation", $sformatf("expans: %d frac_ans_un: %b, INA: %h, INB: %h",exp_ans_un,frac_ans_un, in_a, in_b) ,UVM_HIGH);
+	`uvm_info("After normalisation", $sformatf("expans: %d frac_ans_un: %b, INA: %h, INB: %h",exp_ans_un,frac_ans_un, in_a, in_b) ,UVM_HIGH);
 
 	// Checking for INF and zero based on the exponents
 	//`uvm_info("After normalisation", $sformatf("expa: %f expb: %f, diff: %f",epa, epb, (epa - epb + 127)) ,UVM_HIGH);
