@@ -1,0 +1,28 @@
+This is case of underflow, but not sure if the answer is correct, because of not sure if underflow means 0
+
+# UVM_INFO ../tb/scoreboard.sv(106) @ 14500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-7] Zero is wrong!!! SB zero: 1, DUT zero: 0, DUT out: 00000001, SB out: 00000000, In A: a9021ba5, In B: f3dda22d
+# UVM_INFO ../tb/scoreboard.sv(106) @ 19500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-7] Zero is wrong!!! SB zero: 1, DUT zero: 0, DUT out: 00000001, SB out: 00000000, In A: 89cf21df, In B: e877b7f0
+
+This is when both inputs are zero 
+'For subtraction:
+# UVM_INFO ../tb/scoreboard.sv(112) @ 11500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 80000000, SB out: 00000000, In A: 00000000, In B: 00000000, rmode: 3, snan: 0, qnan: 0, inf: 0
+For division
+# UVM_INFO ../tb/scoreboard.sv(88) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-2] Div by zero is wrong!!! SB DIV by zero: 1, DUT DIV by zero: 0, DUT out: ffc00001, SB out: 7f800040, In A: 00000000, In B: 00000000
+
+When both are subnormal :
+
+For subtraction:
+# UVM_INFO ../tb/scoreboard.sv(112) @ 90500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 80000000, SB out: 00000000, In A: 000000ff, In B: 000000ff, rmode: 3, snan: 0, qnan: 0, inf: 0
+
+When A is subnormal and B is normal:
+For multiplication: Unwanted underflow.
+# UVM_INFO ../tb/scoreboard.sv(99) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-5] Underflow is wrong!!! SB underflow: 0, DUT underflow: 1, DUT out: 00000739, SB out: 00000739, In A: 000000ff, In B: 40e80000
+For division:
+# UVM_INFO ../tb/scoreboard.sv(99) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-5] Underflow is wrong!!! SB underflow: 0, DUT underflow: 1, DUT out: 00000024, SB out: 770cb08e, In A: 000000ff, In B: 40e80000
+
+For cross no discripencies
+
+When A is +ve INF and B is -ve INF:
+Division: Doesn't produce NaN
+# UVM_INFO ../tb/scoreboard.sv(112) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ff800000, SB out: ffc00000, In A: 7f800000, In B: ff800000, rmode: 2, snan: 0, qnan: 0, inf: 0
+# UVM_INFO ../tb/scoreboard.sv(109) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-8] QNaN is wrong!!! SB QNaN: 1, DUT QNaN: 0, DUT out: ff800000, SB out: ffc00000, In A: 7f800000, In B: ff800000
