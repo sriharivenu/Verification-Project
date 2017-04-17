@@ -16,11 +16,22 @@ package sequences;
     //constraint opcode_constraint{fpu_op inside{[0:7]};}
         constraint rmode_constraint {rmode inside {[0:3]};}
     //constraint rmode_constraint {rmode inside {0};}
-    constraint input_A { opa inside {32'h00000000};}
-    constraint input_B { opb inside {32'h00000000};}
-        //constraint input_A { opa inside {32'h000000ff};}
-    //constraint input_B { opb inside {32'h000000ff};}
+    // Two zeros
+    constraint input_A_z { opa inside {32'h00000000};}
+    constraint input_B_z { opb inside {32'h00000000};}
+    
+    // Two subnormals        
+    constraint input_A_s { opa inside {[32'h0000001 : 32'h000fffff]};}
+    constraint input_B_s { opb inside {[32'h0000001 : 32'h000fffff]};}
         
+    // Cross between zero, subnormal and normal
+    constraint input_A_c { opa inside {32'h00000000, 32'h1003f0ff, 32'h43565c29}; }
+    constraint input_B_c { opb inside {32'h00000000, 32'h0000dcab, 32'h488de0eb}; }
+    
+    // Infinity numbers
+    constraint input_A_if { opa inside {32'h7f800000}; }
+    constraint input_B_if { opb inside {32'hff800000}; }
+
     constraint opcode_0 { fpu_op inside {0}; }
         constraint opcode_1 { fpu_op inside {1}; }
         constraint opcode_2 { fpu_op inside {2}; }  
@@ -75,6 +86,14 @@ package sequences;
             alu_transaction_in tx;
             tx=alu_transaction_in::type_id::create("tx");
             start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(1);
+        tx.input_B_if.constraint_mode(1);
             tx.opcode_0.constraint_mode(0);
             tx.opcode_1.constraint_mode(0);
             tx.opcode_2.constraint_mode(0);
