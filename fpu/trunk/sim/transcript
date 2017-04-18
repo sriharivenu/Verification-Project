@@ -8,7 +8,7 @@
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt6".  Locker is tchouhan@wario.
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 22:36:56 on Apr 17,2017
+# Start time: 03:53:25 on Apr 18,2017
 # vlog ../lib/gscl45nm.v 
 # -- Compiling module AND2X1
 # -- Compiling module AND2X2
@@ -80,10 +80,10 @@
 # 	TBUFX2
 # 	XNOR2X1
 # 	XOR2X1
-# End time: 22:36:56 on Apr 17,2017, Elapsed time: 0:00:00
+# End time: 03:53:25 on Apr 18,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 22:36:56 on Apr 17,2017
+# Start time: 03:53:25 on Apr 18,2017
 # vlog ../verilog/fpu.v ../verilog/pre_norm.v ../verilog/primitives.v ../verilog/post_norm.v ../verilog/except.v ../verilog/pre_norm_fmul.v 
 # -- Compiling module fpu
 # -- Compiling module pre_norm
@@ -96,10 +96,10 @@
 # 
 # Top level modules:
 # 	fpu
-# End time: 22:36:56 on Apr 17,2017, Elapsed time: 0:00:00
+# End time: 03:53:25 on Apr 18,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 10.4b Compiler 2015.05 May 26 2015
-# Start time: 22:36:56 on Apr 17,2017
+# Start time: 03:53:25 on Apr 18,2017
 # vlog "+cover" -sv ../tb/interfaces.sv ../tb/sequences.sv ../tb/coverage.sv ../tb/scoreboard.sv ../tb/modules.sv ../tb/tests.sv ../tb/tb.sv 
 # -- Compiling interface dut_in
 # -- Compiling interface dut_out
@@ -126,10 +126,10 @@
 # 
 # Top level modules:
 # 	top
-# End time: 22:36:58 on Apr 17,2017, Elapsed time: 0:00:02
+# End time: 03:53:26 on Apr 18,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -c top 
-# Start time: 22:36:58 on Apr 17,2017
+# Start time: 03:53:26 on Apr 18,2017
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.4b May 26 2015 Linux 2.6.32-642.11.1.el6.x86_64
 # //
@@ -182,237 +182,116 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.2
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test test1...
-# UVM_INFO ../tb/scoreboard.sv(163) @ 250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 614ddb94
-# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 614ddb94
-# UVM_INFO ../tb/scoreboard.sv(163) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: a018891c
-# UVM_INFO ../tb/scoreboard.sv(99) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: a018891c
-# UVM_INFO ../tb/scoreboard.sv(163) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 306f8b91
-# UVM_INFO ../tb/scoreboard.sv(99) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 306f8b91
-# UVM_INFO ../tb/scoreboard.sv(163) @ 850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: d6648f9f
-# UVM_INFO ../tb/scoreboard.sv(99) @ 950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: d6648f9f
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 1250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 9b90d843
-# UVM_INFO ../tb/scoreboard.sv(99) @ 1250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 9b90d843
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 1450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: f0b417fc
-# UVM_INFO ../tb/scoreboard.sv(99) @ 1450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: f0b417fc
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 1550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 2b3b7da8
-# UVM_INFO ../tb/scoreboard.sv(99) @ 1550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 2b3b7da8
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 1750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 6df1faf2
-# UVM_INFO ../tb/scoreboard.sv(99) @ 1750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 6df1faf2
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 1950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 1950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 20851210
-# UVM_INFO ../tb/scoreboard.sv(99) @ 1950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 20851210
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 2350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 1b5ad5e5
-# UVM_INFO ../tb/scoreboard.sv(99) @ 2350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 1b5ad5e5
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 2550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: ee30a37e
-# UVM_INFO ../tb/scoreboard.sv(99) @ 2550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: ee30a37e
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 2850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: dd7501c0
-# UVM_INFO ../tb/scoreboard.sv(99) @ 2850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: dd7501c0
-# UVM_INFO ../tb/scoreboard.sv(163) @ 2950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 98212e23
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 98212e23
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: dc4de2e9
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: dc4de2e9
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: dd18c800
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: dd18c800
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: fd719794
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: fd719794
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: f901813c
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: f901813c
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 75841b18
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 75841b18
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 4f021dcd
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 4f021dcd
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 3750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 40d6ea4b
-# UVM_INFO ../tb/scoreboard.sv(99) @ 3750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 40d6ea4b
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 3950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 9f43d9e1
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 9f43d9e1
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: b07c82bc
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: b07c82bc
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: a273d6e4
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: a273d6e4
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 74909df4
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 74909df4
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 9ba03590
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 9ba03590
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 0d37d58f
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 0d37d58f
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 4850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: cc498f89
-# UVM_INFO ../tb/scoreboard.sv(99) @ 4850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: cc498f89
-# UVM_INFO ../tb/scoreboard.sv(163) @ 4950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 5050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 0bb9f8aa
-# UVM_INFO ../tb/scoreboard.sv(99) @ 5050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 0bb9f8aa
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 5150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 537e36d7
-# UVM_INFO ../tb/scoreboard.sv(99) @ 5150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 537e36d7
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 5550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 4911b5fe
-# UVM_INFO ../tb/scoreboard.sv(99) @ 5550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 4911b5fe
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 5650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 3754e928
-# UVM_INFO ../tb/scoreboard.sv(99) @ 5650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 3754e928
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 5750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: d1d4ecc4
-# UVM_INFO ../tb/scoreboard.sv(99) @ 5750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: d1d4ecc4
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 5950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: a05ff3c0
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: a05ff3c0
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 9bd5ac88
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 9bd5ac88
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: c0cceb3b
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: c0cceb3b
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 00da9c62
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 00da9c62
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: aa6c2c2f
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: aa6c2c2f
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 1c21772a
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 1c21772a
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 27c9a658
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 27c9a658
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 6950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 6950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 68acec72
-# UVM_INFO ../tb/scoreboard.sv(99) @ 6950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 68acec72
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 7350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: da0e6ad9
-# UVM_INFO ../tb/scoreboard.sv(99) @ 7350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: da0e6ad9
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 7450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 51ca6690
-# UVM_INFO ../tb/scoreboard.sv(99) @ 7450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 51ca6690
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 7550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: ab821889
-# UVM_INFO ../tb/scoreboard.sv(99) @ 7550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: ab821889
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 7650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: a1e65a1c
-# UVM_INFO ../tb/scoreboard.sv(99) @ 7650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: a1e65a1c
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 7850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 3e15edb1
-# UVM_INFO ../tb/scoreboard.sv(99) @ 7850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 3e15edb1
-# UVM_INFO ../tb/scoreboard.sv(163) @ 7950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 7950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: c69f802e
-# UVM_INFO ../tb/scoreboard.sv(99) @ 7950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: c69f802e
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 8250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: ade52508
-# UVM_INFO ../tb/scoreboard.sv(99) @ 8250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: ade52508
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 8350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: dcd780fc
-# UVM_INFO ../tb/scoreboard.sv(99) @ 8350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: dcd780fc
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 8450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 4af3e5f6
-# UVM_INFO ../tb/scoreboard.sv(99) @ 8450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 4af3e5f6
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 8550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: cf21dc7a
-# UVM_INFO ../tb/scoreboard.sv(99) @ 8550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: cf21dc7a
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 8650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 1d37ceda
-# UVM_INFO ../tb/scoreboard.sv(99) @ 8650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 1d37ceda
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 8850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: cb646347
-# UVM_INFO ../tb/scoreboard.sv(99) @ 8850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: cb646347
-# UVM_INFO ../tb/scoreboard.sv(163) @ 8950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9050: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 9050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 1ba9ccb9
-# UVM_INFO ../tb/scoreboard.sv(99) @ 9050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 1ba9ccb9
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9150: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 9150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: b234a846
-# UVM_INFO ../tb/scoreboard.sv(99) @ 9150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: b234a846
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9250: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 9250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 3cb61e15
-# UVM_INFO ../tb/scoreboard.sv(99) @ 9250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 3cb61e15
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9350: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9450: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 9450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 3ea9db9a
-# UVM_INFO ../tb/scoreboard.sv(99) @ 9450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 3ea9db9a
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9550: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9650: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 9650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 54e809a7
-# UVM_INFO ../tb/scoreboard.sv(99) @ 9650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: cf000000, SB out: 40a00000, In A: 00000005, In B: 54e809a7
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9750: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9850: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
-# UVM_INFO ../tb/scoreboard.sv(90) @ 9850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-6] Inexact is wrong!!! SB ine: 0, DUT ine: 1, DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 2aec55cf
-# UVM_INFO ../tb/scoreboard.sv(99) @ 9850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ceffffff, SB out: 40a00000, In A: 00000005, In B: 2aec55cf
-# UVM_INFO ../tb/scoreboard.sv(163) @ 9950: uvm_test_top.alu_env_h.alu_scoreboard_h [int-flt] OUT is wrong!!! frac_final=200000 exp_ans = 81 count = 28
+# UVM_INFO ../tb/scoreboard.sv(99) @ 550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 614ddb94
+# UVM_INFO ../tb/scoreboard.sv(99) @ 650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: a018891c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 306f8b91
+# UVM_INFO ../tb/scoreboard.sv(99) @ 850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 156fa382
+# UVM_INFO ../tb/scoreboard.sv(99) @ 950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: d6648f9f
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 00923470
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: f3dda22d
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 9b90d843
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 662c2feb
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: f0b417fc
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 2b3b7da8
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: e877b7f0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 6df1faf2
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 64b5fd53
+# UVM_INFO ../tb/scoreboard.sv(99) @ 1950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 20851210
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: a5b91929
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 713ce472
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: ce08d8a1
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 1b5ad5e5
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 5e65ff56
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: ee30a37e
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 197b308c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 8c170389
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: dd7501c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 2950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: b2d15aa8
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 98212e23
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: dc4de2e9
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: dd18c800
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: fd719794
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: f901813c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 75841b18
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 4f021dcd
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 40d6ea4b
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 9b6c984a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 3950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 9be9ea06
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: cab3a5d7
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 9f43d9e1
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: b07c82bc
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: a273d6e4
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 74909df4
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 9ba03590
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 0d37d58f
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: c554ad99
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: cc498f89
+# UVM_INFO ../tb/scoreboard.sv(99) @ 4950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 16d408b2
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 0bb9f8aa
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 537e36d7
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: a88a7e18
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 98bfc2ac
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: f5b63136
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 4911b5fe
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 3754e928
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: d1d4ecc4
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 8bb35f00
+# UVM_INFO ../tb/scoreboard.sv(99) @ 5950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: ae6208e1
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: a05ff3c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 9bd5ac88
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: c0cceb3b
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 00da9c62
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: aa6c2c2f
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 1c21772a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: a76d301b
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 27c9a658
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 1412ba0c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 6950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 68acec72
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: e0e73de7
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: db6ce30f
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: baeef2c2
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: da0e6ad9
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 51ca6690
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: ab821889
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: a1e65a1c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 211f6d9c
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 3e15edb1
+# UVM_INFO ../tb/scoreboard.sv(99) @ 7950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: c69f802e
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: c04e7c55
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: a65459a5
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: ade52508
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: dcd780fc
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 4af3e5f6
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: cf21dc7a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 1d37ceda
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: cd5fb4c0
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: cb646347
+# UVM_INFO ../tb/scoreboard.sv(99) @ 8950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 808e00aa
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9050: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 1ba9ccb9
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9150: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: b234a846
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9250: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 3cb61e15
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9350: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: d0d4b5dc
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9450: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 3ea9db9a
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9550: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: b3fb668e
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9650: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 0000002d, SB out: 8000002d, In A: c2340000, In B: 54e809a7
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9750: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: ca2a60f6
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9850: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: 2aec55cf
+# UVM_INFO ../tb/scoreboard.sv(99) @ 9950: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ffffffd3, SB out: 8000002d, In A: c2340000, In B: d7440cda
 # UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 9950: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :  218
+# UVM_INFO :   99
 # UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
-# [ERROR MSG-6]    58
-# [ERROR MSG-9]    58
+# [ERROR MSG-9]    95
 # [Questa UVM]     2
 # [RNTST]     1
 # [TEST_DONE]     1
-# [int-flt]    98
 # ** Note: $finish    : /misc/linuxws/packages/mentor_2015/modelsim/modeltech/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 995 ns  Iteration: 70  Instance: /top
-# End time: 22:37:11 on Apr 17,2017, Elapsed time: 0:00:13
+# End time: 03:53:36 on Apr 18,2017, Elapsed time: 0:00:10
 # Errors: 0, Warnings: 0

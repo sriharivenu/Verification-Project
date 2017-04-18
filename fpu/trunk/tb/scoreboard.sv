@@ -126,16 +126,20 @@ function [39:0] alu_scoreboard::flt_int(logic [31:0] in_a);
 	logic [7:0] exp_ans;
 	logic [22:0] frac;
 	logic sign;
+	int_num=31'd0;
 	sign=in_a[31];
-	exp_ans=in_a[30:23]-127;
-	frac=in_a[22:0];
+	exp_ans=in_a[30:23]-8'd127;
+	frac=in_a[22:0];int_num[0]=|in_a[30:23];
 	while(exp_ans>8'd0)
 		begin
-			int_num=frac<<1;
+			int_num=int_num<<1;
+			int_num[0]=frac[22];
+			frac=frac<<1;
 			exp_ans=exp_ans-8'd1;
 		end	
-	return {sign,int_num,8'b0};
-	//return {8'b0, sign, int_num};
+	//return {sign,int_num,8'b0};
+		//`uvm_info("int-flt", $sformatf("OUT is wrong!!! frac_final=%h exp_ans = %h count = %d", int_num, exp_ans, sign) ,UVM_HIGH);
+	return {8'd0, sign, int_num};
 endfunction
 
 
