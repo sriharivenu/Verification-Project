@@ -82,34 +82,34 @@ function void alu_scoreboard::compare;
     // qnan - 33,
     // snan - 32, 
     if(tx_out.snan != res[32]) begin
-        `uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[32], tx_out.snan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-1", $sformatf("SNaN is wrong!!! SB snan: %b, DUT snan: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[32], tx_out.snan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     if(tx_out.div_by_zero != res[38]) begin
-        `uvm_info("ERROR MSG-2", $sformatf("Div by zero is wrong!!! SB DIV by zero: %b, DUT DIV by zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[38], tx_out.div_by_zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-2", $sformatf("Div by zero is wrong!!! SB DIV by zero: %b, DUT DIV by zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[38], tx_out.div_by_zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     if(tx_out.inf != res[34]) begin
-        `uvm_info("ERROR MSG-3", $sformatf("Inf is wrong!!! SB Inf: %b, DUT Inf: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[34], tx_out.inf, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-3", $sformatf("Inf is wrong!!! SB Inf: %b, DUT Inf: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[34], tx_out.inf, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     //`uvm_info("OVERFLOW", $sformatf("DUT Overflow: %b, SB Overflow: %b", tx_out.overflow, res[36]), UVM_HIGH);
     if(tx_out.overflow != res[36]) begin
-        `uvm_info("ERROR MSG-4", $sformatf("Overflow is wrong!!! SB overflow: %b, DUT overflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[36], tx_out.overflow, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-4", $sformatf("Overflow is wrong!!! SB overflow: %b, DUT overflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[36], tx_out.overflow, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     //`uvm_info("UNDERFLOW", $sformatf("DUT underflow: %b, SB underflow: %b", tx_out.underflow, res[37]), UVM_HIGH);
     if(tx_out.underflow != res[37]) begin
-        `uvm_info("ERROR MSG-5", $sformatf("Underflow is wrong!!! SB underflow: %b, DUT underflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[37], tx_out.underflow, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-5", $sformatf("Underflow is wrong!!! SB underflow: %b, DUT underflow: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[37], tx_out.underflow, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     //`uvm_info("INE", $sformatf("DUT ine: %b, SB ine: %b", tx_out.ine, res[35]), UVM_HIGH);
     if(tx_out.ine != res[35]) begin
-        `uvm_info("ERROR MSG-6", $sformatf("Inexact is wrong!!! SB ine: %b, DUT ine: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[35], tx_out.ine, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-6", $sformatf("Inexact is wrong!!! SB ine: %b, DUT ine: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[35], tx_out.ine, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     if(tx_out.zero != res[39]) begin
-        `uvm_info("ERROR MSG-7", $sformatf("Zero is wrong!!! SB zero: %b, DUT zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[39], tx_out.zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-7", $sformatf("Zero is wrong!!! SB zero: %b, DUT zero: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[39], tx_out.zero, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     if(tx_out.qnan != res[33]) begin
-        `uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h", res[33], tx_out.qnan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-8", $sformatf("QNaN is wrong!!! SB QNaN: %b, DUT QNaN: %b, DUT out: %h, SB out: %h, In A: %h, In B: %h, opcode: %d", res[33], tx_out.qnan, tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.fpu_op) ,UVM_HIGH);
     end
     if((tx_out.out != res[31:0]) && !(tx_out.overflow) && !(tx_out.underflow) && !(tx_out.snan) && !(tx_out.qnan) && !(tx_out.div_by_zero) && !(tx_out.inf)) begin
-        `uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d, snan: %b, qnan: %b, inf: %b", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode, tx_out.snan, tx_out.qnan, tx_out.inf) ,UVM_HIGH);
+        `uvm_info("ERROR MSG-9", $sformatf("OUT is wrong!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d, snan: %b, qnan: %b, inf: %b, opcode: %d", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode, tx_out.snan, tx_out.qnan, tx_out.inf, tx_in.fpu_op) ,UVM_HIGH);
     end
     //`uvm_info("OUT", $sformatf("OUT!!! DUT out: %h, SB out: %h, In A: %h, In B: %h, rmode: %d", tx_out.out, res[31:0], tx_in.opa, tx_in.opb, tx_in.rmode) ,UVM_HIGH);
     /*if(tx_out.out != res[31:0]) begin
@@ -225,6 +225,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
     logic temp_vari;
     logic zero_b;
 
+    inf = 1'd0;
     zero_a = 1'd0;
     zero_b = 1'd0;
     temp_vari = 1'b0;   
@@ -458,6 +459,26 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
                 fraction_ans_un=29'h18000000;
                 exp_ans_un = 8'hfe;
             end
+            else begin
+                fraction_ans_un=29'h00000000;
+                exp_ans_un = 8'hfe;
+                inf = 1'd1;
+            end
+        end
+        else if( (((& exp_a) && !(| fraction_a)) && !((& exp_b) && !(| fraction_b))) || (!((& exp_a) && !(| fraction_a)) && ((& exp_b) && !(| fraction_b)))) begin
+                fraction_ans_un=29'h00000000;
+                exp_ans_un = 8'hfe;
+                inf  = 1'd1;
+                if(((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ) begin
+                    inf = 1'd0;
+                end
+            end                     
+            
+        if( ((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ) begin
+            // If any one is NaN then answer is NaN
+            //`uvm_info("NaN", $sformatf("NaN enterred!!!"), UVM_HIGH);
+            fraction_ans_un = 29'h1f000000;
+            exp_ans_un = 8'hff;
         end
     end
     else begin
@@ -472,8 +493,18 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
                 inf = 1'd1;
             end
         end
+        else if( (((& exp_a) && !(| fraction_a)) && !((& exp_b) && !(| fraction_b))) || (!((& exp_a) && !(| fraction_a)) && ((& exp_b) && !(| fraction_b)))) begin
+                fraction_ans_un=29'h00000000;
+                exp_ans_un = 8'hfe;
+                inf  = 1'd1;
+            end
+        if( ((& exp_a) && (| fraction_a)) || ((& exp_b) && (| fraction_b)) ) begin
+            // If any one is NaN then answer is NaN
+            fraction_ans_un = 29'h1f000000;
+            exp_ans_un = 8'hff;
+        end
     end
-                
+                    
     /*if(carry_un > 1'b1) begin// It can only have 10 as answer greater than 1, because we normalized it at start
         fraction_ans_un = fraction_ans_un >> 1;
         exp_ans_un = exp_ans_un + 1'b1;
@@ -482,9 +513,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
     //`uvm_info("print result", $sformatf("expdiff = %d FracA = %h FracB= %h fracA+/-fracB: %h",exp_diff, fraction_a_ext,fraction_b_sft,fraction_ans_un) ,UVM_HIGH);
 
     // Normalization the answer.
-    /*logic [4:0] exp_sft_ans;
-    logic sign_ans;
-    logic ch;logic [4:0]count;*/
+
     count = 5'b0;
     ch=1'b0;
     while((ch==1'b0) && (! inp_zero) && !((! expa_subnormal) && (! expb_subnormal)) && !inf)
@@ -506,7 +535,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
     
     //`uvm_info("After normalization", $sformatf(" fraction ans: %h, fraction_a: %h, exp ans: %d", fraction_ans_un, fraction_a_ext, exp_ans_un), UVM_HIGH);
       
-
+    
     // Rounding method.
 
     if(fraction_ans_un[5:0]==6'd0)begin
@@ -514,7 +543,9 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
     end
     else
     begin
-    ine = 1'b1; 
+    ine = 1'b1;
+    if(inf)
+        ine = 1'b0; 
     end
 
 
@@ -634,7 +665,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 
     div_by_zero = 1'b0;
     qnan = ((&exp_ans_un) && (|frac_final)) && (frac_final[22]); 
-    overflow = !inf &&  (&exp_ans_un) ;
+    overflow = !inf &&  (&exp_ans_un) && !(| frac_final) ;
     zero = ( !(| exp_ans_un) && !(| fraction_ans_un[27:5])) ? 1'b1: 1'b0;
     //inf = Inf_in || inf; // Inf can happen in Add/SUb if any one of the input is INF.
     //Underflow -  Not sure about this !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -642,6 +673,22 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 
     //SNAN - not sure, but if any input is NaN it is considered as SNAN
     snan = unordered;
+    if(zero_b) begin
+        // Then answer should be B if ADD
+        if(! add) begin
+            frac_final = fraction_a;
+            exp_ans_un = exp_a;
+            sign_ans = sign_a;
+        end
+        else begin
+            frac_final = fraction_a;
+            exp_ans_un = exp_a;
+            sign_ans = sign_a;
+            if(swap) 
+                sign_ans = !sign_a;
+        end
+        ine = 1'd0;
+    end
 
 
     // Sign doesn't change with normalization
@@ -1058,7 +1105,12 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
             exp_ans_un = 9'hff;
             quot = 48'h0000000;
         end
+        if(infin) begin
+            exp_ans_un = 9'hff;
+            frac_ans_un = 48'h800000000001;
+        end
         if(!infa && infb) begin
+            //`uvm_info("DIV", $sformatf("Enterred!!!!", ), UVM_HIGH);
             exp_ans_un = 9'd0;
             quot = 48'd0;
         end
@@ -1066,6 +1118,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
             exp_ans_un = 9'hff;
             quot = 48'h800000000001;
         end
+        
     end
     else begin
         // Multiply
@@ -1087,7 +1140,13 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
         end
         if(infin) begin
             exp_ans_un = 9'hff;
-            frac_ans_un = 48'h800000000001;
+            frac_ans_un = 48'd0;
+        end
+        if((infa && zero_b) || (infb && zero_a) ) begin
+            //`uvm_info("Z and I", $sformatf("Enterred!!!"), UVM_HIGH);
+            exp_ans_un = 9'hff;
+            frac_ans_un = 48'hf00000000000;
+            inf = 1'd0;
         end
     end
 
@@ -1278,7 +1337,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
     qnan = ((& exp_ans_un[7:0]) && (|frac_final)) && frac_final[22];
     //`uvm_info("QNAN", $sformatf("QNAN: %b", qnan), UVM_HIGH);
     //snan
-    snan = ((& exp_a) && (| frac_a))|| ((& exp_b) && (| frac_b));
+    snan = ((& exp_a) && (| frac_a))|| ((& exp_b) && (| frac_b)) && !frac_final[22];
 
     if(qnan)
         ine = 1'd0;
@@ -1289,11 +1348,17 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
     if(inp_zero && div_by_zero) begin 
         inf = 1'b0;
     end
-    if( (! zero_a) && div_by_zero) begin
+    if( zero_a && infb) begin
+        inf = 1'd0;
+    end
+    if( (! zero_a) && div_by_zero && mul) begin
         inf = 1'b1;
     end
     if(!mul && infin) begin
         inf = 1'b1;
+        if(zero_a || zero_b) begin
+            inf = 1'd0;
+        end
     end
     //`uvm_info("INF", $sformatf("inf: %b, !zero_a: %b, div_by_zero: %b", inf, !zero_a, div_by_zero), UVM_HIGH);
     // Overflow
@@ -1301,6 +1366,12 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
     overflow = ((& exp_ans_un[7:0]) && !(| frac_final)) || overflow;
     if(! zero_a && div_by_zero) begin
         overflow = 1'b0;
+    end
+    if( mul && zero_a && infb) begin
+        overflow = 1'd0;
+    end
+    if(mul && infa && (!infb && !div_by_zero) ) begin
+        overflow = 1'd0;
     end
     if(!mul && infin) begin
         overflow = 1'b0;
@@ -1328,6 +1399,11 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
                 underflow = (!(| exp_ans_un[7:0]) && !(| frac_final)) || underflow;
             end
         end
+        if(infb) begin
+            if(! infa) begin
+                underflow = 1'd0;
+            end
+        end
     end 
 
     // Zero
@@ -1336,7 +1412,7 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
             zero = 1'b1;
         end
     end
-    if(zero_a && !div_by_zero) begin
+    if(zero_a && !div_by_zero && mul) begin
         frac_final = 23'd0;
         exp_ans_un = 9'd0;
     end
@@ -1348,6 +1424,20 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
         exp_ans_un = 8'hff;
         frac_final = 23'd0;
     end*/
+
+    if( ((& exp_a) && (| frac_a)) || ((& exp_b) && (| frac_b)) ) begin
+        // When any either one is NaN
+        frac_final = 23'h600000;
+        exp_ans_un = 9'hff;
+        div_by_zero = 1'd0;
+        overflow = 1'd0;
+        underflow = 1'd0;
+        ine = 1'd0;
+        inf = 1'd0;
+        qnan = ((& exp_ans_un[7:0]) && (|frac_final)) && frac_final[22];
+        snan = ((& exp_ans_un[7:0]) && (|frac_final)) && !frac_final[22];
+        zero = 1'd0;
+    end
     out = {sign_ans,exp_ans_un[7:0],frac_final};
     
     //`uvm_info("SIGN", $sformatf("sign ans: %b", sign_ans), UVM_HIGH);

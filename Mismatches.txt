@@ -26,3 +26,21 @@ When A is +ve INF and B is -ve INF:
 Division: Doesn't produce NaN
 # UVM_INFO ../tb/scoreboard.sv(112) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ff800000, SB out: ffc00000, In A: 7f800000, In B: ff800000, rmode: 2, snan: 0, qnan: 0, inf: 0
 # UVM_INFO ../tb/scoreboard.sv(109) @ 99500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-8] QNaN is wrong!!! SB QNaN: 1, DUT QNaN: 0, DUT out: ff800000, SB out: ffc00000, In A: 7f800000, In B: ff800000
+
+For cross of zero, infs and Nans
+Addition: Should have -Inf as answers
+# UVM_INFO ../tb/scoreboard.sv(91) @ 7500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-3] Inf is wrong!!! SB Inf: 1, DUT Inf: 0, DUT out: ffc00001, SB out: ff800000, In A: ff800000, In B: ff800000
+# UVM_INFO ../tb/scoreboard.sv(109) @ 7500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-8] QNaN is wrong!!! SB QNaN: 0, DUT QNaN: 1, DUT out: ffc00001, SB out: ff800000, In A: ff800000, In B: ff800000
+
+Subtraction:
+# UVM_INFO ../tb/scoreboard.sv(112) @ 89500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: 80000000, SB out: 00000000, In A: 00000000, In B: 00000000, rmode: 3, snan: 0, qnan: 0, inf: 0
+
+Multiplication: Product of two infinity is not a NaN according to wikipedia
+# UVM_INFO ../tb/scoreboard.sv(109) @ 98500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-8] QNaN is wrong!!! SB QNaN: 0, DUT QNaN: 1, DUT out: ffc00001, SB out: ff800000, In A: 7f800000, In B: ff800000
+
+Division: Inf/Inf is NaN but DUT produce otherwise
+# UVM_INFO ../tb/scoreboard.sv(112) @ 98500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-9] OUT is wrong!!! DUT out: ff800000, SB out: ffc00000, In A: 7f800000, In B: ff800000, rmode: 2, snan: 0, qnan: 0, inf: 0, opcode: 3
+# UVM_INFO ../tb/scoreboard.sv(109) @ 98500: uvm_test_top.alu_env_h.alu_scoreboard_h [ERROR MSG-8] QNaN is wrong!!! SB QNaN: 1, DUT QNaN: 0, DUT out: ff800000, SB out: ffc00000, In A: 7f800000, In B: ff800000, opcode: 3
+
+
+

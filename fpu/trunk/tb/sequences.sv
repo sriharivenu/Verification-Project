@@ -32,6 +32,55 @@ package sequences;
     constraint input_A_if { opa inside {32'h7f800000}; }
     constraint input_B_if { opb inside {32'hff800000}; }
 
+    // When numbers are NaN
+    constraint input_A_N { opa inside {32'h7fffffff}; }
+    constraint input_B_N { opb inside {32'hffff0000}; }
+    
+    // crossing zero subs and inf
+    constraint input_A_c1 { opa inside {32'h00000000, [32'h10000001: 32'h100fffff],32'h7f800000, 32'hff800000}; }
+    constraint input_B_c1 { opb inside {32'h00000000, [32'h00000001: 32'h000fffff],32'hff800000, 32'h7f800000}; }
+    //constraint input_A_c1 { opa inside {32'h00000000, 32'h1003f0ff,32'h7f800000, 32'hff800000}; }
+    //constraint input_B_c1 { opb inside {32'h00000000, 32'h0000dcab,32'hff800000, 32'h7f800000}; }
+    
+    // crossing subs infs and nans
+    
+    constraint input_A_c2 { opa inside {[32'h10000001: 32'h1000000f], 32'h7f800000, 32'hff800000, 32'hffff0000}; }
+    constraint input_B_c2 { opb inside {[32'h00000001: 32'h000000ff], 32'hff800000, 32'h7f800000, 32'hffff0000}; }
+
+    //constraint input_A_c2 { opa inside {32'h1003f0ff, 32'h7f800000, 32'hff800000, 32'hffff0000}; }
+    //constraint input_B_c2 { opb inside {32'h0000dcab, 32'hff800000, 32'h7f800000, 32'hffff0000}; }    
+    
+    // crossing zero infs and NaNs
+    constraint input_A_c3 { opa inside {32'h00000000, 32'h7f800000, 32'hff800000, 32'hffff0000}; }
+    constraint input_B_c3 { opb inside {32'h00000000, 32'hff800000, 32'h7f800000, 32'hffff0000}; }
+    
+    // crossing Normal infs NaNs
+
+    constraint input_A_c4 { opa inside {[32'h4f800000: 32'h7f7fffff], 32'h7f800000, 32'hff800000, 32'hffff0000}; }
+    constraint input_B_c4 { opb inside {[32'h4f800000: 32'h7f7fffff], 32'hff800000, 32'h7f800000, 32'hffff0000}; }
+
+
+    //constraint input_A_c4 { opa inside {32'h43565c29, 32'h7f800000, 32'hff800000, 32'hffff0000}; }
+    //constraint input_B_c4 { opb inside {32'h488de0eb, 32'hff800000, 32'h7f800000, 32'hffff0000}; }
+
+    // Cross everything
+    constraint input_A_cc { opa inside {32'h00000000, [32'h10000001: 32'h100fffff], [32'h00800000: 32'h7f7fffff], 32'h7f800000, 32'hffff0000}; }
+    constraint input_B_cc { opb inside {32'h00000000, [32'h00000001: 32'h000fffff], [32'h00800000: 32'h7f7fffff], 32'hff800000, 32'hffff0000}; }
+
+    //constraint input_A_cc { opa inside {32'h00000000, 32'h1003f0ff, 32'h43565c29, 32'h7f800000, 32'hffff0000}; }
+    //constraint input_B_cc { opb inside {32'h00000000, 32'h0000dcab, 32'h488de0eb, 32'hff800000, 32'hffff0000}; }
+
+    // To cover every region
+    constraint input_A_ce1 { opa inside {[32'h80000001: 32'hffffffff]}; }
+    constraint input_B_ce1 { opb inside {[32'h80000001: 32'hffffffff]}; }
+    
+    constraint input_A_ce2 { opa inside {[32'h4f800001: 32'h4fb80000]}; }
+    constraint input_B_ce2 { opb inside {[32'h4f800001: 32'h4fb80000]}; }
+
+    constraint input_A_ce3 { opa inside {[32'h4fb80001: 32'h50000039]}; }
+    constraint input_B_ce3 { opb inside {[32'h4fb80001: 32'h50000039]}; }
+    
+
     constraint opcode_0 { fpu_op inside {0}; }
         constraint opcode_1 { fpu_op inside {1}; }
         constraint opcode_2 { fpu_op inside {2}; }  
@@ -92,12 +141,30 @@ package sequences;
         tx.input_B_s.constraint_mode(0);
         tx.input_A_c.constraint_mode(0);
         tx.input_B_c.constraint_mode(0);
-        tx.input_A_if.constraint_mode(1);
-        tx.input_B_if.constraint_mode(1);
-            tx.opcode_0.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(1);
+        tx.input_B_cc.constraint_mode(1);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
             tx.opcode_1.constraint_mode(0);
             tx.opcode_2.constraint_mode(0);
-            tx.opcode_3.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
             tx.opcode_4.constraint_mode(0);
             tx.opcode_5.constraint_mode(0);
             tx.opcode_6.constraint_mode(0);
