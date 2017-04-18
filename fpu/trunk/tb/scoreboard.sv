@@ -145,19 +145,22 @@ function [39:0] alu_scoreboard::int_flt(logic [31:0] in_a);
 	logic [7:0] exp_ans;
 	logic sign_ans;
 	//Assuming the MSB is a sign bit
+	logic [5:0] count;
 	sign_ans = in_a[31];
 	frac_final = 23'b0;
 	exp_ans = 8'b0;
 	in_a = in_a << 1;
-	
+	count = 6'd0;
 	while(! in_a[31]) begin
 		in_a = in_a << 1;
-		exp_ans = exp_ans + 1;
+		//exp_ans = exp_ans + 1;
+		count=count+6'd1;
 	end
 	// Getting the bit to left of the point "1.111" getting rid of the first 1 before point.
 	in_a = in_a << 1;
-	exp_ans = exp_ans + 1;
+	exp_ans = 8'd30-count+8'd127;
 	frac_final = in_a[31:9];
+		`uvm_info("int-flt", $sformatf("OUT is wrong!!! frac_final=%h exp_ans = %h count = %d", frac_final, exp_ans, count) ,UVM_HIGH);
 
 	return {8'b0, sign_ans, exp_ans, frac_final}; 
 endfunction
@@ -209,7 +212,6 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	sign_b = in_b[31];
 	fraction_b = in_b[22:0];
 	expb_subnormal=1'd0;
-	expa_subnormal=1'b0;
 	if(exp_a == 8'b0)
 		expa_subnormal = 1'b1;
 	if(exp_b == 8'b0)
@@ -287,7 +289,7 @@ function [39:0] alu_scoreboard::add_sub(logic [31:0] in_a, logic [31:0] in_b, lo
 	fraction_b_sft = {!(expb_subnormal), fraction_b, 4'b0};
 	//exp_sft = ( exp_diff > 28) ? 5'd28: exp_diff[4:0];
 	fraction_b_sft = fraction_b_sft >> exp_diff;
-	fraction_a_ext = {!(expa_subnormal),fraction_a, 4'b0};
+	fraction_a_ext = {fraction_a, 5'b0};
 
 	// Now we have both input normalized and the output will have the power of input A.
 	// Now lets check the sign bits and addition and subtraction.
@@ -663,81 +665,6 @@ function [39:0] alu_scoreboard:: mul_div (logic [31:0] in_a, logic [31:0] in_b, 
 	else if(mul && div_by_zero) begin
 		quot = 48'b0;
 	end
-
-
-/* srt algorithm
-
-	logic [23:0]m,m1;
-	logic [23:0]rmd;
-	logic [23:0]q;
-	logic [23:0]a,a1;
-	logic [4:0]i;
-	logic [23:0]q1;
-	
-	i=5'd0;
-	a=24'd0;
-	q = {a_sub,frac_a};
-	m = {b_sub, frac_b};
-	
-	while(i<24)
-	begin
-		a=a<<1;	
-		q=q<<1;
-		if(m>a)
-		begin
-			q[0]=1'b0;
-		end	
-		else
-		begin
-			q[1]=1'b1;
-			a=a-m;
-		end
-		i=i+5'd1;
-	end			
-
-	i=24'd0;
-	q1=a;
-	a1=24'd0;
-	while(i<24)
-	begin
-			
-		a1=a<<1;	
-		q1=q1<<1;
-		if(m>a1)
-		begin
-			q1[0]=1'b0;
-		end	
-		else
-		begin
-			q1[1]=1'b1;
-			a1=a1-m;
-		end
-		i=i+5'd1;
-	end
-
-	logic [47:0] div_ans;
-
-	div_ans={q,q1};
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	

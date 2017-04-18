@@ -61,8 +61,26 @@ R1
 R2
 n@_opt5
 R3
+R0
+T_opt6
+!s110 1492229916
+VGO<4]nGGWAeeKA4:nC7531
+R1
+=1-001b219480c8-58f19f1c-4e8fb-5497
+R2
+n@_opt6
+R3
+R0
+T_opt7
+!s110 1492486619
+Vm@M>QYH6P?eO`@Rk]Ad9k1
+R1
+=1-001b219480c8-58f589da-3d437-1a4c
+R2
+n@_opt7
+R3
 vadd_sub27
-Z4 !s110 1492058084
+Z4 !s110 1492486616
 !i10b 1
 !s100 bOncTE7OkSmXHPXzSW[@`3
 I]g9zC@UfUdYg3HPO[bG>i2
@@ -76,13 +94,13 @@ Z9 OL;L;10.4b;61
 r1
 !s85 0
 31
-Z10 !s108 1492058084.000000
+Z10 !s108 1492486616.000000
 Z11 !s107 ../verilog/pre_norm_fmul.v|../verilog/except.v|../verilog/post_norm.v|../verilog/primitives.v|../verilog/pre_norm.v|../verilog/fpu.v|
 Z12 !s90 ../verilog/fpu.v|../verilog/pre_norm.v|../verilog/primitives.v|../verilog/post_norm.v|../verilog/except.v|../verilog/pre_norm_fmul.v|
 !i113 0
 Z13 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 vAND2X1
-!s110 1492058083
+R4
 !i10b 1
 !s100 jikDfLFad^UZXOEQR^00z2
 I7JNHel396a_Lk2ad0A1ob3
@@ -96,9 +114,9 @@ R9
 r1
 !s85 0
 31
-Z16 !s108 1492058083.000000
-Z17 !s107 ../lib/gscl45nm.v|
-Z18 !s90 ../lib/gscl45nm.v|
+R10
+Z16 !s107 ../lib/gscl45nm.v|
+Z17 !s90 ../lib/gscl45nm.v|
 !i113 0
 R13
 n@a@n@d2@x1
@@ -112,14 +130,14 @@ R0
 R6
 R14
 R15
-Z19 L0 29
+Z18 L0 29
 R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@a@n@d2@x2
@@ -138,9 +156,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@a@o@i21@x1
@@ -159,9 +177,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@a@o@i22@x1
@@ -180,9 +198,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@b@u@f@x2
@@ -201,9 +219,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@b@u@f@x4
@@ -222,9 +240,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@c@l@k@b@u@f1
@@ -243,9 +261,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@c@l@k@b@u@f2
@@ -264,24 +282,24 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@c@l@k@b@u@f3
 Xcoverage
-Z20 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-Z21 DXx6 mtiUvm 7 uvm_pkg 0 22 02@e1POGTiN=><];7MkU?0
-Z22 DXx4 work 9 sequences 0 22 `9oJASU0BzaPlLUNSbPSJ2
-Z23 !s110 1492058085
+Z19 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
+Z20 DXx6 mtiUvm 7 uvm_pkg 0 22 02@e1POGTiN=><];7MkU?0
+Z21 DXx4 work 9 sequences 0 22 VoDMc=5F]3^_M_Z9lDJRF0
+Z22 !s110 1492486617
 !i10b 1
 !s100 @d>5Ie:@h;i6O@[FI5bC80
 I^_7:k4Ybdl>6SbfHm8Cgj2
 V^_7:k4Ybdl>6SbfHm8Cgj2
 S1
 R0
-w1491712597
+Z23 w1492486600
 8../tb/coverage.sv
 F../tb/coverage.sv
 L0 2
@@ -310,9 +328,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@d@f@f@n@e@g@x1
@@ -331,9 +349,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@d@f@f@p@o@s@x1
@@ -352,9 +370,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@d@f@f@s@r
@@ -379,11 +397,11 @@ R12
 !i113 0
 R13
 vdut
+R19
 R20
 R21
-R22
 Z28 DXx4 work 8 coverage 0 22 ^_7:k4Ybdl>6SbfHm8Cgj2
-Z29 DXx4 work 10 scoreboard 0 22 I<G1aWNDoJlI?HA3I?HSD2
+Z29 DXx4 work 10 scoreboard 0 22 6Rhb;^2@FInoZG=Fn6DzL3
 Z30 DXx4 work 11 modules_pkg 0 22 WiBaAW^mLS<?n[k>b`z[^0
 Z31 DXx4 work 5 tests 0 22 LV2EIVY^IM:W8znee^``i1
 Z32 DXx4 work 10 tb_sv_unit 0 22 BeVn;PNjOXkGW0X>f2NnS0
@@ -397,7 +415,7 @@ IUb_j<a;00zg6L8[<AE^PW3
 Z33 !s105 tb_sv_unit
 S1
 R0
-R6
+R23
 Z34 8../tb/tb.sv
 Z35 F../tb/tb.sv
 L0 10
@@ -409,7 +427,7 @@ R25
 R26
 R27
 Ydut_in
-R20
+R19
 R4
 !i10b 1
 !s100 AZ=2Z?VRioMB9D=jM<QEj3
@@ -418,9 +436,9 @@ R5
 Z36 !s105 interfaces_sv_unit
 S1
 R0
-Z37 w1491717869
-Z38 8../tb/interfaces.sv
-Z39 F../tb/interfaces.sv
+R23
+Z37 8../tb/interfaces.sv
+Z38 F../tb/interfaces.sv
 L0 1
 R9
 r1
@@ -433,7 +451,7 @@ R25
 R26
 R27
 Ydut_out
-R20
+R19
 R4
 !i10b 1
 !s100 :WzZOCmIk]a@Hk=:_bOLo3
@@ -442,9 +460,9 @@ R5
 R36
 S1
 R0
+R23
 R37
 R38
-R39
 L0 8
 R9
 r1
@@ -491,9 +509,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@f@a@x1
@@ -532,9 +550,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@h@a@x1
@@ -553,9 +571,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@i@n@v@x1
@@ -574,9 +592,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@i@n@v@x2
@@ -595,9 +613,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@i@n@v@x4
@@ -616,9 +634,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@i@n@v@x8
@@ -637,26 +655,26 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@l@a@t@c@h
 Xmodules_pkg
+R19
 R20
 R21
-R22
 R28
 R29
-R23
+R22
 !i10b 1
 !s100 I7c56>o6>12R]FmkDcf;91
 IWiBaAW^mLS<?n[k>b`z[^0
 VWiBaAW^mLS<?n[k>b`z[^0
 S1
 R0
-w1491717835
+R23
 8../tb/modules.sv
 F../tb/modules.sv
 L0 2
@@ -705,9 +723,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@m@u@x2@x1
@@ -726,9 +744,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@n@a@n@d2@x1
@@ -747,9 +765,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@n@a@n@d3@x1
@@ -768,9 +786,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@n@o@r2@x1
@@ -789,9 +807,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@n@o@r3@x1
@@ -810,9 +828,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@o@a@i21@x1
@@ -831,9 +849,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@o@a@i22@x1
@@ -852,9 +870,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@o@r2@x1
@@ -873,9 +891,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@o@r2@x2
@@ -889,7 +907,7 @@ R0
 R6
 8../verilog/post_norm.v
 F../verilog/post_norm.v
-Z40 L0 38
+Z39 L0 38
 R9
 r1
 !s85 0
@@ -909,7 +927,7 @@ R0
 R6
 8../verilog/pre_norm.v
 F../verilog/pre_norm.v
-R40
+R39
 R9
 r1
 !s85 0
@@ -940,17 +958,17 @@ R12
 !i113 0
 R13
 Xscoreboard
+R19
 R20
 R21
 R22
-R23
 !i10b 1
-!s100 mR:^fQ;^;RLl0dN>6zS;>1
-II<G1aWNDoJlI?HA3I?HSD2
-VI<G1aWNDoJlI?HA3I?HSD2
+!s100 B[k2HXO135;S7BoT>QJ@f2
+I6Rhb;^2@FInoZG=Fn6DzL3
+V6Rhb;^2@FInoZG=Fn6DzL3
 S1
 R0
-w1491873985
+R23
 8../tb/scoreboard.sv
 F../tb/scoreboard.sv
 L0 2
@@ -965,16 +983,16 @@ R25
 R26
 R27
 Xsequences
+R19
 R20
-R21
-R23
+R22
 !i10b 1
-!s100 eCmcP^Y3;<W777jFdJQ^g3
-I`9oJASU0BzaPlLUNSbPSJ2
-V`9oJASU0BzaPlLUNSbPSJ2
+!s100 8P97]9W0?SEL7V579R[g>2
+IVoDMc=5F]3^_M_Z9lDJRF0
+VVoDMc=5F]3^_M_Z9lDJRF0
 S1
 R0
-w1491989644
+R23
 8../tb/sequences.sv
 F../tb/sequences.sv
 L0 2
@@ -989,9 +1007,9 @@ R25
 R26
 R27
 Xtb_sv_unit
+R19
 R20
 R21
-R22
 R28
 R29
 R30
@@ -1006,21 +1024,21 @@ IBeVn;PNjOXkGW0X>f2NnS0
 !i103 1
 S1
 R0
-R6
+R23
 R34
 R35
-Z41 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/uvm_macros.svh
-Z42 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh
-Z43 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh
-Z44 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh
-Z45 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh
-Z46 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh
-Z47 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh
-Z48 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh
-Z49 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh
-Z50 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh
-Z51 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh
-Z52 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh
+Z40 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/uvm_macros.svh
+Z41 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh
+Z42 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh
+Z43 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh
+Z44 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh
+Z45 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh
+Z46 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh
+Z47 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh
+Z48 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh
+Z49 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh
+Z50 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh
+Z51 F/misc/linuxws/packages/mentor_2015/modelsim/modeltech/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh
 L0 3
 R9
 R10
@@ -1044,9 +1062,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@t@b@u@f@x1
@@ -1065,29 +1083,30 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@t@b@u@f@x2
 Xtests
+R19
 R20
 R21
-R22
 R28
 R29
 R30
-R23
+R22
 !i10b 1
 !s100 GCna3oT>02C9^HeC2[o[d2
 ILV2EIVY^IM:W8znee^``i1
 VLV2EIVY^IM:W8znee^``i1
 S1
 R0
-R6
+R23
 8../tb/tests.sv
 F../tb/tests.sv
+R40
 R41
 R42
 R43
@@ -1099,7 +1118,6 @@ R48
 R49
 R50
 R51
-R52
 L0 1
 R9
 r1
@@ -1112,9 +1130,9 @@ R25
 R26
 R27
 vtop
+R19
 R20
 R21
-R22
 R28
 R29
 R30
@@ -1130,10 +1148,10 @@ I=^PPo9XO>GAIfC:QI2]RH3
 R33
 S1
 R0
-R6
+R23
 R34
 R35
-R19
+R18
 R9
 R10
 R24
@@ -1156,9 +1174,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 Uudp_mux2
@@ -1176,9 +1194,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 Uudp_rslat
@@ -1196,9 +1214,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 Uudp_tlat
@@ -1216,9 +1234,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 vXNOR2X1
@@ -1236,9 +1254,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@x@n@o@r2@x1
@@ -1257,9 +1275,9 @@ R9
 r1
 !s85 0
 31
+R10
 R16
 R17
-R18
 !i113 0
 R13
 n@x@o@r2@x1
