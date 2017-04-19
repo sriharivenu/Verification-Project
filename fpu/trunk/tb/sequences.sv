@@ -145,8 +145,8 @@ package sequences;
         tx.input_B_if.constraint_mode(0);
         tx.input_A_N.constraint_mode(0);
         tx.input_B_N.constraint_mode(0);
-        tx.input_A_cc.constraint_mode(1);
-        tx.input_B_cc.constraint_mode(1);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
         tx.input_A_c1.constraint_mode(0);
         tx.input_B_c1.constraint_mode(0);
         tx.input_A_c2.constraint_mode(0);
@@ -195,4 +195,3108 @@ package sequences;
 
     endclass: seq_of_commands
 
+
+
+
+
+
+class simple_seq_add_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_2)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(1);
+        tx.input_B_z.constraint_mode(1);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_2
+
+
+    class seq_of_commands_add_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_2)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_2 seq;
+                seq = simple_seq_add_2::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_2
+
+
+
+class simple_seq_add_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_3)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(1);
+        tx.input_B_s.constraint_mode(1);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_3
+
+
+    class seq_of_commands_add_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_3)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_3 seq;
+                seq = simple_seq_add_3::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_3
+
+
+
+
+class simple_seq_add_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_4)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(1);
+        tx.input_B_c.constraint_mode(1);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_4
+
+
+    class seq_of_commands_add_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_4)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_4 seq;
+                seq = simple_seq_add_4::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_4
+
+
+
+
+class simple_seq_add_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_5)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(1);
+        tx.input_B_if.constraint_mode(1);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_5
+
+
+    class seq_of_commands_add_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_5)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_5 seq;
+                seq = simple_seq_add_5::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_5
+
+
+class simple_seq_add_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_6)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(1);
+        tx.input_B_N.constraint_mode(1);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_6
+
+
+    class seq_of_commands_add_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_6)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_6 seq;
+                seq = simple_seq_add_6::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_6
+
+
+class simple_seq_add_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_7)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(1);
+        tx.input_B_cc.constraint_mode(1);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_7
+
+
+    class seq_of_commands_add_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_7)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_7 seq;
+                seq = simple_seq_add_7::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_7
+
+
+
+class simple_seq_add_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_8)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(1);
+        tx.input_B_c1.constraint_mode(1);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_8
+
+
+    class seq_of_commands_add_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_8)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_8 seq;
+                seq = simple_seq_add_8::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_8
+
+
+class simple_seq_add_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_9)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(1);
+        tx.input_B_c2.constraint_mode(1);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_9
+
+
+    class seq_of_commands_add_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_9)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_9 seq;
+                seq = simple_seq_add_9::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_9
+
+
+
+class simple_seq_add_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_10)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(1);
+        tx.input_B_c3.constraint_mode(1);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_10
+
+
+    class seq_of_commands_add_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_10)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_10 seq;
+                seq = simple_seq_add_10::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_10
+
+
+
+class simple_seq_add_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_add_11)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(1);
+        tx.input_B_c4.constraint_mode(1);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(1);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_add_11
+
+
+    class seq_of_commands_add_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_add_11)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_add_11 seq;
+                seq = simple_seq_add_11::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_add_11
+
+
+class simple_seq_sub_1 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_1)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_1
+
+
+    class seq_of_commands_sub_1 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_1)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_1 seq;
+                seq = simple_seq_sub_1::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_1
+
+
+
+class simple_seq_sub_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_2)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(1);
+        tx.input_B_z.constraint_mode(1);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_2
+
+
+    class seq_of_commands_sub_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_2)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_2 seq;
+                seq = simple_seq_sub_2::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_2
+
+
+
+class simple_seq_sub_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_3)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(1);
+        tx.input_B_s.constraint_mode(1);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_3
+
+
+    class seq_of_commands_sub_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_3)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_3 seq;
+                seq = simple_seq_sub_3::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_3
+
+class simple_seq_sub_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_4)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(1);
+        tx.input_B_c.constraint_mode(1);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_4
+
+
+    class seq_of_commands_sub_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_4)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_4 seq;
+                seq = simple_seq_sub_4::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_4
+
+
+class simple_seq_sub_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_5)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(1);
+        tx.input_B_if.constraint_mode(1);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_5
+
+
+    class seq_of_commands_sub_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_5)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_5 seq;
+                seq = simple_seq_sub_5::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_5
+
+
+class simple_seq_sub_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_6)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(1);
+        tx.input_B_N.constraint_mode(1);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_6
+
+
+    class seq_of_commands_sub_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_6)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_6 seq;
+                seq = simple_seq_sub_6::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_6
+
+
+
+class simple_seq_sub_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_7)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(1);
+        tx.input_B_cc.constraint_mode(1);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_7
+
+
+    class seq_of_commands_sub_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_7)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_7 seq;
+                seq = simple_seq_sub_7::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_7
+
+
+class simple_seq_sub_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_8)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(1);
+        tx.input_B_c1.constraint_mode(1);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_8
+
+
+    class seq_of_commands_sub_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_8)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_8 seq;
+                seq = simple_seq_sub_8::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_8
+
+
+class simple_seq_sub_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_9)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(1);
+        tx.input_B_c2.constraint_mode(1);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_9
+
+
+    class seq_of_commands_sub_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_9)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_9 seq;
+                seq = simple_seq_sub_9::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_9
+
+
+class simple_seq_sub_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_10)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(1);
+        tx.input_B_c3.constraint_mode(1);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_10
+
+
+    class seq_of_commands_sub_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_10)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_10 seq;
+                seq = simple_seq_sub_10::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_10
+
+
+class simple_seq_sub_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_sub_11)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(1);
+        tx.input_B_ce3.constraint_mode(1);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(1);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_sub_11
+
+
+    class seq_of_commands_sub_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_sub_11)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_sub_11 seq;
+                seq = simple_seq_sub_11::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_sub_11
+
+class simple_seq_mul_1 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_1)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_1
+
+
+    class seq_of_commands_mul_1 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_1)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_1 seq;
+                seq = simple_seq_mul_1::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_1
+
+
+class simple_seq_mul_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_2)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(1);
+        tx.input_B_z.constraint_mode(1);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_2
+
+
+    class seq_of_commands_mul_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_2)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_2 seq;
+                seq = simple_seq_mul_2::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_2
+
+class simple_seq_mul_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_3)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(1);
+        tx.input_B_s.constraint_mode(1);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_3
+
+
+    class seq_of_commands_mul_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_3)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_3 seq;
+                seq = simple_seq_mul_3::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_3
+
+class simple_seq_mul_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_4)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(1);
+        tx.input_B_c.constraint_mode(1);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_4
+
+
+    class seq_of_commands_mul_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_4)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_4 seq;
+                seq = simple_seq_mul_4::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_4
+
+
+class simple_seq_mul_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_5)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(1);
+        tx.input_B_if.constraint_mode(1);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_5
+
+
+    class seq_of_commands_mul_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_5)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_5 seq;
+                seq = simple_seq_mul_5::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_5
+
+
+class simple_seq_mul_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_6)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(1);
+        tx.input_B_N.constraint_mode(1);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_6
+
+
+    class seq_of_commands_mul_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_6)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_6 seq;
+                seq = simple_seq_mul_6::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_6
+
+
+class simple_seq_mul_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_7)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(1);
+        tx.input_B_cc.constraint_mode(1);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_7
+
+
+    class seq_of_commands_mul_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_7)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_7 seq;
+                seq = simple_seq_mul_7::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_7
+
+
+class simple_seq_mul_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_8)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(1);
+        tx.input_B_c1.constraint_mode(1);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_8
+
+
+    class seq_of_commands_mul_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_8)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_8 seq;
+                seq = simple_seq_mul_8::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_8
+
+class simple_seq_mul_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_9)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(1);
+        tx.input_B_c2.constraint_mode(1);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_9
+
+
+    class seq_of_commands_mul_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_9)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_9 seq;
+                seq = simple_seq_mul_9::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_9
+
+
+class simple_seq_mul_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_10)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(1);
+        tx.input_B_c3.constraint_mode(1);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_10
+
+
+    class seq_of_commands_mul_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_10)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_10 seq;
+                seq = simple_seq_mul_10::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_10
+
+
+class simple_seq_mul_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_mul_11)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(1);
+        tx.input_B_c4.constraint_mode(1);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(1);
+            tx.opcode_3.constraint_mode(0);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_mul_11
+
+
+    class seq_of_commands_mul_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_mul_11)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_mul_11 seq;
+                seq = simple_seq_mul_11::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_mul_11
+
+
+
+class simple_seq_div_1 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_1)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_1
+
+
+    class seq_of_commands_div_1 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_1)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_1 seq;
+                seq = simple_seq_div_1::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_1
+
+
+class simple_seq_div_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_2)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(1);
+        tx.input_B_z.constraint_mode(1);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_2
+
+
+    class seq_of_commands_div_2 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_2)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_2 seq;
+                seq = simple_seq_div_2::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_2
+
+
+class simple_seq_div_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_3)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(1);
+        tx.input_B_s.constraint_mode(1);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_3
+
+
+    class seq_of_commands_div_3 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_3)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_3 seq;
+                seq = simple_seq_div_3::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_3
+
+
+class simple_seq_div_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_4)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(1);
+        tx.input_B_c.constraint_mode(1);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_4
+
+
+    class seq_of_commands_div_4 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_4)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_4 seq;
+                seq = simple_seq_div_4::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_4
+
+
+class simple_seq_div_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_5)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(1);
+        tx.input_B_if.constraint_mode(1);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_5
+
+
+    class seq_of_commands_div_5 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_5)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_5 seq;
+                seq = simple_seq_div_5::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_5
+
+
+class simple_seq_div_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_6)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(1);
+        tx.input_B_N.constraint_mode(1);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_6
+
+
+    class seq_of_commands_div_6 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_6)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_6 seq;
+                seq = simple_seq_div_6::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_6
+
+class simple_seq_div_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_7)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(1);
+        tx.input_B_cc.constraint_mode(1);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_7
+
+
+    class seq_of_commands_div_7 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_7)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_7 seq;
+                seq = simple_seq_div_7::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_7
+
+
+class simple_seq_div_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_8)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(1);
+        tx.input_B_c1.constraint_mode(1);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_8
+
+
+    class seq_of_commands_div_8 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_8)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_8 seq;
+                seq = simple_seq_div_8::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_8
+
+class simple_seq_div_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_9)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(1);
+        tx.input_B_c2.constraint_mode(1);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_9
+
+
+    class seq_of_commands_div_9 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_9)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_9 seq;
+                seq = simple_seq_div_9::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_9
+
+
+class simple_seq_div_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_10)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(1);
+        tx.input_B_c3.constraint_mode(1);
+        tx.input_A_c4.constraint_mode(0);
+        tx.input_B_c4.constraint_mode(0);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_10
+
+
+    class seq_of_commands_div_10 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_10)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_10 seq;
+                seq = simple_seq_div_10::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_10
+
+
+class simple_seq_div_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(simple_seq_div_11)
+
+        function new(string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            alu_transaction_in tx;
+            tx=alu_transaction_in::type_id::create("tx");
+            start_item(tx);
+        tx.input_A_z.constraint_mode(0);
+        tx.input_B_z.constraint_mode(0);
+        tx.input_A_s.constraint_mode(0);
+        tx.input_B_s.constraint_mode(0);
+        tx.input_A_c.constraint_mode(0);
+        tx.input_B_c.constraint_mode(0);
+        tx.input_A_if.constraint_mode(0);
+        tx.input_B_if.constraint_mode(0);
+        tx.input_A_N.constraint_mode(0);
+        tx.input_B_N.constraint_mode(0);
+        tx.input_A_cc.constraint_mode(0);
+        tx.input_B_cc.constraint_mode(0);
+        tx.input_A_c1.constraint_mode(0);
+        tx.input_B_c1.constraint_mode(0);
+        tx.input_A_c2.constraint_mode(0);
+        tx.input_B_c2.constraint_mode(0);
+        tx.input_A_c3.constraint_mode(0);
+        tx.input_B_c3.constraint_mode(0);
+        tx.input_A_c4.constraint_mode(1);
+        tx.input_B_c4.constraint_mode(1);
+        tx.input_A_ce1.constraint_mode(0);
+        tx.input_B_ce1.constraint_mode(0);
+            tx.input_A_ce2.constraint_mode(0);
+        tx.input_B_ce2.constraint_mode(0);
+            tx.input_A_ce3.constraint_mode(0);
+        tx.input_B_ce3.constraint_mode(0);
+            tx.opcode_0.constraint_mode(0);
+            tx.opcode_1.constraint_mode(0);
+            tx.opcode_2.constraint_mode(0);
+            tx.opcode_3.constraint_mode(1);
+            tx.opcode_4.constraint_mode(0);
+            tx.opcode_5.constraint_mode(0);
+            tx.opcode_6.constraint_mode(0);
+            tx.opcode_7.constraint_mode(0);
+            assert(tx.randomize());
+            finish_item(tx);
+        endtask: body
+    endclass: simple_seq_div_11
+
+
+    class seq_of_commands_div_11 extends uvm_sequence #(alu_transaction_in);
+        `uvm_object_utils(seq_of_commands_div_11)
+        `uvm_declare_p_sequencer(uvm_sequencer#(alu_transaction_in))
+
+        function new (string name = "");
+            super.new(name);
+        endfunction: new
+
+        task body;
+            repeat(100)
+            begin
+                simple_seq_div_11 seq;
+                seq = simple_seq_div_11::type_id::create("seq");
+                assert( seq.randomize() );
+                seq.start(p_sequencer);
+            end
+        endtask: body
+
+    endclass: seq_of_commands_div_11
 endpackage: sequences
